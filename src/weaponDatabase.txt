@@ -1,0 +1,37 @@
+******************************************************
+*		Bronie s¹ zapisane w formacie
+*	
+*	1 wartoœæ = maks. obra¿enia
+*	2 wartoœæ = min.  obra¿enia
+*	3 wartoœæ = rozmiar pocisku
+*	4 wartoœæ = szybkostrzelnoœæ
+*	5 wartoœæ = rozrzut
+*	6 wartoœæ = maksymalna szybkoœæ pocisku 
+*	7 wartoœæ = minimalna szybkoœæ pocisku
+*	8 wartoœæ = ?
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+******************************************************
+
+******************************************************
+*  		  standardowa broñ		     *
+******************************************************
+20 	* minimalne obra¿enia 
+30	* maksymalne obra¿enia 
+10	* promieñ pocisku
+750	* szybkostrzelnoœæ
+10	* rozrzut
+20	* minimalna prêdkoœæ pocisku
+30	* maksymalna prêdkoœæ pocisku

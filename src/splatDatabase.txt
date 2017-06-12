@@ -1,0 +1,89 @@
+*************************************************************************************
+*	* = znak komentarza (przy wczytywaniu z pliku pominiemy wszystko co nast¹pi póŸniej)
+*
+*	1 wartoœæ  = co ile sekund losujemy nowy kierunek kreaturze 
+*	2 wartoœæ  = maks. pancerz
+*	3 wartoœæ  = min. pancerz
+*	4 wartoœæ  = maks. Obra¿enia
+*	5 wartoœæ  = min.  Obra¿enia
+*	6 wartoœæ  = maks.  Zdrowie
+*	7 wartoœæ  = min.  Zdrowie
+*	8 wartoœæ  = zasiêg broni
+*	9 wartoœæ  = maks.  prêdkoœæ
+*	10 wartoœæ = min.  prêdkoœæ
+*	11 wartoœæ = przyspieszenie 
+*	12 wartoœæ = rozmiar widoku (a.k.a. czyli krecha która, je¿eli przekroczona, to kreatura zacznie podejmowaæ decyzjê co zrobiæ)
+*	13 wartoœæ = waga regu³ algorytmu boidów ( sprawa czysto techniczna, najlepiej zapisywaæ wartoœæ w okolicach 1 - 10000, wy¿sze wartoœci mog¹ sprawiæ ¿e zaczn¹ dziaæ siê dziwne rzeczy) 
+*	14 wartoœæ = kolor kó³ka gdy kreatura jest agresywna    ( podana w formacie XXX XXX XXX gdzie XXX oznacza 8-bitow¹ wartoœæ RGB)
+*	15 wartoœæ = kolor kó³ka gdy kreatura jest pasywna      ( podana w formacie XXX XXX XXX gdzie XXX oznacza 8-bitow¹ wartoœæ RGB)
+*	16 wartoœæ = kolor kó³ka gdy kreatura podejmuje decyzjê ( podana w formacie XXX XXX XXX gdzie XXX oznacza 8-bitow¹ wartoœæ RGB)
+*	17 wartoœæ = kolor kó³ka gdy kreatura szar¿uje 		( podana w formacie XXX XXX XXX gdzie XXX oznacza 8-bitow¹ wartoœæ RGB)
+*	18 wartoœæ = kolor kó³ka gdy kreatura ucieka	        ( podana w formacie XXX XXX XXX gdzie XXX oznacza 8-bitow¹ wartoœæ RGB)
+*	19 wartoœæ = kolor kó³ka gdy kreatura atakuje gracza    ( podana w formacie XXX XXX XXX gdzie XXX oznacza 8-bitow¹ wartoœæ RGB)
+*	20 wartoœæ = czas w jakim kreatura podejmuje decyzjê co zrobiæ z graczem ( czas podany w mili sekundach)
+*	21 wartoœæ = odleg³oœæ która, je¿eli przekrocznoa to kreatura zaczyna szar¿owaæ 
+*	22 wartoœæ = promieñ okrêgu kreatury
+*	23 wartoœæ = bezpieczny dystans jaki zachowuje kreatura od innych ziomków ze stada
+*	24 wartoœæ = prawdopodobieñstwo wylosowania jako grupy 
+*
+*
+*
+*
+*************************************************************************************
+* Podstawowy Splat  
+4   	* 	Co ile sekund losujemy sobie nowy kierunek ruchu 0
+0   	* 	maks. pancerz					 1
+0   	*	min.  pancerz					 2
+10 	*	maks.  Obra¿enia				 3
+1   	*	min.  Obra¿enia					 4
+10  	*   	maks.   Zdrowie					 5
+1   	*   	min.   Zdrowie					 6
+20  	*   	zasiêg broni					 7
+5   	*   	maks. prêdkoœæ					 8
+2   	*  	min.  prêdkoœæ 					 9
+10	*   	przyspieszenie 					 10
+400 	*   	rozmiar widoku					 11
+100	* 	waga regu³ algorytmu boidów			 12
+*R     G     B
+160    0     0    * kolor kó³ka gdy kreatura jest agresywna   	 13
+0     255    0	  * kolor kó³ka gdy kreatura jest pasywna         14
+255   255    0    * kolor kó³ka gdy kreatura podejmuje decyzjê:   15
+255   64     32   * kolor kó³ka gdy kreatura szar¿uje             16
+0      0     255  * kolor kó³ka gdy kreatura ucieka               17
+96     96    96   * kolor kó³ka gdy kreatura atakuje gracza	 18
+
+200 		 * czas w jakim kreatura podejmujê decyzjê co zrobiæ z graczem  19
+200		 * odleg³oœæ, je¿eli przekroczona to kreatura zaczyna szar¿owaæ 20
+10		 * promieñ okrêgu kreatury					21 
+50		 * bezpieczny dystans jaki zachowuje Kreatura			22 
+10		 * du¿a szansa na wylosowanie jako przeciwnika 			23
+*************************************************************************************
+*************************************************************************************
+* Podstawowy Splat  
+1   	* 	Co ile sekund losujemy sobie nowy kierunek ruchu 0
+0   	* 	maks. pancerz					 1
+0   	*	min.  pancerz					 2
+5 	*	maks.  Obra¿enia				 3
+1   	*	min.  Obra¿enia					 4
+3  	*   	maks.   Zdrowie					 5
+1   	*   	min.   Zdrowie					 6
+20  	*   	zasiêg broni					 7
+10   	*   	maks. prêdkoœæ					 8
+4   	*  	min.  prêdkoœæ 					 9
+20	*   	przyspieszenie 					 10
+400 	*   	rozmiar widoku					 11
+100	* 	waga regu³ algorytmu boidów			 12
+*R     G     B
+128    0     0    * kolor kó³ka gdy kreatura jest agresywna   	 13
+0      0     255	  * kolor kó³ka gdy kreatura jest pasywna         14
+255   255    0    * kolor kó³ka gdy kreatura podejmuje decyzjê:   15
+255   64     32   * kolor kó³ka gdy kreatura szar¿uje             16
+0      0     255  * kolor kó³ka gdy kreatura ucieka               17
+96     96    96   * kolor kó³ka gdy kreatura atakuje gracza	 18
+
+200 		 * czas w jakim kreatura podejmujê decyzjê co zrobiæ z graczem  19
+200		 * odleg³oœæ, je¿eli przekroczona to kreatura zaczyna szar¿owaæ 20
+5		 * promieñ okrêgu kreatury					21 
+30		 * bezpieczny dystans jaki zachowuje Kreatura			22 
+100		 * raczej ma³a szansa na wyloswanie jako przeciwnika 		23 
+*************************************************************************************
