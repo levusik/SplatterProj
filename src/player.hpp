@@ -1,56 +1,53 @@
 #pragma once
 #include <SFML\Graphics.hpp>
+#include "entity.hpp"
+#include "HPBar.h"
 
-class player : public sf::Sprite
+
+
+
+class player : public sf::Sprite, public aliveCreature
 {
 public:
-	player(float radius, sf::Color color, sf::Vector2f position) :
-		SightLine(sf::Lines, 2)
+	player(float radius, sf::Color color, sf::Vector2f position, sf::RenderWindow &Window , std::vector<std::vector<enemy*>> &enemyArrayRef);
+	void update(sf::Vector2i mousePosition, sf::Vector2f windowOffset);
+	virtual void dealDamage(damageParameters DmgParams) override;
+	void draw();
+
+
+	/***************************************************/
+	//			Settery
+	void setNewPlayerParams(playerParameters newParams)
 	{
-
-		movementSpeed = 7.f;
-
-		circle.setRadius(radius / 2);
-		circle.setFillColor(color);
-		circle.setPosition(position);
-		this->setPosition(position);
-
-		//texture.loadFromFile("bohater.png");
-		//this->setTexture(texture);
-
-		this->circle.setOrigin(circle.getRadius(), circle.getRadius());
-		this->setOrigin(this->getGlobalBounds().width / 2, this->getGlobalBounds().height / 2);
-
-		// ustawiamy parametry pocz¹tkowe 
-		this->parameters.agility = 1;
-		this->parameters.perception = 1;
-		this->parameters.strength = 1;
-		this->parameters.rethoric = 1;
-
-		// ustawienie pocz¹tkowych perków na false 
-		this->parameters.fastHands = false;
-		this->parameters.sniperPerk = false;
-
+		this->parameters = newParams;
 	}
-	void update(sf::Vector2i mousePosition)
+	void setCircleFillColor(sf::Color col)
 	{
+		this->circle.setFillColor(col);
+	}
+	void setHP(double val)
+	{
+		if (val > this->parameters.maxHP)
+			val = this->parameters.maxHP;
+		if (val < 0)
+			val = 0;
 
-		manageKeyboardInput();
-		circle.setPosition(this->getPosition());
+		this->HP = val;
+	}
+	void setTextFont(sf::Font &font)
+	{
+		this->HPText.setFont(font);
+	}
 
-		// wyliczamy sobie z arc tangesa k¹t  
-		angle = atan2(mousePosition.y - this->circle.getPosition().y - this->circle.getRadius(),
-			mousePosition.x - this->circle.getPosition().x - this->circle.getRadius());
+	/***************************************************/
 
-		// jako ¿e arc tan zwraca wartoœæ w radianach to zmieniamy k¹t na stopnie
-		angle = angle * 180 / M_PI + 90;
 
-		circle.setRotation(angle);
-		this->setRotation(angle);
 
-		SightLine[0].position = sf::Vector2f(circle.getPosition().x, circle.getPosition().y);
-		SightLine[1].position = sf::Vector2f(mousePosition);
-
+	/***************************************************/
+	//			Gettery
+	HPbar	getHPbar()
+	{
+		return this->RectHPOfPlayer;
 	}
 	sf::CircleShape getCircle()
 	{
@@ -58,6 +55,14 @@ public:
 	}
 	sf::VertexArray getLine() {
 		return SightLine;
+	}
+	sf::Text		getText()
+	{
+		return this->HPText;
+	}
+	double getHP()
+	{
+		return this->HP;
 	}
 	double getVx() {
 		return movementSpeed;
@@ -70,43 +75,36 @@ public:
 	{
 		return angle;
 	}
-	Verticle getCenter()
+	sf::Vector2f getCenter()
 	{
 		// jako ¿e ustawiliœmy wczeœniej origin center na œrodek
 		// to nie musimy dodawaæ do pozycji promienia 
-		return Verticle{ circle.getPosition().x, circle.getPosition().y };
+		return sf::Vector2f(circle.getPosition().x, circle.getPosition().y);
 	}
 	playerParameters getParameters() const
 	{
 		return this->parameters;
 	}
+	/***************************************************/
 
 private:
-	void manageKeyboardInput()
-	{
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-		{
-			this->move(-movementSpeed, 0);
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-		{
-			this->move(movementSpeed, 0);
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-		{
-			this->move(0, -movementSpeed);
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-		{
-			this->move(0, movementSpeed);
-		}
-	}
+	void initializeStartupParameters();
+	void manageSpecialAbilities();
+	void manageKeyboardInput();
 
+	sf::RenderWindow &refToMainWindow;
+	std::vector<std::vector<enemy*>> &enemyArrayRef;
+
+
+	double prevHP;
+	double	armor;
 	double movementSpeed, angle;
+	playerParameters parameters;
+	HPbar RectHPOfPlayer;
 	sf::CircleShape  circle;
 	sf::Texture      texture;
 	sf::VertexArray  SightLine;
+	sf::Text		 HPText;
 
 
-	playerParameters parameters;
 };

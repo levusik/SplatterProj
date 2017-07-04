@@ -79,7 +79,7 @@ void Button::setSpriteTexture(sf::Texture & texture)
 void Button::setText(std::string phrase, sf::Font & font)
 {
 
-	this->text.setPosition(this->getPosition().x + this->getGlobalBounds().width/8, this->getPosition().y + this->getGlobalBounds().height / 6);
+	this->text.setPosition(this->getPosition().x, this->getPosition().y);
 	this->text.setCharacterSize(this->getGlobalBounds().width / phrase.size());
 	this->text.setFillColor(sf::Color::Color(0xA0,0xA0,0x0));
 	this->text.setString(phrase);

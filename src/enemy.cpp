@@ -1,331 +1,465 @@
 #include "enemy.hpp"
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// ustawienie parametrów z Szablonu przeciwnika 
-void splat::create(int groupIndex, splatTemplate splatUnit)
-{
-	// TODO (!)
-	// podczas tworzenia orka normalnie bêdziemy losowaæ aczkolwiek teraz 
-	// wybierzemy sobie jak¹œ wartoœæ 
-	this->armor = getRandomVal(splatUnit.minArmor, splatUnit.maxArmor);
-	this->Damage = getRandomVal(splatUnit.minDamage, splatUnit.maxDamage);
-	this->groupIndex = groupIndex;
-	this->HP = getRandomVal(splatUnit.minHP, splatUnit.maxHP);
-	this->minSpeed = splatUnit.minSpeed;
-	this->maxSpeed = splatUnit.maxSpeed;
 
-	this->circle.setPosition(splatUnit.startingPosition);
-	this->circle.setFillColor(splatUnit.passiveModeColor);
-	this->circle.setRadius(splatUnit.radius);
-	this->V.x = rand() % static_cast<int>(splatUnit.minSpeed) - rand() % static_cast<int>(splatUnit.maxSpeed);
-	this->V.y = rand() % static_cast<int>(splatUnit.minSpeed) - rand() % static_cast<int>(splatUnit.maxSpeed);
+/******************************************************************************************************************/
+void splat::setParametersOfOtherMates(std::vector<otherMatesParameters>& ParametersOfOtherMates)
+{
+	this->parametersOfOtherMates = ParametersOfOtherMates;
+}
+
+/******************************************************************************************************************/
+void splat::dealDamage(damageParameters damage)
+{
+	this->HP -= damage.value;
+
+	this->reactToGettingHit();
+}
+
+/******************************************************************************************************************/
+void splat::create(int groupIndex, splatTemplate enemyTemplate)
+{
+
+	// TODO
+	this->armor = getRandomVal(enemyTemplate.minArmor, enemyTemplate.maxArmor);
+	this->Damage = getRandomVal(enemyTemplate.minDamage, enemyTemplate.maxDamage);
+	this->groupIndex = groupIndex;
+	this->HP = getRandomVal(enemyTemplate.minHP, enemyTemplate.maxHP)* 100;
+	this->minSpeed = enemyTemplate.minSpeed;
+	this->maxSpeed = enemyTemplate.maxSpeed;
+
+
+	this->circle.setPosition(enemyTemplate.startingPosition);
+	this->circle.setFillColor(enemyTemplate.passiveModeColor);
+	this->circle.setRadius(enemyTemplate.radius);
+	this->V.x = rand() % 4 - rand() % 4;
+	this->V.y = rand() % 4 - rand() % 4;
 	this->minDistanceFromMates = 4 * (circle.getRadius());
 
-	this->sizeOfView = splatUnit.sizeOfView;
-	this->angleOfView = splatUnit.angleOfView;
-	this->pith = splatUnit.pith;
 
+	this->sizeOfView = enemyTemplate.sizeOfView;
+	this->angleOfView = enemyTemplate.angleOfView;
+	this->minDistanceFromPlayer = 300;
+
+	//
+	//this->pith = enemyTemplate.pith;
+	this->pith = 0.2;
+	this->speedBuff  =  1.;
+	this->attackBuff =  1.;
+	this->rangeOfWeapon = 100.;
+	this->isInFightingState = false;
+	this->delayBtwAttacksInSecs = 1.;
+
+	//
+
+
+	// HARDCODED  (!) {zrobiæ odzczyt z pliku}
 	// kolorki
-	this->agressiveModeColor = splatUnit.agressiveModeColor;
-	this->passiveModeColor = splatUnit.passiveModeColor;
-	this->ChargingColor = splatUnit.ChargingColor;
-	this->attackingPlayerColor = splatUnit.attackingPlayerColor;
-	this->fleeingColor = splatUnit.fleeingColor;
-	this->reactingtoPlayerColor = splatUnit.reactingtoPlayerColor;
-
+	this->colorOfHPBar				= sf::Color::Color(0, 0xff, 0xff);
+	this->IdleStateColor			= sf::Color::Color(0x46, 0x3e, 0xee);
+	this->IntriguedStateColor		= sf::Color::Color(0xee, 0xee, 0x0);
+	this->makingDecisionStateColor	= sf::Color::Color(0xff, 0xff, 0x0);
+	this->agressiveStateColor		= sf::Color::Color(0xff, 0x0, 0x0);
+	this->chargeStateColor			= sf::Color::Color(0xff, 0x7f, 0x0);
+	this->attackStateColor			= sf::Color::Color(0xee, 0x0, 0x0);
+	this->fleeStateColor			= sf::Color::Color(0x9b, 0x30, 0xff);
+	this->specialAbilityStateColor	= sf::Color::Color(0x85, 0x63, 0x63);
 
 	// pocz¹tkowy stan AI czyli szwendanie siê 
-	this->currentState = stateOfEnemy::WALKING_ARROUND;
+	this->currentState = stateOfEnemy::IDLE;
+	this->circle.setFillColor(this->IdleStateColor);
 
-	this->changeMoveBy = splatUnit.changeMoveBy;
-	this->timeToMakeDecisionInSec = splatUnit.timeToMakeDecisionInSec;
+
+	this->changeMoveBy = enemyTemplate.changeMoveBy;
+	this->timeToMakeDecisionInSec = enemyTemplate.timeToMakeDecisionInSec;
 
 
 	// zmienne potrzebne do ruchu w kierunku gracza
-	this->movementToPlayerX = splatUnit.minSpeed;
-	this->movementToPlayerY = splatUnit.minSpeed;
 	this->sinA = 0;
 	this->cosA = 0;
+	this->isGroupAgressive = 0;
+	this->isGroupIntrigued = 0;
 
-	this->acceleration = splatUnit.acceleration;
+
+	this->acceleration = enemyTemplate.acceleration;
 	this->timeOfDeceleration = 0.15;
-	this->chargeDistance = splatUnit.chargeDistance + this->circle.getRadius();
+	this->chargeDistance = enemyTemplate.chargeDistance + this->circle.getRadius();
 
 
 	// zmienna która wyra¿a dystans do którego kreatura d¹¿y	(promieñ gracza + promieñ kreatury + zasiêg broni)
 
-	this->safeDistance = splatUnit.safeDistance;
+	this->safeDistance = enemyTemplate.safeDistance;
 
 
 	this->slowDistance = safeDistance + 50;
 
 	this->hasCharged = false;
+
+
+	// utworzenie HPBara 
+	this->HPRectangle.init(this->HP, 2*this->circle.getRadius(), 0.5 * this->circle.getRadius(), colorOfHPBar);
+	
+
+	this->dmgParameters.value = this->Damage;
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-void splat::update(Verticle &averageV, double &averageDistance, Verticle playerPos)
+/******************************************************************************************************************/
+//		Schemat AI rozpisany w zeszycie
+void splat::manageAIScheme(sf::Vector2f *averageV, double *averageDistance, player *Player)
 {
-	// co by siê nie dzia³o to zawsze sobie liczymy dystans kreatury od gracza 
-	distanceBtwCreatureAndPlayer = calculateDistance(this->getCenter(), playerPos);
+	this->playerPointer		= Player;
+	this->averageDistance	= averageDistance;
+	this->averageV			= averageV;
 
-	this->average = averageV;
-	this->averageDistance = averageDistance;
-
-	// FSM Przeciwnika
-	switch (currentState)
+	this->distanceBtwCreatureAndPlayer = calculateDistance(Player->getCenter(), this->getCenter());
+	
+	switch (this->currentState)
 	{
-	case stateOfEnemy::WALKING_ARROUND:
-		walkingArround(playerPos);
-		manageVertexLine(this->V.x, this->V.y, this->sinA, this->cosA);
+	case stateOfEnemy::IDLE:
+	{
+		this->IDLEState();
 		break;
-	case stateOfEnemy::REACT_TO_PLAYER:
-		reactToPlayer(playerPos);
+	}
+	case stateOfEnemy::INTRIGUED:
+	{
+		this->intriguedState();
 		break;
-	case stateOfEnemy::ATTACK_PLAYER:
-		attackPlayer();
+	}
+	case stateOfEnemy::MAKINGDECISION:
+	{
+		this->makingDecisionState();
 		break;
-	case stateOfEnemy::MOVING_TOWARDS_PLAYER:
-		movingTowardsPlayer(playerPos);
-		manageVertexLine(std::abs(this->movementToPlayerX), std::abs(this->movementToPlayerY), this->sinA, this->cosA);
+	}
+	case stateOfEnemy::AGRESSIVE:
+	{
+		this->agressiveState();
 		break;
+	}
+	case stateOfEnemy::ATTACK:
+	{
+		this->attackState();
+		break;
+	}
+	case stateOfEnemy::CHARGE:
+	{
+		this->chargeState();
+		break;
+	}
+	case stateOfEnemy::SPECIALABILITY:
+	{
+		this->specialAbility();
+		break;
+	}
+	case stateOfEnemy::FLEE:
+	{
+		this->fleeState();
+		break;
+	}
+	}
+
+
+	if (this->movementDelay.getElapsedTime().asSeconds() > 1./FPS && V.x != 0 && V.y != 0 )
+	{
+		this->handleBoundingRect();
+		this->circle.move(V.x, V.y);
+		this->movementDelay.restart();
 	}
 }
 
-
-
-/////////////////////////////////////////////////////////////////////
-//	Pobranie sobie parametrów orków tej samej grupy (tylko kilku)
-void splat::setParametersOfOtherMates(std::vector<otherMatesParameters>& ParametersOfOtherMates)
+/******************************************************************************************************************/
+void splat::IDLEState()
 {
-	this->parametersOfOtherMates = ParametersOfOtherMates;
-}
-/////////////////////////////////////////////////////////////////////
-
-/////////////////////////////////////////////////////////////////////
-//		Je¿eli ta metoda zosta³a wywo³ana to znaczy 
-//		¿e stan gry wykry³ ¿e jakiœ pocisk zetkn¹³ siê 
-//		ze splatem (i podemujemy jakieœ akcje w zale¿noœci
-//		od parametrów kulki)
-void splat::dealDamage(bulletParameters collidedBullet)
-{
-	this->HP -= collidedBullet.damage;
-
-	if (HP <= 0)
-		this->isAlive = false;
-}
-/////////////////////////////////////////////////////////////////////
-
-/////////////////////////////////////////////////////////////////////
-//	Szwêdanie siê orka
-void splat::walkingArround(Verticle playerPos)
-{
-	//	 wylosowanie kierunku ruchu co jakiœ czas 
-	//   oraz update pozycji 
-	if (GETSEC(delayBtwChangingMove) >= this->changeMoveBy / 2)
+	// wywo³anie metody która zarz¹dza przejœciami do innych stanów
+	this->IDLESChangeToDiffState();
+	
+	// losujemy sobie kierunek ruchu ( wprowadzenie lekkiej dawki chaosu)
+	if (this->delayBtwRandomizeMovement.getElapsedTime().asSeconds() + timeAdd > 3.f)
 	{
-		double randX = rand() % 6 - rand() % 4;
-		this->V.x = randX;
+		randomizeMovement();
+	}
+	
+	// update zasad algorytmu boidów 
+	if (delayBtwBoidAlgorithm.getElapsedTime().asSeconds() > 1. / 30.)
+	{
+		// stosujemy wszystkie regu³y algorytmu boidów	
+		this->V += enemy::applyAllRules(*this->averageV, *this->averageDistance);
+		this->delayBtwBoidAlgorithm.restart();
+	}
+	
+	// ograniczenie wektora
+	this->limitVector();
 
-		double randY = rand() % 6 - rand() % 4;
-		this->V.y = randY;
-		delayBtwChangingMove.restart();
+}
+
+/******************************************************************************************************************/
+void splat::IDLESChangeToDiffState()
+{
+	
+	// przjeœcie w stan Intrigued 
+	//if (calculateDistance(Player.getCenter(), this->getCenter()) <= this->sizeOfView || this->isGroupIntrigued)
+	if (calculateDistance(this->playerPointer->getCenter(), this->getCenter()) <= this->minDistanceFromPlayer)
+	{
+		this->circle.setFillColor(this->IntriguedStateColor);
+		this->isGroupIntrigued = true;
+		this->currentState		= stateOfEnemy::INTRIGUED;
 	}
 
-	// sprawdzamy czy gracz jest w zasiêgu wzroku
-	if (distanceBtwCreatureAndPlayer < this->sizeOfView || this->playerDetected)
+	if (this->playerHurtedGroupMate)
 	{
-
-		this->playerDetected = true;
-
-		// wykryto bohatera zatem orki zaczynaj¹ atakowaæ 
-		this->circle.setFillColor(reactingtoPlayerColor);
-
-		//zmieniamy stan splata 
-		this->currentState = stateOfEnemy::REACT_TO_PLAYER;
-		timeToMakeDecision.restart();
-		return;
+		this->circle.setFillColor(this->agressiveStateColor);
+		this->currentState = stateOfEnemy::AGRESSIVE;
 	}
-	// warunek pierwszy : a.k.a ka¿dy boid dopasowuje swoj¹ prêdkoœæ do reszty stada
-	V.x += apply1Rule(average.x, V.x, this->pith);
-	V.y += apply1Rule(average.y, V.y, this->pith);
 
-	for (int i = 0; i < this->parametersOfOtherMates.size(); ++i)
+}
+
+/******************************************************************************************************************/
+void splat::intriguedState()
+{
+
+	this->intriguedSChangeToDiffState();
+
+	applyAllRules(*this->averageV, *this->averageDistance);
+
+	// gdy jest zaintrygowany, porusza siê w stronê gracza
+	this->calculateTrygFunc();
+
+	V.x = this->minSpeed * this->cosA;
+	V.y = this->minSpeed * this->sinA;
+}
+
+/******************************************************************************************************************/
+void splat::intriguedSChangeToDiffState()
+{
+	if (this->playerHurtedGroupMate)
 	{
-		// je¿eli nie wykryto wroga w ca³ej grupie to po prostu boid siê szwenda 
-		if (!parametersOfOtherMates[i].hasDetectedPlayer)
+		this->circle.setFillColor(this->agressiveStateColor);
+		this->currentState = stateOfEnemy::AGRESSIVE;
+	}
+
+	if (this->distanceBtwCreatureAndPlayer >= this->minDistanceFromPlayer)
+	{
+		this->currentState = stateOfEnemy::IDLE;
+		this->circle.setFillColor(this->IdleStateColor);
+	}
+	
+
+	if (this->distanceBtwCreatureAndPlayer <= this->minDistanceFromPlayer/1.5)
+	{
+		this->currentState = stateOfEnemy::MAKINGDECISION;
+		this->circle.setFillColor(this->makingDecisionStateColor);
+		this->makingDecisionDelay.restart();
+	}
+}
+
+/******************************************************************************************************************/
+void splat::makingDecisionState()
+{
+	this->makingDecisionChangeToDiffState();
+
+
+	V.x = 0;
+	V.y = 0;
+}
+
+/******************************************************************************************************************/
+void splat::makingDecisionChangeToDiffState()
+{
+	if (this->makingDecisionDelay.getElapsedTime().asSeconds() > timeToMakeDecisionInSec)
+	{
+		if (this->isWorthAttacking())
 		{
-			double distance = calculateDistance(this->getCenter(), parametersOfOtherMates[i].position);
-			V.x += apply2Rule(this->getCenter().x, parametersOfOtherMates[i].position.x, distance, this->pith);
-			V.y += apply2Rule(this->getCenter().y, parametersOfOtherMates[i].position.y, distance, this->pith);
-
-			// sprawdzamy czy ziomek-boid nie zbli¿y³ siê nazbyt do aktualnego boida
-			if (distance < this->minDistanceFromMates)
-			{
-				V.x += apply3Rule(this->getCenter().x, parametersOfOtherMates[i].position.x, distance, this->pith);
-				V.y += apply3Rule(this->getCenter().y, parametersOfOtherMates[i].position.y, distance, this->pith);
-			}
-		}
-		// natomiast je¿eli wykryto wroga to ca³a grupa kmini co zrobiæ ( w sensie ¿e reaguje na gracza)
-		else
-		{
-			this->playerDetected = true;
-
-			// wykryto bohatera zatem orki zaczynaj¹ atakowaæ 
-			this->circle.setFillColor(reactingtoPlayerColor);
-			this->currentState = stateOfEnemy::REACT_TO_PLAYER;
-			return;
-		}
-	}
-
-	manageVertexLine(V.x, V.y, 1, 1);
-
-	circle.move(V.x, V.y);
-	this->move(V.x, V.y);
-}
-/////////////////////////////////////////////////////////////////////
-
-/////////////////////////////////////////////////////////////////////
-//	 Reagowanie na gracza
-void splat::reactToPlayer(Verticle playerPos)
-{
-	// kreatury dopiero po pewnym czasie podejmuj¹ decyzjê 
-	if (timeToMakeDecision.getElapsedTime().asSeconds() > this->timeToMakeDecisionInSec)
-	{
-
-		movementToPlayerX = V.x;
-		movementToPlayerY = V.y;
-
-		// ustawiamy stan na pod¹¿anie w kierunku bohatera
-		this->currentState = stateOfEnemy::MOVING_TOWARDS_PLAYER;
-		this->circle.setFillColor(this->agressiveModeColor);
-
-	}
-}
-/////////////////////////////////////////////////////////////////////
-
-/////////////////////////////////////////////////////////////////////
-//	Ruch w kierunku gracza
-void splat::movingTowardsPlayer(Verticle playerPos)
-{
-	if (this->distanceBtwCreatureAndPlayer > this->safeDistance)
-	{
-
-		// liczymy sobie funkcje trygonometryczne
-		double distBtwPlayerAndCreature, distanceX, distanceY;
-		distanceX = playerPos.x - this->getCenter().x;
-		distanceY = playerPos.y - this->getCenter().y;
-		sinA = distanceX / distanceBtwCreatureAndPlayer;
-		cosA = distanceY / distanceBtwCreatureAndPlayer;
-
-		// sprawdzamy czy szar¿a jest mo¿liwa 
-		charge();
-
-		// zarz¹dzamy przyspieszeniem oraz regu³y algorytmu boidów
-		manageAcceleration();
-
-		double moveX = std::abs(movementToPlayerX) * sinA;
-		double moveY = std::abs(movementToPlayerY) * cosA;
-
-
-		//this->circle.move(moveX,0);
-
-		// update'ujemy nasze kó³ko
-		this->circle.move(moveX, moveY);
-	}
-}
-/////////////////////////////////////////////////////////////////////
-
-/////////////////////////////////////////////////////////////////////
-// Szar¿a 
-void splat::charge()
-{
-	if (distanceBtwCreatureAndPlayer < this->chargeDistance && !hasCharged)
-	{
-		hasCharged = true;
-		this->circle.setFillColor(ChargingColor);
-		acceleration *= 2;
-	}
-}
-/////////////////////////////////////////////////////////////////////
-
-/////////////////////////////////////////////////////////////////////
-//	Atak gracza
-void splat::attackPlayer()
-{
-}
-/////////////////////////////////////////////////////////////////////
-
-/////////////////////////////////////////////////////////////////////
-//	przyspieszenie gracza 
-void splat::manageAcceleration()
-{
-
-	if (this->distanceBtwCreatureAndPlayer > this->slowDistance && std::abs(this->movementToPlayerX) < std::abs(this->maxSpeed) && std::abs(movementToPlayerY) < this->maxSpeed)
-	{
-		// metoda zarz¹dzaj¹ca przyspieszeniem
-		if (sinA >= 0)
-		{
-			this->movementToPlayerX += this->acceleration;
+			this->currentState = stateOfEnemy::AGRESSIVE;
+			this->circle.setFillColor(this->agressiveStateColor);
 		}
 		else
 		{
-			this->movementToPlayerX -= this->acceleration;
+			this->currentState = stateOfEnemy::FLEE;
+			this->circle.setFillColor(this->fleeStateColor);
 		}
-		if (cosA >= 0)
-		{
-			this->movementToPlayerY += this->acceleration;
-		}
-		else
-		{
-			this->movementToPlayerY -= this->acceleration;
-		}
+	}
+}
+
+/******************************************************************************************************************/
+void splat::fleeState()
+{
+	this->fleeChangeToDiffState();
+
+	// policzenie funkcji trygonometrycznych
+	this->calculateTrygFunc();
+
+	// obliczenie vektora ruchu
+	this->V.x = this->cosA * this->maxSpeed * -1;
+	this->V.y = this->sinA * this->maxSpeed * -1;
+}
+
+/******************************************************************************************************************/
+void splat::fleeChangeToDiffState()
+{
+	if (this->distanceBtwCreatureAndPlayer >= this->minDistanceFromPlayer* fleeDistancePrc)
+	{
+		this->currentState = stateOfEnemy::IDLE;
+		this->circle.setFillColor(this->IdleStateColor);
+	}
+
+}
+
+/******************************************************************************************************************/
+
+/******************************************************************************************************************/
+/*											SYSTEM WALKI														  */
+/******************************************************************************************************************/
+void splat::agressiveState()
+{
+	this->agressiveChangeToDiffState();
+
+	if (this->distanceBtwCreatureAndPlayer >= 2 * this->circle.getRadius() + this->playerPointer->getCircle().getRadius())
+	{
+		this->calculateTrygFunc();
+		this->V.x = this->maxSpeed * this->cosA * this->speedBuff;
+		this->V.y = this->maxSpeed * this->sinA * this->speedBuff;
 	}
 	else
 	{
-		movementToPlayerX -= movementToPlayerX / FPS;
-		movementToPlayerY -= movementToPlayerY / FPS;
-	}
-	if (std::abs(movementToPlayerX) < this->maxSpeed && std::abs(movementToPlayerY) < this->maxSpeed)
-	{
-		//wprowadŸmy trochê chaosu w ruchu splatów 
-		movementToPlayerX += rand() % 1 - rand() % 2;
-		movementToPlayerY += rand() % 1 - rand() % 2;
-
-
-		// stosujemy 1 zasadê algorytmu boidów a.k.a. prêdkoœæ ca³ej grupy ma wp³yw na prêdkoœæ ca³ej grupy 
-		movementToPlayerX += apply1Rule(this->average.x, this->movementToPlayerX, this->pith);
-		movementToPlayerY += apply1Rule(this->average.y, this->movementToPlayerY, this->pith);
-
-
-
-		// stosujemy te¿ 2 i 3 zasadê algorytmu boidów 
-		for (int i = 0; i < parametersOfOtherMates.size(); ++i)
-		{
-			// stosujemy 2 regulê algorytmu
-			double distance = calculateDistance(this->getCenter(), parametersOfOtherMates[i].position);
-			movementToPlayerX += apply2Rule(this->getCenter().x, parametersOfOtherMates[i].position.x, distance, this->pith);
-			movementToPlayerY += apply2Rule(this->getCenter().y, parametersOfOtherMates[i].position.y, distance, this->pith);
-
-			// sprawdzamy czy przyjaciel boida nie zbli¿y³ siê nazbyt do aktualnego boida
-			if (distance < this->minDistanceFromMates)
-			{
-				double add;
-				movementToPlayerX += apply3Rule(this->getCenter().x, parametersOfOtherMates[i].position.x, distance, 0.2);
-				movementToPlayerY += apply3Rule(this->getCenter().y, parametersOfOtherMates[i].position.y, distance, 0.2);
-			}
-		}
+		this->V.x = 0;
+		this->V.y = 0;
 	}
 
 }
-/////////////////////////////////////////////////////////////////////
+/******************************************************************************************************************/
+void splat::agressiveChangeToDiffState()
+{
+	if (this->distanceBtwCreatureAndPlayer <= this->chargeDistance && !hasCharged)
+	{
+		this->currentState = stateOfEnemy::CHARGE;
+		this->circle.setFillColor(this->chargeStateColor);
+	}
+
+	if (this->distanceBtwCreatureAndPlayer <= this->rangeOfWeapon)
+	{
+		this->currentState = stateOfEnemy::ATTACK;
+		this->circle.setFillColor(this->attackStateColor);
+		this->timeToMakeDecision.restart();
+	}
+}
+/******************************************************************************************************************/
+void splat::chargeState()
+{
+	chargeChangeToDiffState();
+	this->speedBuff = 1.2f;
+	this->hasCharged = true;
+}
+/******************************************************************************************************************/
+void splat::chargeChangeToDiffState()
+{
+	this->currentState = stateOfEnemy::AGRESSIVE;
+	this->circle.setFillColor(this->agressiveStateColor);
+}
+/******************************************************************************************************************/
+void splat::attackState()
+{
+	this->attackChangeToDiffState();
+
+	if (this->distanceBtwCreatureAndPlayer > this->playerPointer->getCircle().getRadius() + 1.3*this->getCircle().getRadius())
+	{
+		calculateTrygFunc();
+		this->V.x = this->maxSpeed * this->cosA * this->speedBuff;
+		this->V.y = this->maxSpeed * this->sinA * this->speedBuff;
+	}
+	else
+	{
+		V.x = 0;
+		V.y = 0;
+	
+		if (this->distanceBtwCreatureAndPlayer < this->circle.getRadius() + playerPointer->getCircle().getRadius())
+		{
+			calculateTrygFunc();
+			V.x = (distanceBtwCreatureAndPlayer - playerPointer->getCircle().getRadius() - circle.getRadius())* cosA;
+			V.y = (distanceBtwCreatureAndPlayer - playerPointer->getCircle().getRadius() - circle.getRadius()) * sinA;
+		}
+	}
+
+	if (GETSEC(delayBtwAttacksClock) > this->delayBtwAttacksInSecs)
+	{
+		this->playerPointer->dealDamage(this->dmgParameters);
+		this->delayBtwAttacksClock.restart();
+	}
+	
+
+}
+/******************************************************************************************************************/
+void splat::attackChangeToDiffState()
+{
+	if (this->distanceBtwCreatureAndPlayer >= getCircle().getRadius() + this->playerPointer->getCircle().getRadius() + rangeOfWeapon)
+	{
+		isInFightingState = false;
+		this->circle.setFillColor(agressiveStateColor);
+		this->currentState = stateOfEnemy::AGRESSIVE;
+	}
+}
+/******************************************************************************************************************/
+void splat::specialAbility()
+{
+}
+/******************************************************************************************************************/
+void splat::specialAbilityChangeToDiffState()
+{
+}
+/******************************************************************************************************************/
+bool splat::isWorthAttacking()
+{
+	return false;
+}
+/******************************************************************************************************************/
+void splat::reactToGettingHit()
+{
+
+	this->gettingHitChangeStates();
+	
+
+	// sprawdzamy poziom zdrowia przeciwnika 
+	if (this->HP <= 0)
+	{
+		this->isAlive = false;
+	}
+}
+/******************************************************************************************************************/
+void splat::gettingHitChangeStates()
+{
+	if (this->currentState != stateOfEnemy::AGRESSIVE && this->currentState != stateOfEnemy::CHARGE &&
+		this->currentState != stateOfEnemy::SPECIALABILITY && this->currentState != stateOfEnemy::ATTACK)
+	{
+		this->currentState = stateOfEnemy::AGRESSIVE;
+		this->circle.setFillColor(this->agressiveStateColor);
+	}
+}
+/******************************************************************************************************************/
+void splat::randomizeMovement()
+{
+		int avg = (this->maxSpeed + this->minSpeed) / 2;
+		this->V.x = rand() % avg - rand() % avg;
+		this->V.y = rand() % avg - rand() % avg;
+		this->delayBtwRandomizeMovement.restart();
+		timeAdd = 0.f;
 
 
+		if (VxMustBePlus)
+		{
+			V.x = std::abs(V.x);
+			VxMustBePlus = false;
 
-// regu³a 2 : wzór
-//	odl =  sqrt((s.x - b.x)**2 + (s.y - b.y)**2)
-//	b.vx = b.vx + waga *(s.x - b.x) *(odl - avgOdl) / odl
-//	b.vy = b.vy + waga *(s.y - b.y) *(odl - avgOdl) / odl
-//	
-
-/////////////////////////////////////////////////////////////////////
+		}
+		else if (VxMustBeNeg)
+		{
+			V.x = -std::abs(V.x);
+			VxMustBeNeg = false;
+		}
+		if (VyMusBePlus)
+		{
+			V.y = std::abs(V.y);
+			VyMusBePlus = false;
+		}
+		else if (VyMusBeNeg)
+		{
+			V.y = -std::abs(V.y);
+			VyMusBeNeg = false;
+		}
+}
+/******************************************************************************************************************/

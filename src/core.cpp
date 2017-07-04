@@ -1,10 +1,16 @@
 #include "playGameState.h"
+
+
+#include <iostream>
 #define m_CurrSelectedWpn (this->backpack[this->indexOfCurrentlySelectedWpn])
 #define cast(type,x)	(static_cast<type>(x))
 
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
 /////////////////////////////////////////////////////////////////////////////////////////////
 playGameState::playGameState(sf::Font & font, sf::RenderWindow &window) :
-	Player(32.f, sf::Color::Color(0x00, 0x0, 0xFF), sf::Vector2f(WINDOWWIDTH / 2, WINDOWHEIGHT / 2)),
+	Player(32.f, sf::Color::Color(0x00, 0x0, 0xFF), sf::Vector2f(WINDOWWIDTH / 2, WINDOWHEIGHT / 2), this->Window, enemyArray),
 	Window(window), Font(font), howManyButtons(6)
 {
 
@@ -15,6 +21,11 @@ playGameState::playGameState(sf::Font & font, sf::RenderWindow &window) :
 	xViewOffset = yViewOffset = SpawnPointIndex = allChance = 0;
 	isPlayingAnimation = false;
 
+
+	this->moveAvailableRect.setPosition(sf::Vector2f(LEFTWALL, UPWALL));
+	this->moveAvailableRect.setSize(sf::Vector2f(RIGHTWALL - LEFTWALL, DOWNWALL - UPWALL));
+	this->moveAvailableRect.setFillColor(sf::Color::Color(0x0, 0x4f, 0x7f, 0x7f));
+
 	// ustawienie textu
 	text.setFont(font);
 	counter.setFont(font);
@@ -22,10 +33,25 @@ playGameState::playGameState(sf::Font & font, sf::RenderWindow &window) :
 
 	debugFile.open("debug.txt", std::ios::out | std::ios::trunc);
 
-	// ustawiamy stan pocz¹tkowy 
-	this->currentState = statesOfPlayGameState::SHIP;
 
-	this->currency			= 0;
+
+	// wczytanie szablonów jednostek i broni 
+	loadTemplatesAndItemsFromFile();
+
+	this->indexOfCurrentlySelectedWpn = 0;
+	addWeaponToBackpack(0);
+
+
+	// ustawiamy stan pocz¹tkowy 
+	switchStateToShip();
+
+
+	//////////////////////////////
+	// (!)
+	this->currency			= 500;
+	//
+	//////////////////////////////
+
 	this->previousMagSize	= 0;
 	this->prevWpnType		= typeOfWeapon::_NULL;
 
@@ -36,15 +62,77 @@ playGameState::playGameState(sf::Font & font, sf::RenderWindow &window) :
 	this->colorMap[typeOfWeapon::ENERGETIC]     = sf::Color::Color(0x0,0x9a,0xCD);
 	this->colorMap[typeOfWeapon::PLASMA]	    = sf::Color::Color(0x0,0xff,0x7f);
 
+
+	/////////////////////////////////////////////////////////////////
+	//	ustawienie kosztów pocisków
+	this->costsOfBullets[typeOfWeapon::ENERGETIC]  = 1;
+	this->costsOfBullets[typeOfWeapon::BULLETTYPE] = 2;
+	this->costsOfBullets[typeOfWeapon::PLASMA]     = 3;
+	/////////////////////////////////////////////////////////////////
+
+	/////////////////////////////////////////////////////////////////
+	// ustawienie paczek amunicji
+	this->HowManyBltsInPacks[typeOfWeapon::ENERGETIC]  = 50;
+	this->HowManyBltsInPacks[typeOfWeapon::BULLETTYPE] = 25;
+	this->HowManyBltsInPacks[typeOfWeapon::PLASMA]     = 10;
+
+	positionOfNearestEnemy.x = positionOfNearestEnemy.y = 0;
+	
+	Player.setTextFont(Font);
+
+
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+playGameState::~playGameState()
+{
+	// usuniêcie obszarówek
+	for (int i = 0; i < terrainEffectsArray.size(); ++i)
+		delete terrainEffectsArray[i];
+	
+	terrainEffectsArray.clear();
+
+	// usuniêcie przeciwników 
+	for (int i = enemyArray.size()-1; i >= 0; --i)
+	{
+		for (int j = 0; j < enemyArray[i].size(); ++j)
+		{
+			delete enemyArray[i][j];
+		}
+		enemyArray[i].clear();
+	}
+	enemyArray.clear();
+
+	//usuniêcie pocisków 
+	for (int i = 0; i < ProjectilesArray.size(); ++i)
+	{
+		delete ProjectilesArray[i];
+	}
+	ProjectilesArray.clear();
+
+	// wyczyszenie plecaka 
+	for (int i = 0; i < backpack.size(); ++i)
+	{
+		delete backpack[i];
+		backpack[i] = NULL;
+	}
+	backpack.clear();
+
+	for (int i = 0; i < rangeWeaponDatabase.size(); ++i)
+	{
+		delete rangeWeaponDatabase[i];
+	}
+	rangeWeaponDatabase.clear();
+
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 void playGameState::run()
 {
+	
 	initializeState();
 	while (true)
 	{
-
 		switch (currentState)
 		{
 		case statesOfPlayGameState::SETTINGUPWAVE:
@@ -116,8 +204,8 @@ void playGameState::loadTemplatesAndItemsFromFile()
 			splatUnit.minDamage = atoi(values[5].c_str());
 			splatUnit.minHP = atoi(values[6].c_str());
 			splatUnit.rangeOfWeapon = atoi(values[7].c_str());
-			splatUnit.minSpeed = atoi(values[8].c_str());
-			splatUnit.maxSpeed = atoi(values[9].c_str());
+			splatUnit.maxSpeed = atoi(values[8].c_str());
+			splatUnit.minSpeed = atoi(values[9].c_str());
 			splatUnit.acceleration = atoi(values[10].c_str());
 			splatUnit.sizeOfView = atoi(values[11].c_str());
 			splatUnit.pith = atoi(values[12].c_str()) / 10000.f;
@@ -196,6 +284,10 @@ void playGameState::loadTemplatesAndItemsFromFile()
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	// wczytanie broni z plików
 
+
+	// ID broni [ jest równie¿ indeksem w bazie danych wszystkich broni ]
+	int weaponID = 0;
+
 	while (std::getline(weaponDatabase, line))
 	{
 		std::string phrase;
@@ -221,23 +313,45 @@ void playGameState::loadTemplatesAndItemsFromFile()
 		if (phrase.size())
 			values.push_back(phrase);
 
+
+		///////////////////////////////////////////////////////////////////////////////////////
+		// (!)
+		//		CA£OŒæ DO REFAKTORYZACJI
 		if (values.size() == 7)
 		{
-			rangeWeapon weapon;
-			weapon.minDamage = std::stoi(values[0]);
-			weapon.maxDamage = std::stoi(values[1]);
-			weapon.bulletSize = std::stoi(values[2]);
-			weapon.firerate = std::stoi(values[3]);
-			weapon.recoil = std::stoi(values[4]);
-			weapon.minSpeedOfBullet = std::stoi(values[5]);
-			weapon.maxSpeedOfBullet = std::stoi(values[6]);
+			rangeWeapon *weapon = new rangeWeapon;
+			
+			weaponParameters WpnParams;
+			WpnParams.minDamage = std::stoi(values[0]);
+			WpnParams.maxDamage = std::stoi(values[1]);;
+			WpnParams.bulletSize = std::stoi(values[2]);
+			WpnParams.firerate = std::stoi(values[3]);
+			WpnParams.recoil = std::stoi(values[4]);
+			WpnParams.minSpeedOfBullet = std::stoi(values[5]);
+			WpnParams.maxSpeedOfBullet = std::stoi(values[6]);
+			WpnParams.howManyProjItShoot = 1;
+			WpnParams.origMagSize   = 40;
+			WpnParams.costOfBullet  = 1;
+			WpnParams.packedBullets = 1;
 
 			effects Effects;
-			weapon.setEffects(Effects);
+			weapon->setEffects(Effects);
 
+			WpnParams.weaponEffects.type = typeOfWeapon::ENERGETIC;
+			WpnParams.firerate = 800;
+			WpnParams.origMagSize = 900;
+			WpnParams.packedBullets = true;
+			WpnParams.howManyProjItShoot = 8;
+
+			weapon->create(WpnParams);
+			weapon->ID = weaponID;
 			rangeWeaponDatabase.push_back(weapon);
+			weaponsIDNotTaken.push_back(weaponID);
 			values.clear();
+			++weaponID;
 		}
+
+		///////////////////////////////////////////////////////////////////////////////////////
 	}
 
 	if (DEBUG)
@@ -258,48 +372,38 @@ void playGameState::loadTemplatesAndItemsFromFile()
 /////////////////////////////////////////////////////////////////////////////////////////////
 void playGameState::initializeState()
 {
+
 	DynamicView = this->Window.getView();
 
-	// wczytanie szablonów jednostek i broni 
-	loadTemplatesAndItemsFromFile();
-
-	// (!)
-	// pocz¹tkowymi broñmi gracza bêdzie podstawowy karabin energetyczny, plazmowy i o³owiowy
-	this->backpack.push_back(rangeWeaponDatabase[0]);
-	this->indexOfCurrentlySelectedWpn = 0;
-
-	rangeWeapon wpn = rangeWeaponDatabase[0];
-	wpn.EffectWeaponCauses.type = typeOfWeapon::ENERGETIC;
-	backpack.push_back(wpn);
-
-	wpn.EffectWeaponCauses.type = typeOfWeapon::PLASMA;
-	backpack.push_back(wpn);
-
-
+	this->positionOfNearestEnemy = sf::Vector2f(0, 0);
+	
 
 
 	// (!)
 	// TODO: sensowniejsze rozplanowanie tekstów
-	text.setCharacterSize(70);
-	text.setFillColor(sf::Color::Color(164, 164, 0));
+	text.setCharacterSize(40);
+	text.setFillColor(sf::Color::Color(164, 164, 0, 0x7f));
 	text.setPosition(this->xViewOffset, 0);
 	infoTexts.push_back(text);
 
-	text.setFillColor(sf::Color::Color(128, 128, 0));
-	text.setPosition(this->xViewOffset + 150, 0);
+	text.setFillColor(sf::Color::Color(128, 128, 0, 0x7f));
+	text.setPosition(this->xViewOffset, 1.5*text.getCharacterSize());
 	infoTexts.push_back(text);
 
 
+	text.setCharacterSize(64);
+
+
 	text.setFillColor(sf::Color::Color(0x0,0xff,0x0));
-	text.setPosition(sf::Vector2f(WINDOWWIDTH - 300,0));
+	text.setPosition(sf::Vector2f(WINDOWWIDTH - 225,this->Window.getSize().y - 1.25 *text.getCharacterSize()));
 	ammoAndCurrencyTexts.push_back(text);
 
 	text.setFillColor(sf::Color::Color(0x0, 0xA0, 0x0));
-	text.setPosition(sf::Vector2f(WINDOWWIDTH - 450,0));
+	text.setPosition(sf::Vector2f(WINDOWWIDTH - 400, this->Window.getSize().y - 1.25*text.getCharacterSize()));
 	ammoAndCurrencyTexts.push_back(text);
 
 	text.setFillColor(sf::Color::Color(0xff,0xb9,0x0f));
-	text.setPosition(sf::Vector2f(0,100));
+	text.setPosition(sf::Vector2f(0,this->Window.getSize().y - 1.25 * text.getCharacterSize()));
 	ammoAndCurrencyTexts.push_back(text);
 
 }
@@ -309,24 +413,24 @@ void playGameState::displayPlayingWaveState()
 {
 	this->Window.clear();
 
-	this->Window.draw(Player.getCircle());
-	this->Window.draw(Player);
-	this->Window.draw(Player.getLine());
+	if (showMoveAvailableRect)
+		Window.draw(moveAvailableRect);
 
-	// rysowanie wszystkich splatów
-	for (int i = 0; i < splatArray.size(); ++i)
-	{
-		for (int j = 0; j < splatArray[i].size(); ++j)
-		{
-			this->Window.draw(splatArray[i][j].getCircle());
-			if (DEBUG)
-				this->Window.draw(splatArray[i][j].getVertex());
-		}
-	}
+	// narysowanie naszego gracza
+	Player.draw();
+
+	// rysowanie przeciwników
+	this->drawAllEnemies();
+	
 
 	// rysowanie pocisków
 	for (int i = 0; i < ProjectilesArray.size(); ++i)
-		this->Window.draw(ProjectilesArray[i]);
+		this->Window.draw(*ProjectilesArray[i]);
+
+	// rysowanie obszarówek
+	for (int i = 0; i < terrainEffectsArray.size(); ++i)
+		this->Window.draw(terrainEffectsArray[i]->getCircle());
+
 
 	// rysowanie textów
 	for (int i = 0; i < infoTexts.size(); ++i)
@@ -356,7 +460,8 @@ void playGameState::updatePlayingWaveState()
 	// zarz¹dzanie widokiem
 	manageView();
 
-	Player.update(sf::Vector2i(sf::Mouse::getPosition(this->Window).x + xViewOffset, sf::Mouse::getPosition(this->Window).y + yViewOffset));
+	Player.update(sf::Vector2i(sf::Mouse::getPosition(this->Window).x + xViewOffset, sf::Mouse::getPosition(this->Window).y + yViewOffset)
+				 ,sf::Vector2f(xViewOffset, yViewOffset));
 
 	// zarz¹dzanie usuwaniem pocisków
 	handleErasingProjectiles();
@@ -370,11 +475,21 @@ void playGameState::updatePlayingWaveState()
 	// obs³uga wykrywania kolizji
 	handleCollisionDetection();
 
+	// update obszarówek itp.
+	updateTerrainEffects();
+
 	// zarz¹dzanie GUI
 	updateGUI();
 
+	// sprawdzamy HP gracza 
+	if (this->Player.getHP() <= 0)
+	{
+		playAnimation();
+	}
+
+
 	// koñczymy stan gdy pozosta³o 0 przeciwników 
-	if (this->howManyCreaturesLeft == 0)
+	if (this->howManyCreaturesLeft <= 0)
 	{
 		changeToCity();
 	}
@@ -445,7 +560,7 @@ void playGameState::handleShooting()
 	this->PlayerParameters.angle = atan2(sf::Mouse::getPosition(Window).y + yViewOffset - this->Player.getCenter().y, sf::Mouse::getPosition(Window).x + xViewOffset - this->Player.getCenter().x);
 
 	// wywo³ujemy metodê broni która zajmie siê strzelaniem
-	m_CurrSelectedWpn.takeAction(this->Ammunitions, this->ProjectilesArray, PlayerParameters);
+	m_CurrSelectedWpn->takeAction(this->Ammunitions, this->ProjectilesArray, PlayerParameters);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -456,14 +571,18 @@ void playGameState::handleEnemies()
 	calculateBoidRules();
 
 
+	double minDistance = INT_MAX;
 
-	// update naszych wszystkich orkasów
-	for (int i = 0; i < splatArray.size(); ++i)
+	// update naszych wszystkich przeciwników
+		for (int i = 0; i < enemyArray.size(); ++i)
 	{
-		for (int j = 0; j < splatArray[i].size(); ++j)
+		for (int j = 0; j < enemyArray[i].size(); ++j)
 		{
-			splatArray[i][j].setParametersOfOtherMates(positionsOfOtherBoids[i][j]);
-			splatArray[i][j].update(averageV[i], averageDistance[i], Verticle{ Player.getCircle().getPosition().x,Player.getCircle().getPosition().y });
+			enemyArray[i][j]->setParametersOfOtherMates(positionsOfOtherBoids[i][j]);
+			enemyArray[i][j]->update(&averageV[i], &averageDistance[i], &Player);
+			if (enemyArray[i][j]->isEnemyIntrigued())
+				enemyArray[i][(j + 1) % enemyArray[i].size()]->intrigueEnemy();
+
 		}
 	}
 
@@ -473,60 +592,70 @@ void playGameState::handleEnemies()
 /////////////////////////////////////////////////////////////////////////////////////////////
 void playGameState::updateGUI()
 {
-	// najpierw zajmujemy siê spraw¹ infoTexts
+	int howManyEnemiesLeft = 0;
+	for (int i = 0; i < enemyArray.size(); ++i)
+	{
+		howManyEnemiesLeft += enemyArray[i].size();
+	}
+	this->howManyCreaturesLeft = howManyEnemiesLeft;
 
-	// obliczamy ile stworków jeszcze zosta³o
-	int howManySplatsLeft = 0;
-	for (int i = 0; i < splatArray.size(); ++i)
-		howManySplatsLeft += splatArray[i].size();
-
-	this->howManyCreaturesLeft = howManySplatsLeft;
-	infoTexts[0].setString(std::to_string(howManySplatsLeft));
+	infoTexts[0].setString("Pozostalo : " + std::to_string(howManyCreaturesLeft));
 
 
 	// update'ujemy 
-	infoTexts[1].setString(std::to_string(static_cast<int>(this->timeElapsedWave.getElapsedTime().asSeconds())));
+	infoTexts[1].setString("Czas : " + std::to_string(static_cast<int>(this->timeElapsedWave.getElapsedTime().asSeconds())));
 
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
-void playGameState::generateSpawnPoint(int howManySpawnPoints)
+void playGameState::generateSpawnPoints(int howManySpawnPoints)
 {
-	//////////////////////////////////////////////////////////////////////////
-	//			RUSZTOWANIE
-	// tutaj wybierzemy losow¹ pozycje ale na razie (w ramach testów) 
-	// wybierzemy sobie ustalon¹ pozycjê
-	sf::Vector2f spawnPoint;
-
-	spawnPoint = sf::Vector2f(120, 120);
-
-
-	splat Splat;
+	
 
 	// aktualna grupa do której bêdziemy dodawaæ przeciwników.
 	// po dodaniu bajerów dodamy vectora do vectora vectorów ( dziêki temu otrzymamy od razu podzia³ na specyfinczne grupy
 	// co u³atwi nam potem robotê)
-	std::vector<splat> currentGroup;
+	
+	int curID = 0;
+	this->howManyCreaturesLeft = 0;
+
+	howManySpawnPoints = 8;
 
 	for (int i = 0; i < howManySpawnPoints; ++i)
 	{
+
+		int randomPosX;
+		int randomPosY;
+		generateRandomSpawnPoint(randomPosX, randomPosY);
+
+
+		sf::Vector2f spawnPoint = sf::Vector2f(randomPosX, randomPosY);
+
+		std::vector<enemy*> currentGroup;
+
 		// zak³adamy ¿e ka¿da grupa sk³ada siê z jednakowych splatów
 		int randomIndex = rand() % splatTemplateDatabase.size();
 		splatTemplate sTemplate = getRandomSplatTemplate();
-		debugFile << randomIndex << "\n";
+		sTemplate.startingPosition = spawnPoint;
 
 		// (!)
-		//int howManyEnemies = rand()% 20 + 10;
-		int howManyEnemies = 1;
+		//int	howManyEnemies = rand()% 20 + 10;
+		int		howManyEnemies = 2;
 
 		for (int j = 0; j < howManyEnemies; ++j)
 		{
-			Splat.create(i, sTemplate);
-			currentGroup.push_back(Splat);
-		}
-		splatArray.push_back(currentGroup);
-	}
+			splat *Splat;
+			Splat = new splat;
 
+			Splat->create(i, sTemplate);
+			Splat->setID(curID);
+			currentGroup.push_back(Splat);
+			curID += 1;
+		}
+		this->howManyCreaturesLeft += howManyEnemies;
+		
+		enemyArray.push_back(currentGroup);
+	}
 
 
 	//////////////////////////////////////////////////////////////////////////
@@ -546,7 +675,7 @@ void playGameState::calculateBoidRules()
 	std::vector<splat> currentGroup;
 
 	// zmienne na których bêdziemy przeprowadzaæ operacje
-	Verticle avgV;
+	sf::Vector2f avgV;
 	double avgDistance;
 	int	   avgCounter, avgDistanceCounter;
 
@@ -557,38 +686,39 @@ void playGameState::calculateBoidRules()
 	otherMatesParameters						    ParametersOfCreature;
 
 	// iterujemy dla wszystkich grup przeciwników
-	for (int i = 0; i < splatArray.size(); ++i)
+	for (int i = 0; i < enemyArray.size(); ++i)
 	{
 		// zerujemy nasze œrednie  
-		avgV.blank();
+		avgV.x = 0;
+		avgV.y = 0;
 		avgDistance = 0;
 		avgCounter = avgDistanceCounter = 0;
 		// iterujemy dla ka¿dego orka w grupie 
-		for (int j = 0; j < splatArray[i].size(); ++j)
+		for (int j = 0; j < enemyArray[i].size(); ++j)
 		{
 
 
 
 			// regu³a pierwsza : obliczamy œredni¹ prêdkoœæ ka¿dego boida z danej grupy 
-			avgV.x += splatArray[i][j].getV().x;
-			avgV.y += splatArray[i][j].getV().y;
+			avgV.x += enemyArray[i][j]->getV().x;
+			avgV.y += enemyArray[i][j]->getV().y;
 			avgCounter++;
 
 			// regu³a druga :
 			// iterujemy dla ka¿dego przeciwnika w grupie 
 			//
-			for (int k = 0; k < splatArray[i].size(); ++k)
+			for (int k = 0; k < enemyArray[i].size(); ++k)
 			{
 
 				// obliczamy œredni dystans
-				avgDistance += calculateDistance(splatArray[i][j].getCenter(), splatArray[i][k].getCenter());
+				avgDistance += calculateDistance(enemyArray[i][j]->getCenter(), enemyArray[i][k]->getCenter());
 				avgDistanceCounter++;
 
 
 				// mo¿na to zmieœciæ w jednej linijce ale lepiej to podpi¹æ pod syntatic sugar 
-				ParametersOfCreature.position.x = splatArray[i][k].getCenter().x;
-				ParametersOfCreature.position.y = splatArray[i][k].getCenter().y;
-				ParametersOfCreature.hasDetectedPlayer = splatArray[i][k].hasCreatureDetectedPlayer();
+				ParametersOfCreature.position.x = enemyArray[i][k]->getCenter().x;
+				ParametersOfCreature.position.y = enemyArray[i][k]->getCenter().y;
+				ParametersOfCreature.hasDetectedPlayer = enemyArray[i][k]->hasCreatureDetectedPlayer();
 
 				ParametersOfOneCreature.push_back(ParametersOfCreature);
 			}
@@ -613,7 +743,7 @@ void playGameState::calculateBoidRules()
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
-double playGameState::calculateDistance(Verticle position1, Verticle position2)
+double playGameState::calculateDistance(sf::Vector2f position1, sf::Vector2f position2)
 {
 	double val = sqrt(pow(position1.x - position2.x, 2) + pow(position1.y - position2.y, 2));
 	if (val != 0)
@@ -628,57 +758,77 @@ double playGameState::calculateDistance(Verticle position1, Verticle position2)
 void playGameState::handleCollisionDetection()
 {
 	int											  projCounter, splatGroupCounter, splatCounter;
-	std::vector<splat>::iterator				  splatIter;
-	std::vector<projectile>::iterator			  projIter;
-	std::vector<std::vector<splat>>::iterator	  splatGroupIter;
+	std::vector<enemy*>::iterator				  splatIter;
+	std::vector<projectile*>::iterator			  projIter;
+	std::vector<std::vector<enemy*>>::iterator	  splatGroupIter;
 
 	// iterujemy przez wszystkie pociski i obliczamy sobie dystans do ka¿dego z splatów
 	// niestety, nie dokszta³ci³em siê wykszta³caj¹co z collision detection przez co mamy 
 	// n^2 g³upoty :/
 	// (!) Refaktoryzacja 
 
-	splatGroupCounter = splatArray.size() - 1;
+
+	splatGroupCounter = enemyArray.size() - 1;
+	double mindistance = INT_MAX;
 	// iterujemy przez wszystkie grupy
-	for (splatGroupIter = splatArray.end() - 1, splatGroupCounter = splatArray.size() - 1; splatGroupIter != splatArray.begin() - 1; --splatGroupIter, --splatGroupCounter)
+	for (splatGroupIter = enemyArray.end() - 1, splatGroupCounter = enemyArray.size() - 1; splatGroupIter != enemyArray.begin() - 1; --splatGroupIter, --splatGroupCounter)
 	{
 		// iterujemy przez ka¿dego splata
-		for (splatIter = splatArray[splatGroupCounter].end() - 1, splatCounter = splatArray[splatGroupCounter].size() - 1; splatIter != splatArray[splatGroupCounter].begin() - 1; --splatIter, --splatCounter)
+		for (splatIter = enemyArray[splatGroupCounter].end() - 1, splatCounter = enemyArray[splatGroupCounter].size() - 1; splatIter != enemyArray[splatGroupCounter].begin() - 1; --splatIter, --splatCounter)
 		{
+			// je¿eli splat zosta³ zabity to usuwamy go z wektora oraz dodajemy jego
+			// wartoœæ do naszej waluty
+			if (!enemyArray[splatGroupCounter][splatCounter]->isCreatureAlive())
+			{
+				this->currency += enemyArray[splatGroupCounter][splatCounter]->getWorth();
+				enemyArray[splatGroupCounter].erase(splatIter);
+				continue;
+			}
+
+			// przy okazji sprawdzamy pozycjê przeciwników od gracza i wybieramy najmniejsz¹
+			double distance = calculateDistance(Player.getCenter(), enemyArray[splatGroupCounter][splatCounter]->getCenter());
+			if (distance < mindistance)
+			{
+				positionOfNearestEnemy.x = enemyArray[splatGroupCounter][splatCounter]->getCenter().x;
+				positionOfNearestEnemy.y = enemyArray[splatGroupCounter][splatCounter]->getCenter().y;
+				mindistance = distance;
+			}
+
+
+
+
 			// sprawdzamy czy przypadkiem tak siê nie sta³o ¿e dany splat nie koliduje z pociskiem
 			// a sprawdzamy to przez policzenie sobie elegancko dystansów od œrodka pocisku do œrodka splata
 			for (projIter = ProjectilesArray.end() - 1, projCounter = ProjectilesArray.size() - 1; projIter != ProjectilesArray.begin() - 1; --projIter, --projCounter)
 			{
-				if (calculateDistance(ProjectilesArray[projCounter].getCenter(), splatArray[splatGroupCounter][splatCounter].getCenter()) <=
-					ProjectilesArray[projCounter].getRadius() + splatArray[splatGroupCounter][splatCounter].getCircle().getRadius())
+				if (calculateDistance(ProjectilesArray[projCounter]->getCenter(), enemyArray[splatGroupCounter][splatCounter]->getCenter()) <=
+					ProjectilesArray[projCounter]->getRadius() + enemyArray[splatGroupCounter][splatCounter]->getCircle().getRadius())
 				{
 					// je¿eli wykryto kolizjê to zadajemy damage splatowi
-					ProjectilesArray.erase(projIter);
-					bulletParameters params;
-					params = ProjectilesArray[projCounter];
-					splatArray[splatGroupCounter][splatCounter].dealDamage(params);
+					// ( przekazujemy mu te¿ odpowiednie parametry ¿eby wiedzia³ jak bardzo 
+					// ma go boleæ ).
+					damageParameters params = ProjectilesArray[projCounter]->getDamageParameters();
+					modifyDamageParameters(params);
 
+					enemyArray[splatGroupCounter][splatCounter]->dealDamage(params);
+
+
+					// wywo³uemy metodê która zajmie siê usuwaniem pocisku
+					manageDeletingProjectiles(projIter, projCounter);
+					
+					
 					// je¿eli splatowi zadano damage to alarmujemy splata który dosta³ oraz 
 					// jego najbli¿szego (przynajmniej w kontekœcie informatycznym ) kumpla
-					splatArray[splatGroupCounter][splatCounter].alertEnemy();
-
 					if (splatCounter > 0)
-						splatArray[splatGroupCounter][splatCounter - 1].alertEnemy();
-					else
-						splatArray[splatGroupCounter][splatCounter + 1].alertEnemy();
+						enemyArray[splatGroupCounter][splatCounter - 1]->alertEnemy();
+					else if (splatCounter < enemyArray[splatGroupCounter].size()-1)
+						enemyArray[splatGroupCounter][splatCounter + 1]->alertEnemy();
 				}
 			}
-			// je¿eli splat zosta³ zabity to usuwamy go z wektora oraz dodajemy jego
-			// wartoœæ do naszej waluty
-			if (!splatArray[splatGroupCounter][splatCounter].isCreatureAlive())
-			{
-				this->currency += splatArray[splatGroupCounter][splatCounter].getWorth();
-				splatArray[splatGroupCounter].erase(splatIter);
-			}
+			
 
 		}
 	}
-
-
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -695,7 +845,7 @@ void playGameState::moveImportantTexts(int vecX, int vecY)
 
 	if (this->isPlayingAnimation)
 	{
-		this->victoryText.move(vecX, vecY);
+		this->animationText.move(vecX, vecY);
 	}
 
 }
@@ -705,15 +855,26 @@ void playGameState::handleErasingProjectiles()
 {
 	if (ProjectilesArray.size())
 	{
-		std::vector<projectile>::iterator iter;
+		std::vector<projectile*>::iterator iter;
 		int counter;
 		// update pocisków oraz usuniêcie wszystkich zbêdnych pocisków
 		for (iter = ProjectilesArray.end() - 1, counter = ProjectilesArray.size() - 1; iter != ProjectilesArray.begin() - 1; --iter, --counter)
 		{
-			ProjectilesArray[counter].update();
+			ProjectilesArray[counter]->update();
 
-			// je¿eli zegar bêdzie wiêkszy ni¿ maksymalny czas Projekcji 
-			if (ProjectilesArray[counter].getTime().asSeconds() > ProjectilesArray[counter].getMaxTime())
+			if (ProjectilesArray[counter]->isSmartBullet())
+				ProjectilesArray[counter]->setSmartBulletDestination(positionOfNearestEnemy);
+			
+			// sprawdzamy czy pocisk daje nam znaæ ¿e trzeba go usun¹æ ( z jakiejkolwiek przyczyny) 
+			if (ProjectilesArray[counter]->needToDelete())
+			{
+				ProjectilesArray.erase(iter);
+			}
+			// je¿eli pocisk znajduje siê za œcian¹ i nie jest tym magicznym odbijaj¹cym siê pociskiem to te¿ chcemy go usun¹æ
+			if (!ProjectilesArray[counter]->isFlexibleBullet() && (ProjectilesArray[counter]->getPosition().x < LEFTWALL ||
+				ProjectilesArray[counter]->getPosition().x + ProjectilesArray[counter]->getRadius() * 2 > RIGHTWALL
+				|| ProjectilesArray[counter]->getPosition().y < UPWALL
+				|| ProjectilesArray[counter]->getPosition().y + ProjectilesArray[counter]->getRadius() * 2 > DOWNWALL))
 			{
 				ProjectilesArray.erase(iter);
 			}
@@ -767,73 +928,52 @@ void playGameState::changeToCity()
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
+void playGameState::switchStateToShip()
+{
+	randomWeapon();
+	this->currentState = statesOfPlayGameState::SHIP;
+	this->Window.clear();
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////
 void playGameState::playAnimation()
 {
-	// (!)
-	// Uruchamiam animacjê zwyciêstwa !
-	if (this->howManyCreaturesLeft == 0)
+	animationText.setCharacterSize(96.f);
+	animationText.setFont(Font);
+
+	if (this->Player.getHP() <= 0)
 	{
-		victoryText.setCharacterSize(96.f);
-		victoryText.setFont(Font);
-		victoryText.setPosition(sf::Vector2f(xViewOffset + WINDOWWIDTH / 16, yViewOffset + WINDOWHEIGHT / 3));
-		victoryText.setString("Zwyciêstwo !");
-		victoryText.setFillColor(sf::Color::Color(0x80, 0x80, 0x0, 0x0));
-		this->alpha = 0;
-		this->step = 255 / 2.f / FPS;
-		// puszczamy animacjê zwyciêstwa 
-		this->timeOfAnimation.restart();
-		while (alpha <= 255)
-		{
-			this->Window.clear();
-
-			sf::Event event;
-			while (this->Window.pollEvent(event))
-			{
-				if (event.type == sf::Event::Closed)
-				{
-					exit(0);
-				}
-			}
-
-			
-			// dajemy mo¿liwoœæ poruszania siê graczem i strzelania podczas animacji 
-			// (¿eby siê nacieszyæ ¿e wygra³o siê falê :> )
-			Window.draw(Player);
-			updateAnimation(true);
-
-			this->Window.display();
-		}
-
-		this->initializeMainMenuShipState();
-		this->isPlayingAnimation = false;
-
-		this->currentState = statesOfPlayGameState::SHIP;
-		this->Window.clear();
-
+		playDefeatAnimation();
+	}
+	else if (this->howManyCreaturesLeft == 0)
+	{
+		this->howManyCreaturesLeft = 0;
+		playVictoryAnimation();
 	}
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
-void playGameState::updateAnimation(bool managePlayer)
+void playGameState::updateAnimation(sf::Color &col,bool managePlayer)
 {
-	Window.draw(Player.getCircle());
-
-	if (DEBUG)
-		Window.draw(Player.getLine());
-
 	// rysowanie pocisków
 	for (int i = 0; i < ProjectilesArray.size(); ++i)
-		Window.draw(ProjectilesArray[i]);
+		Window.draw(*ProjectilesArray[i]);
 
 	// usuwanie zbednych pocisków
 	handleErasingProjectiles();
 
-	// zarz¹dzanie strzelaniem
-	handleShooting();
 
 	if (managePlayer)
 	{
-		Player.update(sf::Mouse::getPosition(this->Window));
+	
+		// metoda która narysuje wszystko od gracza
+	Player.draw();
+
+
+	// zarz¹dzanie strzelaniem
+	handleShooting();
+
+		Player.update(sf::Mouse::getPosition(this->Window), sf::Vector2f(xViewOffset, yViewOffset));
 	}
 
 
@@ -842,8 +982,8 @@ void playGameState::updateAnimation(bool managePlayer)
 
 	// zwiêkszamy opacity 
 	this->alpha += this->step;
-	victoryText.setFillColor(sf::Color::Color(0x80, 0x80, 0x0, alpha));
-	Window.draw(victoryText);
+	animationText.setFillColor(sf::Color::Color(col.r,col.g, col.b, alpha));
+	Window.draw(animationText);
 
 
 }
@@ -881,7 +1021,8 @@ void playGameState::updateSettingUpWave()
 	// zarz¹dzanie widokiem
 	manageView();
 
-	Player.update(sf::Vector2i(sf::Mouse::getPosition(this->Window).x + xViewOffset, sf::Mouse::getPosition(this->Window).y + yViewOffset));
+	Player.update(sf::Vector2i(sf::Mouse::getPosition(this->Window).x + xViewOffset, sf::Mouse::getPosition(this->Window).y + yViewOffset),
+					sf::Vector2f(xViewOffset, yViewOffset));
 
 	handleErasingProjectiles();
 
@@ -898,13 +1039,11 @@ void playGameState::displaySettingUpWave()
 
 
 	// rysowanie naszego gracza 
-	this->Window.draw(Player.getCircle());
-	this->Window.draw(Player);
-	this->Window.draw(Player.getLine());
+	Player.draw();
 
 
 	for (int i = 0; i < ProjectilesArray.size(); ++i)
-		this->Window.draw(ProjectilesArray[i]);
+		this->Window.draw(*ProjectilesArray[i]);
 
 	for (int i = 0; i < ammoAndCurrencyTexts.size(); ++i)
 		this->Window.draw(ammoAndCurrencyTexts[i]);
@@ -931,7 +1070,7 @@ void playGameState::handleSettingUpWaveCounter()
 	{
 		// (!) trzeba wymyœliæ tutaj jakiœ m¹dry algorytm który sensownie bêdzie generowaæ iloœæ spawnPointów
 		int howManySpawnPoints = rand() % 5 + 1;
-		generateSpawnPoint(howManySpawnPoints);
+		generateSpawnPoints(howManySpawnPoints);
 		this->timeElapsedWave.restart();
 		this->currentState = statesOfPlayGameState::PLAYINGWAVE;
 	}
@@ -988,30 +1127,271 @@ splatTemplate playGameState::getRandomSplatTemplate()
 void playGameState::manageAmmoAndCurrencyTexts()
 {
 	assert(ammoAndCurrencyTexts.size()  != 0);
-	ammoAndCurrencyTexts[0].setString(std::to_string(Ammunitions[m_CurrSelectedWpn.getType()]));
-	ammoAndCurrencyTexts[1].setString(std::to_string(m_CurrSelectedWpn.howManyBulletsLeftInMag()));
+	ammoAndCurrencyTexts[0].setString(std::to_string(Ammunitions[m_CurrSelectedWpn->getType()]));
+	ammoAndCurrencyTexts[1].setString(std::to_string(m_CurrSelectedWpn->howManyBulletsLeftInMag()));
 	ammoAndCurrencyTexts[2].setString("$ : " + std::to_string(this->currency));
 
-	if (previousMagSize != m_CurrSelectedWpn.howManyBulletsLeftInMag())
+	if (previousMagSize != m_CurrSelectedWpn->howManyBulletsLeftInMag())
 	{
 		int RCol, GCol;
 		// chcemy by tekst który wyœwietla aktualn¹ iloœæ amunicji w magazynku w zale¿noœci od wystrzelonych kulek przechodzi³ z zielonego na czerwony 
 		//																			(zielony = pe³ny magazynek, czerwony = pusty magazynek)
 		
-		RCol = (1.0 - cast(double, m_CurrSelectedWpn.howManyBulletsLeftInMag()) / cast(double, m_CurrSelectedWpn.getMaxMagSize())) * 255;
+		RCol = (1.0 - cast(double, m_CurrSelectedWpn->howManyBulletsLeftInMag()) / cast(double, m_CurrSelectedWpn->getMaxMagSize())) * 255;
 		GCol = 255 - RCol;
 		ammoAndCurrencyTexts[1].setFillColor(sf::Color::Color(RCol, GCol, 0x0));
 	}
-	if (prevWpnType != m_CurrSelectedWpn.getType())
+	if (prevWpnType != m_CurrSelectedWpn->getType())
 	{
-		ammoAndCurrencyTexts[0].setFillColor(colorMap[m_CurrSelectedWpn.getType()]);
+		ammoAndCurrencyTexts[0].setFillColor(colorMap[m_CurrSelectedWpn->getType()]);
 	}
 
 
 
 
-	this->prevWpnType		=	 m_CurrSelectedWpn.getType();
-	this->previousMagSize	=	 m_CurrSelectedWpn.howManyBulletsLeftInMag();
+	this->prevWpnType		=	 m_CurrSelectedWpn->getType();
+	this->previousMagSize	=	 m_CurrSelectedWpn->howManyBulletsLeftInMag();
 }
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+void playGameState::manageDeletingProjectiles(std::vector<projectile*>::iterator &iterator, int &counter)
+{
+	if (ProjectilesArray[counter]->getTerrainEffects().type != typeOfTerrainEffects::VOID)
+	{
+		
+		terrainEffect *TerrainEffect = new ProjectileTerrainEffect;
+		terrainEffectParams params = ProjectilesArray[counter]->getTerrainEffects();
+		TerrainEffect->create(params,ProjectilesArray[counter]->getPosition());
+
+
+		this->terrainEffectsArray.push_back(TerrainEffect);
+	}
+	ProjectilesArray.erase(iterator);
+
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+void playGameState::updateTerrainEffects()
+{
+	
+	/********************************************************************************************************/
+	std::vector<terrainEffect*>::iterator iter = terrainEffectsArray.end()-1;
+	
+	for (int counter = terrainEffectsArray.size()-1; counter >= 0; --counter, --iter)
+	{
+		terrainEffectsArray[counter]->update();
+
+		if (terrainEffectsArray[counter]->needToDeleteEffect())
+		{
+			delete terrainEffectsArray[counter];
+			terrainEffectsArray.erase(iter);
+		}
+	}
+	dealTerrainDamage();
+
+
+
+}
+
+/********************************************************************************************************/
+void playGameState::dealTerrainDamage()
+{
+	// znowu nieszczêsne n^2 g³upoty :/
+
+	for (int i = 0; i < this->terrainEffectsArray.size(); ++i)
+	{
+		for (int j = 0; j < this->enemyArray.size(); ++j)
+		{
+			std::vector<enemy*>::iterator iter = enemyArray[j].end() - 1;
+			for (int k = enemyArray[j].size() - 1; k >= 0; --k, --iter)
+			{
+				if (this->calculateDistance(terrainEffectsArray[i]->getCenter(), enemyArray[j][k]->getCenter()) < this->terrainEffectsArray[i]->getCircle().getRadius() + enemyArray[j][k]->getCircle().getRadius()
+					&& enemyArray[j][k]->canBeHittedByExplosion())
+				{
+					enemyArray[j][k]->dealDamage(terrainEffectsArray[i]->getDamage());
+
+					if (!enemyArray[j][k]->isCreatureAlive())
+					{
+						 enemyArray[j].erase(iter);
+					}
+				}
+			}
+		}
+	}
+}
+
+/********************************************************************************************************/
+void playGameState::playDefeatAnimation()
+{
+	sf::Color defeatColor = sf::Color(0xEE, 0x0, 0x0,0x0);
+	animationText.setFillColor(defeatColor);
+	animationText.setString("Porazka !");
+	animationText.setPosition(sf::Vector2f(xViewOffset + (Window.getSize().x - animationText.getGlobalBounds().width)/2, yViewOffset + WINDOWHEIGHT / 3));
+
+
+	this->alpha = 0;
+	this->step = 0xff / 2.f / FPS;
+	this->timeOfAnimation.restart();
+	while (alpha <= 0xff)
+	{
+		this->Window.clear();
+
+		sf::Event event;
+		while (this->Window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+			{
+				exit(0);
+			}
+		}
+
+
+
+		// update i rysowanie obszarówek
+		updateTerrainEffects();
+		for (int i = 0; i < terrainEffectsArray.size(); ++i)
+		{
+			this->Window.draw(terrainEffectsArray[i]->getCircle());
+		}
+
+		// rysowanie wszystkich przeciwników
+		this->drawAllEnemies();
+
+		updateAnimation(defeatColor, false);
+
+		this->Window.display();
+	}
+	terrainEffectsArray.clear();
+	
+	for (int i = 0; i < enemyArray.size(); ++i)
+	{
+		enemyArray[i].clear();
+	}
+	enemyArray.clear();
+
+
+	this->initializeMainMenuShipState();
+	this->isPlayingAnimation = false;
+
+	// za ka¿dy zgon ucinamy 25% z iloœci pieniêdzy 
+	this->currency *= 0.75;	
+	Player.setHP(Player.getParameters().maxHP * 0.5);
+
+
+	switchStateToShip();
+}
+
+/********************************************************************************************************/
+void playGameState::playVictoryAnimation()
+{
+	sf::Color victoryColor = sf::Color(0x80, 0x80, 0x0);
+	animationText.setString("Zwyciêstwo !");
+	animationText.setPosition(sf::Vector2f(xViewOffset + (Window.getSize().x - animationText.getGlobalBounds().width) / 2, yViewOffset + WINDOWHEIGHT / 3));
+	animationText.setFillColor(victoryColor);
+	this->alpha = 0;
+	this->step = 255 / 2.f / FPS;
+
+	this->timeOfAnimation.restart();
+	while (alpha <= 255)
+	{
+		this->Window.clear();
+
+		sf::Event event;
+		while (this->Window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+			{
+				exit(0);
+			}
+		}
+
+
+		// dajemy mo¿liwoœæ poruszania siê graczem i strzelania podczas animacji 
+		// (¿eby siê nacieszyæ ¿e wygra³o siê falê :> )
+		Player.draw();
+
+
+
+		// update i rysowanie obszarówek
+		updateTerrainEffects();
+		for (int i = 0; i < terrainEffectsArray.size(); ++i)
+		{
+			this->Window.draw(terrainEffectsArray[i]->getCircle());
+		}
+
+
+		updateAnimation(victoryColor,true);
+
+		this->Window.display();
+	}
+
+	this->initializeMainMenuShipState();
+	this->isPlayingAnimation = false;
+
+	switchStateToShip();
+
+}
+
+/********************************************************************************************************/
+void playGameState::drawAllEnemies()
+{
+// rysowanie wszystkich splatów
+for (int i = 0; i < enemyArray.size(); ++i)
+{
+	for (int j = 0; j < enemyArray[i].size(); ++j)
+	{
+		this->Window.draw(enemyArray[i][j]->getCircle());
+		this->Window.draw(enemyArray[i][j]->getHPBar());
+		if (DEBUG)
+			this->Window.draw(enemyArray[i][j]->getVertex());
+	}
+}
+}
+
+/********************************************************************************************************/
+void playGameState::generateRandomSpawnPoint(int & randX, int & randY)
+{
+	randX = rand() % (RIGHTWALL - LEFTWALL - 2 * SPAWNPOINTMARGIN) + SPAWNPOINTMARGIN;
+	randY = rand() % (DOWNWALL - UPWALL - 2 * SPAWNPOINTMARGIN) + SPAWNPOINTMARGIN;
+	
+	int distanceXPlayerEnemy = std::abs(Player.getPosition().x - randX);
+	int distanceYPlayerEnemy = std::abs(Player.getPosition().y - randY);
+
+	if (distanceXPlayerEnemy <=  Window.getSize().x)
+		randX = (randX + (Window.getSize().x - distanceXPlayerEnemy)) % RIGHTWALL;
+
+	if (distanceYPlayerEnemy <= Window.getSize().y)
+	{
+		randY = (randY + (Window.getSize().y - distanceYPlayerEnemy)) % DOWNWALL;
+	}
+
+}
+
+/********************************************************************************************************/
+void playGameState::modifyDamageParameters(damageParameters & dmgParams)
+{
+	int chance = rand() % 101;
+
+	if (chance <= Player.getParameters().criticalShotChance)
+	{
+		dmgParams.value *= Player.getParameters().criticalShotMultipler;
+	}
+}
+
+/********************************************************************************************************/
+void playGameState::addWeaponToBackpack(int ID)
+{
+	std::cout << rangeWeaponDatabase.size() << "\n";
+	std::cout << ID << "\n";
+
+	this->backpack.push_back(rangeWeaponDatabase[ID]);
+	std::vector<int>::iterator elementToDelete;
+	elementToDelete = weaponsIDNotTaken.begin();
+	elementToDelete += ID-1;
+	this->weaponsIDNotTaken.erase(elementToDelete);
+
+}
+
+/********************************************************************************************************/
 
 /////////////////////////////////////////////////////////////////////////////////////////////

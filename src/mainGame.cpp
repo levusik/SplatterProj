@@ -16,7 +16,7 @@ mainGame::mainGame()
 
 	if (!font.loadFromFile("space age.ttf"))
 	{
-		MessageBox(NULL, "Nie uda³o siê za³adowaæ czcionki!", NULL);
+		MessageBox(NULL, "Nie uda³o siê za³adowaæ czcionki!", NULL, NULL);
 	}
 
 }

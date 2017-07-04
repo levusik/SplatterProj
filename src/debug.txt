@@ -1,0 +1,52 @@
+2
+********************************************************************************
+Change Move By:4
+maks. pancerz :0
+maks. damage :0
+maks. HP :10
+min. pancerz : 1
+min. damage : 10
+min. HP:1
+zasiêg broni :20
+min. speed :1
+maks. speed: 10
+przyspieszenie : 10
+rozmiar widoku : 400
+waga algorytmu: 0.01
+kolor gdy agresywny : a00000ff
+kolor gdy pasywny : ff00ff
+kolor gdy reaguje na gracza :ffff00ff
+kolor gdy szar¿uje : ff4020ff
+kolor gdy ucieka :ffff
+kolor gdy atakuje : 606060ff
+czas po którym podejmuje decyzjê : 0.2
+dystans po którym szar¿uje : 216
+promieñ: 10
+bezpieczny dystans : 76
+szansa na zostanie wyloswanym 10
+********************************************************************************
+Change Move By:1
+maks. pancerz :0
+maks. damage :0
+maks. HP :5
+min. pancerz : 1
+min. damage : 3
+min. HP:1
+zasiêg broni :20
+min. speed :1
+maks. speed: 15
+przyspieszenie : 20
+rozmiar widoku : 400
+waga algorytmu: 0.01
+kolor gdy agresywny : 800000ff
+kolor gdy pasywny : ffff
+kolor gdy reaguje na gracza :ffff00ff
+kolor gdy szar¿uje : ff4020ff
+kolor gdy ucieka :ffff
+kolor gdy atakuje : 606060ff
+czas po którym podejmuje decyzjê : 0.2
+dystans po którym szar¿uje : 216
+promieñ: 5
+bezpieczny dystans : 51
+szansa na zostanie wyloswanym 100
+********************************************************************************

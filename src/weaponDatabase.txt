@@ -35,3 +35,24 @@
 10	* rozrzut
 20	* minimalna prêdkoœæ pocisku
 30	* maksymalna prêdkoœæ pocisku
+
+******************************************************
+*  		  TEST LOL			     *
+******************************************************
+2 	* minimalne obra¿enia 
+3	* maksymalne obra¿enia 
+5	* promieñ pocisku
+1400	* szybkostrzelnoœæ
+30	* rozrzut
+30	* minimalna prêdkoœæ pocisku
+40	* maksymalna prêdkoœæ pocisku	
+******************************************************
+*  		  TEST LOL			     *
+******************************************************
+2 	* minimalne obra¿enia 
+3	* maksymalne obra¿enia 
+5	* promieñ pocisku
+5000	* szybkostrzelnoœæ
+30	* rozrzut
+30	* minimalna prêdkoœæ pocisku
+40	* maksymalna prêdkoœæ pocisku	

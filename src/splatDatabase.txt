@@ -39,8 +39,8 @@
 10  	*   	maks.   Zdrowie					 5
 1   	*   	min.   Zdrowie					 6
 20  	*   	zasiêg broni					 7
-5   	*   	maks. prêdkoœæ					 8
-2   	*  	min.  prêdkoœæ 					 9
+10   	*   	maks. prêdkoœæ					 8
+1   	*  	min.  prêdkoœæ 					 9
 10	*   	przyspieszenie 					 10
 400 	*   	rozmiar widoku					 11
 100	* 	waga regu³ algorytmu boidów			 12
@@ -68,8 +68,8 @@
 3  	*   	maks.   Zdrowie					 5
 1   	*   	min.   Zdrowie					 6
 20  	*   	zasiêg broni					 7
-10   	*   	maks. prêdkoœæ					 8
-4   	*  	min.  prêdkoœæ 					 9
+15   	*   	maks. prêdkoœæ					 8
+1   	*  	min.  prêdkoœæ 					 9
 20	*   	przyspieszenie 					 10
 400 	*   	rozmiar widoku					 11
 100	* 	waga regu³ algorytmu boidów			 12

@@ -33,7 +33,15 @@ void playGameState::initializeMainMenuShipState()
 		delete button;
 	}
 
+
 	button = NULL;
+
+	this->currencyText.setString(std::to_string(this->currency) + " $");
+	this->currencyText.setFont(this->Font);
+	this->currencyText.setCharacterSize(96);
+	this->currencyText.setPosition(SPACER * this->Window.getSize().x, this->Window.getSize().y- this->currencyText.getCharacterSize() - SPACER * this->Window.getSize().y);
+	this->currencyText.setFillColor(sf::Color::Color(0xda, 0xa5, 0x20));
+
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////
 void playGameState::handleShipState()
@@ -58,6 +66,10 @@ void playGameState::drawShipState()
 	for (int i = 0; i < buttons.size(); ++i)
 	{
 		this->buttons[i].draw(this->Window);
+	}
+	if (this->inWhichRoomWeAre != statesOfShip::FIGHT && this->inWhichRoomWeAre != statesOfShip::MAINMENU)
+	{
+		this->Window.draw(this->currencyText);
 	}
 	this->Window.display();
 }
@@ -174,50 +186,143 @@ void playGameState::interprateMainMenuSignals(usageOfButton & usage)
 	}
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////
+void playGameState::handleBuyingAmmunition(typeOfWeapon typeOfAmmo, int howManyBlts)
+{
+	if (delayBtwBuying.getElapsedTime().asSeconds() > 0.2f)
+	{
+		if (costsOfBullets[typeOfAmmo] * howManyBlts <= this->currency)
+		{
+			Ammunitions[typeOfAmmo] += howManyBlts;
+			this->currency -= howManyBlts * costsOfBullets[typeOfAmmo];
+		}
+		else
+		{
+			// (!) beep alarm 
+			MessageBox(NULL, "Brak amunicji!", NULL, NULL);
+		}
+		this->currencyText.setString(std::to_string(this->currency) + " $");
+		this->delayBtwBuying.restart();
+	}
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////
+void playGameState::handleBuyingWeapon(int index)
+{
+	if (index == 0 && actualAssortiment.size() > 0)
+	{
+		addWeaponToBackpack(actualAssortiment[index].ID);
+	}
+	else if (index == 1 && actualAssortiment.size() > 1)
+	{
+		addWeaponToBackpack(actualAssortiment[index].ID);
+	}
+	else if (index == 2 && actualAssortiment.size() > 2)
+	{
+		addWeaponToBackpack(actualAssortiment[index].ID);
+	}
+
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////
+void playGameState::randomWeapon()
+{
+	actualAssortiment.clear();
+
+	// zamys³ : chcemy by dodaæ do bufora te wszystkie bronie które nie zosta³y jeszcze wziête
+	// przez gracza i z tej kolejki bêdziemy wybieraæ sobie bronie do aktualnego asortymentu
+
+
+
+	if (!weaponBuffor.size())
+		for (int i = 0; i < weaponsIDNotTaken.size(); ++i)
+		{
+			weaponBuffor.push_back(*rangeWeaponDatabase[weaponsIDNotTaken[i]]);
+			
+			if (DEBUG)
+			{
+				std::cout << "wrzucam na bufor bron : \n";
+				std::cout << rangeWeaponDatabase[weaponsIDNotTaken[i]]->ID << "\n";
+				std::cout << rangeWeaponDatabase[weaponsIDNotTaken[i]]->bulletSize << "\n";
+				std::cout << rangeWeaponDatabase[weaponsIDNotTaken[i]]->firerate << "\n\n";
+			}
+		}
+
+	if (DEBUG)
+	{
+		std::cout << "w buforze znajduj¹ siê aktualnie : \n";
+
+		for (int i = 0; i < weaponBuffor.size(); ++i)
+		{
+			std::cout << weaponBuffor[i].ID << "\n";
+		}
+	}
+
+	for (int i = 0; i <  std::min(cast(int,weaponBuffor.size()),howManyWeaponsInAssortiment); ++i)
+	{
+		// wylosowanie broni z bufora
+		int randomIndex = rand() % weaponBuffor.size();
+		rangeWeapon Weapon = weaponBuffor[randomIndex];
+		
+		// usuniêcie broni z bufora
+		std::vector<rangeWeapon>::iterator weaponBuffIter = weaponBuffor.begin();
+		weaponBuffIter += randomIndex;
+		weaponBuffor.erase(weaponBuffIter);
+
+		actualAssortiment.push_back(Weapon);
+	}
+
+	if (DEBUG)
+	{
+		for (int i = 0; i < actualAssortiment.size(); ++i)
+			std::cout << "wylosowane bronie to " << actualAssortiment[i].ID << "\n";
+	}
+
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////
 void playGameState::interprateShopSignals(usageOfButton & usage)
 {
 	switch (usage)
 	{
 	case usageOfButton::BUYWEAPON1:
-		// (!)
-		MessageBox(NULL, "Kupujê broñ 1", NULL, NULL);
+		handleBuyingWeapon(0);
 		break;
 	case usageOfButton::BUYWEAPON2:
-		MessageBox(NULL, "Kupujê broñ 2", NULL, NULL);
+		handleBuyingWeapon(1);
 		break;
 	case usageOfButton::BUYWEAPON3:
-		MessageBox(NULL, "Kupujê broñ 3", NULL, NULL);
+		handleBuyingWeapon(2);
 		break;
 
 
+	// *_1 - amunicja do broni energetycznej
 	case usageOfButton::BUYAMMOPACK1_1:
-		MessageBox(NULL, "Kupujê pakiet amunicji 1 do broni 1", NULL, NULL);
+		this->handleBuyingAmmunition(typeOfWeapon::ENERGETIC, this->HowManyBltsInPacks[typeOfWeapon::ENERGETIC]);
 		break;
 	case usageOfButton::BUYAMMOPACK1_2:
-		MessageBox(NULL, "Kupujê pakiet amunicji 2 do broni 1", NULL, NULL);
+		this->handleBuyingAmmunition(typeOfWeapon::ENERGETIC, 5*this->HowManyBltsInPacks[typeOfWeapon::ENERGETIC]);
 		break;
 	case usageOfButton::BUYAMMOPACK1_3:
-		MessageBox(NULL, "Kupujê pakiet amunicji 3 do broni 1", NULL, NULL);
+		this->handleBuyingAmmunition(typeOfWeapon::ENERGETIC, 10* this->HowManyBltsInPacks[typeOfWeapon::ENERGETIC]);
 		break;
 
+	// *_2 - amunicja do broni o³owiowej
 	case usageOfButton::BUYAMMOPACK2_1:
-		MessageBox(NULL, "Kupujê pakiet amunicji 1 do broni 2", NULL, NULL);
+		this->handleBuyingAmmunition(typeOfWeapon::BULLETTYPE, this->HowManyBltsInPacks[typeOfWeapon::BULLETTYPE]);
 		break;
 	case usageOfButton::BUYAMMOPACK2_2:
-		MessageBox(NULL, "Kupujê pakiet amunicji 2 do broni 2", NULL, NULL);
+		this->handleBuyingAmmunition(typeOfWeapon::BULLETTYPE, 5*this->HowManyBltsInPacks[typeOfWeapon::BULLETTYPE]);
 		break;
 	case usageOfButton::BUYAMMOPACK2_3:
-		MessageBox(NULL, "Kupujê pakiet amunicji 3 do broni 2", NULL, NULL);
+		this->handleBuyingAmmunition(typeOfWeapon::BULLETTYPE, 10*this->HowManyBltsInPacks[typeOfWeapon::BULLETTYPE]);
 		break;
 
+	// *_3 - amunicja do broni plazmowej
 	case usageOfButton::BUYAMMOPACK3_1:
-		MessageBox(NULL, "Kupujê pakiet amunicji 1 do broni 3", NULL, NULL);
+		this->handleBuyingAmmunition(typeOfWeapon::PLASMA, this->HowManyBltsInPacks[typeOfWeapon::PLASMA]);
 		break;
 	case usageOfButton::BUYAMMOPACK3_2:
-		MessageBox(NULL, "Kupujê pakiet amunicji 2 do broni 3", NULL, NULL);
+		this->handleBuyingAmmunition(typeOfWeapon::PLASMA, 5* this->HowManyBltsInPacks[typeOfWeapon::PLASMA]);
 		break;
 	case usageOfButton::BUYAMMOPACK3_3:
-		MessageBox(NULL, "Kupujê pakiet amunicji 3 do broni 3", NULL, NULL);
+		this->handleBuyingAmmunition(typeOfWeapon::PLASMA, 10 * this->HowManyBltsInPacks[typeOfWeapon::PLASMA]);
 		break;
 
 	}
@@ -309,9 +414,54 @@ void playGameState::initializeShop()
 	// guziczki do zakupu amunicji ( pakiet 1)
 	for (int i = 0; i < 3; ++i)
 	{
-		generateLineOfButtons(3, 10 + i * 3, sf::Vector2f(size, size / 5), sf::Vector2f(SPACER*getWx(Window), buttons[0].getGlobalBounds().height + (i + 1)*1.5*SPACER*getWx(Window) + i*getWy(Window) / 32),
+		generateLineOfButtons(3, 10 + i * 3, sf::Vector2f(size, size / 5), sf::Vector2f(SPACER*getWx(Window), buttons[0].getGlobalBounds().height + (i + 1)*1.5*SPACER*getWx(Window) + i*getWy(Window) / 32 + getWy(Window) /12),
 			sf::Color::Color(0x64, 0x80, 0x10), sf::Color::Color(0xFF, 0x0, 0x0),true);
 	}
+	/*******************************************************************************/
+	// zabawa tekstami
+	buttons[3].setText("E: "+std::to_string(this->HowManyBltsInPacks[typeOfWeapon::ENERGETIC])+" ("+std::to_string(HowManyBltsInPacks[typeOfWeapon::ENERGETIC] * costsOfBullets[typeOfWeapon::ENERGETIC])+")", this->Font);
+	buttons[6].setText("E: "+std::to_string(5*this->HowManyBltsInPacks[typeOfWeapon::ENERGETIC])+" ("+std::to_string(5*HowManyBltsInPacks[typeOfWeapon::ENERGETIC] * costsOfBullets[typeOfWeapon::ENERGETIC])+")", this->Font);
+	buttons[9].setText("E: " + std::to_string(10 * this->HowManyBltsInPacks[typeOfWeapon::ENERGETIC]) + " (" + std::to_string(10 * HowManyBltsInPacks[typeOfWeapon::ENERGETIC] * costsOfBullets[typeOfWeapon::ENERGETIC]) + ")", this->Font);
+
+	buttons[4].setText("O: "+std::to_string(this->HowManyBltsInPacks[typeOfWeapon::BULLETTYPE]) + " (" + std::to_string(HowManyBltsInPacks[typeOfWeapon::BULLETTYPE] * costsOfBullets[typeOfWeapon::BULLETTYPE]) + ")", this->Font);
+	buttons[7].setText("O: " + std::to_string(5*this->HowManyBltsInPacks[typeOfWeapon::BULLETTYPE]) + " (" + std::to_string(5*HowManyBltsInPacks[typeOfWeapon::BULLETTYPE] * costsOfBullets[typeOfWeapon::BULLETTYPE]) + ")", this->Font);
+	buttons[10].setText("O: " + std::to_string(10*this->HowManyBltsInPacks[typeOfWeapon::BULLETTYPE]) + " (" + std::to_string(10*HowManyBltsInPacks[typeOfWeapon::BULLETTYPE] * costsOfBullets[typeOfWeapon::BULLETTYPE]) + ")", this->Font);
+
+	buttons[5].setText("P: " + std::to_string(this->HowManyBltsInPacks[typeOfWeapon::PLASMA]) + " (" + std::to_string(HowManyBltsInPacks[typeOfWeapon::PLASMA] * costsOfBullets[typeOfWeapon::PLASMA]) + ")", this->Font);
+	buttons[8].setText("P: " + std::to_string(5*this->HowManyBltsInPacks[typeOfWeapon::PLASMA]) + " (" + std::to_string(5*HowManyBltsInPacks[typeOfWeapon::PLASMA] * costsOfBullets[typeOfWeapon::PLASMA]) + ")", this->Font);
+	buttons[11].setText("P: " +std::to_string(10*this->HowManyBltsInPacks[typeOfWeapon::PLASMA]) + " (" + std::to_string(10 *HowManyBltsInPacks[typeOfWeapon::PLASMA] * costsOfBullets[typeOfWeapon::PLASMA]) + ")", this->Font);
+	/*******************************************************************************/
+
+
+	/*******************************************************************************/
+	// zabawa kolorkami
+	for (int i = 3; i <= 9; i += 3)
+	{
+		buttons[i].setColors(colorMap[typeOfWeapon::ENERGETIC], sf::Color::Color(0xff,0x0,0x0));
+		buttons[i].setFillColor(sf::Color::Color(0xDA, 0xA5, 0x20));
+	}
+	for (int i = 4; i <= 10; i += 3)
+	{
+		buttons[i].setColors(colorMap[typeOfWeapon::BULLETTYPE], sf::Color::Color(0xff, 0x0, 0x0));
+		buttons[i].setFillColor(sf::Color::Color(0xDA, 0xA5, 0x20));
+	}
+	for (int i = 5; i <= 11; i += 3)
+	{
+		buttons[i].setColors(colorMap[typeOfWeapon::PLASMA], sf::Color::Color(0xff, 0x0, 0x0));
+		buttons[i].setFillColor(sf::Color::Color(0xDA, 0xA5, 0x20));
+	}
+	/*******************************************************************************/
+
+	if (actualAssortiment.size() > 0)
+		buttons[0].setText(std::to_string(actualAssortiment[0].ID), Font);
+
+	if (actualAssortiment.size() > 1)
+		buttons[1].setText(std::to_string(actualAssortiment[1].ID), Font);
+
+	if (actualAssortiment.size() > 2)
+		buttons[2].setText(std::to_string(actualAssortiment[2].ID), Font);
+
+
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////
 void playGameState::intializePort()

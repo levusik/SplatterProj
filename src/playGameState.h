@@ -5,13 +5,14 @@
 #include "entity.hpp"
 #include "enemy.hpp"
 #include "button.h"
+#include "terrainEffect.h"
 #include <fstream>
-
 
 class playGameState
 {
 public:
 	playGameState(sf::Font &font, sf::RenderWindow &window);
+	~playGameState();
 	void run();
 
 private:
@@ -23,22 +24,35 @@ private:
 	void			handleShooting();
 	void			handleEnemies();
 	void			updateGUI();
-	void			generateSpawnPoint(int howManySpawnPoints);
+	void			generateSpawnPoints(int howManySpawnPoints);
 	void			calculateBoidRules();
 	void			handleCollisionDetection();
 	void			moveImportantTexts(int vecX, int vecY);
 	void			handleErasingProjectiles();
 	void			roundValue(int size, int &value);
 	bool			worthAddingToVec(std::string &line);
-	double			calculateDistance(Verticle position1, Verticle position2);
+	void			manageAmmoAndCurrencyTexts();
+	void			manageDeletingProjectiles(std::vector<projectile*>::iterator &iterator, int &counter);
+	void			updateTerrainEffects();
+	void			dealTerrainDamage();
+	void			playDefeatAnimation();
+	void			playVictoryAnimation();
+	void			drawAllEnemies();
+	void			generateRandomSpawnPoint(int &randX, int &randY);
+	void			modifyDamageParameters(damageParameters &dmgParams);
+	void			addWeaponToBackpack(int ID);
+
+	
+	double			calculateDistance(sf::Vector2f position1, sf::Vector2f position2);
 	std::string		filtrateString(std::string &line);
 	splatTemplate	getRandomSplatTemplate();
-	void			manageAmmoAndCurrencyTexts();
 
 
-	sf::RenderWindow &Window;
-	sf::Font		 &Font;
+	sf::RenderWindow	&Window;
+	sf::Font			&Font;
 
+	// prostok¹t który pokazuje pole w którym gracz i przeciwnicy mog¹ siê poruszaæ
+	sf::RectangleShape  moveAvailableRect;
 
 	// zmienne prywatne 
 	sf::Text	text;
@@ -55,10 +69,11 @@ private:
 
 	////////////////////////////////////////////////////////////////////////////////////////
 
-	std::vector<Verticle>	averageV;
-	std::vector<double>	averageDistance;
+	std::vector<sf::Vector2f>	averageV;
+	std::vector<double>			averageDistance;
 	std::vector<std::vector<std::vector<otherMatesParameters>>> positionsOfOtherBoids;
 
+	sf::Vector2f positionOfNearestEnemy;
 
 	////////////////////////////////////////////////////////////////////////////////////////
 
@@ -66,10 +81,10 @@ private:
 	void	manageBackpack();
 
 	// ekwipunek
-	std::vector<rangeWeapon>		backpack;
+	std::vector<rangeWeapon*>		backpack;
 	std::map <typeOfWeapon, int>	Ammunitions;
-	rangeWeapon						currentlyWeapon;
-	rangeWeapon						currentlySelectedWeapon;
+	rangeWeapon*					currentlyWeapon;
+	rangeWeapon*					currentlySelectedWeapon;
 	projectile						Projectile;
 	sf::Clock						delayBtwChangingWeapon;
 	int								indexOfCurrentlySelectedWpn;
@@ -80,12 +95,17 @@ private:
 
 	splatTemplate				splatUnit;
 	// wektor z pociskami
-	std::vector<projectile>		   ProjectilesArray;
+	std::vector<projectile*>	   ProjectilesArray;
 
 	// wektor wektorów ze splatami
-	std::vector<std::vector<splat>>  splatArray;
+	std::vector<std::vector<enemy*>>  enemyArray;
+
+	//wektor obszarówek
+	std::vector<terrainEffect*>	terrainEffectsArray;
+
+
+	std::vector <rangeWeapon*>   rangeWeaponDatabase;
 	std::vector <splatTemplate> splatTemplateDatabase;
-	std::vector <rangeWeapon>   rangeWeaponDatabase;
 
 
 	// debug file 
@@ -130,8 +150,9 @@ private:
 	/////////////////////////////////////////////////////////////////////////////////////////
 	//			Ship state
 	void	changeToCity();
+	void	switchStateToShip();
 	void	playAnimation();
-	void	updateAnimation(bool managePlayer);
+	void	updateAnimation(sf::Color &col, bool managePlayer);
 	void	initializeMainMenuShipState();
 
 
@@ -149,6 +170,17 @@ private:
 
 	void	initializeShop();
 	void	interprateMainMenuSignals(usageOfButton & usage);
+	void	randomWeapon();
+	void	handleBuyingWeapon(int index);
+	void	handleBuyingAmmunition(typeOfWeapon typeOfAmmo, int howManyBlts);
+	std::map<typeOfWeapon, int> costsOfBullets;
+
+
+
+	std::vector  <rangeWeapon> weaponBuffor;
+	std::vector <rangeWeapon> actualAssortiment;
+	std::vector <int>		  weaponsIDNotTaken;
+
 
 	void	intializePort();
 	void	interpratePortSignals(usageOfButton &usage);
@@ -164,9 +196,13 @@ private:
 
 
 
-	Button	*button;
-	std::vector <Button> buttons;
-	statesOfShip inWhichRoomWeAre;
+	Button				 *button;
+	std::vector <Button>  buttons;
+	statesOfShip		  inWhichRoomWeAre;
+	sf::Text		      currencyText;
+	sf::Clock			  delayBtwBuying;
+	
+
 
 	int currency;
 	int alpha;
@@ -174,6 +210,7 @@ private:
 	const int howManyButtons;
 	bool	  isPlayingAnimation;
 	sf::Clock timeOfAnimation;
-	sf::Text victoryText;
+	sf::Text animationText;
+	std::map <typeOfWeapon, int> HowManyBltsInPacks;
 	/////////////////////////////////////////////////////////////////////////////////////////
 };

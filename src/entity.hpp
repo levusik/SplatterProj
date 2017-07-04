@@ -2,31 +2,52 @@
 #include <SFML\Graphics.hpp>
 #include <assert.h>
 
+
+# define GETSEC(x) x.getElapsedTime().asSeconds()
+#define radToDgr(x) ((x) * (M_PI / 180.))
+#define cast(type,x) (static_cast<type>(x))
+#define negate(x) x == 0 ? 1 : 0
+
+
+/*****************************************************************/
+/*			Zbiór wszystkich sta³ych							 */
 const int    WINDOWWIDTH = 1024;
 const int    WINDOWHEIGHT = 768;
-const int    FPS = 60; 
-const double M_PI = 3.14159265359;
+const int    FPS = 60;
 const int    viewBoundsRectX = WINDOWWIDTH / 2;
 const int    viewBoundsRectY = WINDOWHEIGHT / 2;
-const bool   DEBUG = false;
-const char   commentChar = '*';
 const int	 numOfValLoadedFromFile = 36;
 const int	 DELAYBTWWAVES = 5;
 const int	 LEFTWALL = 0;
 const int	 UPWALL = 0;
-const int    RIGHTWALL = 200;
-const int    DOWNWALL = 200;
-
+const int    RIGHTWALL = 2000;
+const int    DOWNWALL  = 2000;
+const int	 SPAWNPOINTMARGIN = 100;
+const int	 howManyWeaponsInAssortiment = 3;
+const char   commentChar = '*';
+const double terrainDmgLock = 1.f;
+const double fleeDistancePrc = 1.25;
+const double M_PI = 3.14159265359;
 
 // sta³e do pocisków
+const int	leadRangeOfRandomness		= 5;
+const int	plasmaRangeOfRandomness		= 3;
+const int	energeticRangeOfRandomness	= 10;
 const float g_energeticSpeedBuff = 1.25;
-const float g_plasmaSpeedBuff = 0.6;
-
+const float g_plasmaSpeedBuff = 0.5;
 
 // sta³a pozwalaj¹ca na zarz¹dzanie guziczkami na statku
 const float  SPACER = 1 / 32.0;
+/*****************************************************************/
+/*					sta³e do Debugowania						 */
+const bool   DEBUG = false;
+const bool	 showMoveAvailableRect = true;
 
 
+
+/*****************************************************************/
+/*		Zbiór wszystkich enumów które u³atwi¹ nam ¿ycie i 
+		dziêki nim kod bêdzie czytelniejszy						 */
 enum class statesOfStateMachine
 {
 	mainMenu,
@@ -36,11 +57,14 @@ enum class statesOfStateMachine
 };
 enum class stateOfEnemy
 {
-	WALKING_ARROUND,
-	REACT_TO_PLAYER,
-	MOVING_TOWARDS_PLAYER,
-	ATTACK_PLAYER,
+	IDLE,
+	INTRIGUED,
+	MAKINGDECISION,
+	AGRESSIVE,
+	CHARGE,
+	ATTACK,
 	FLEE,
+	SPECIALABILITY
 };
 enum class statesOfPlayGameState
 {
@@ -48,18 +72,6 @@ enum class statesOfPlayGameState
 	PLAYINGWAVE,
 	SHIP
 };
-
-// enum który przechowuje wartoœci które, je¿eli guzik.update() zwróci 1
-// bêdziemy odpowiednio interpetowaæ ( je¿eli klikniêto guzik z przeznaczeniem goToShop 
-// to uruchomimy funkcjê udpowiadaj¹c¹ za obs³ugê sklepu)
-//	* Sklep					 ( zakup broni )
-//	* port miêdzygalaktyczny ( questy ? )
-//	* kabina				 ( rozwój postaci)
-//  * stacja implantacyjna   ( powerupy i wzmocnienia )
-//  * arena wirtualna		 ( przetestowanie bronii, powerupów, walka z bossami)
-//	* walka					 ( nastêpna fala )
-
-// stany do FSM'a do statku
 enum class statesOfShip
 {
 	MAINMENU = 0,
@@ -139,14 +151,44 @@ enum class typeOfWeapon
 	PLASMA,
 	_NULL
 };
+enum class typeOfTerrainEffects
+{
+	VOID	  = 0,
+	EXPLOSIVE = 1,
+	FIRE	  = 2,
+	TOXIC	  = 3,
+	ELECTRIC  = 4
+};
+enum class typeOfSpecialAbility
+{
+	VOID,	  
+	PASSIVE,  // pasywna modyfikuje lub nieco poprawia parametry gracza
+	OFFENSIVE // zadaje obra¿enia 
+};
+/*****************************************************************/
 
-class projectile;
 
-// struktura która zawiera wszystkie potrzebne zmienne do Orkasa. 
-// wczytamy to sobie elegancko z pliku po czym przeka¿emy do klasy ork 
-// która odczyta sobie wszystkie parametry ze struktury
+/***************************************************************/
+/*		Zbiór wszystkich struktur które bêdziemy przekazywaæ
+		co u³atwi nam w doœæ du¿ym stopniu ¿ycie				*/
+struct  terrainEffectParams
+{
+	terrainEffectParams()
+	{
+		type = typeOfTerrainEffects::VOID;
+		this->step = 0;
+		this->timeOfFunc = 0;
+		this->function = NULL;
+	}
 
-struct effects
+	double damage, maxRadiusSize;
+	double step;
+	int	 timeOfFunc;
+	double(*function)(double,int);
+	typeOfTerrainEffects   type;
+	double	 durationOfAnimation;
+};
+struct  effects
 {
 	effects()
 	{
@@ -154,32 +196,105 @@ struct effects
 	}
 	void blank()
 	{
-		// defaultowy set efektów:
-		// nudny o³owiowy karabin
-		this->e_energeticTerrainDamage = 0;
-		this->l_hasScope = 0;
-		this->s_laserEffect = 0;
-		this->e_multiplierEffect = 0;
-		this->l_bullThatBurns = 0;
-		this->l_bullThatElectrize = 0;
-		this->l_bullThatToxicate = 0;
-		this->a_hasStabilization = 0;
-		this->p_plasmaMagicBullets = 0;
-		this->type = typeOfWeapon::BULLETTYPE;
+		type =  typeOfWeapon::BULLETTYPE;
+		a_hasSAFAYC				= false;
+		a_hasTerrainDamage		= false;
+		a_hasFlexibleBullets	= false;
+		a_hasSmartBulletsBoolean= false;
+		a_hasScope				= false;
+		a_hasStabilizator		= false;
+		a_hasMultiplierEffect	= false;
+		a_StunEnenies			= false;
+		a_hasExtendedMag		= false;
+		a_bullThatBurns			= false;
+		a_bullThatElectrize		= false;
+		a_bullThatToxicate		= false;
+		a_bullThatExplode		= false;
+		l_hasGrenadeLauncher	= false;
+		l_isFlameThrower		= false;
+		p_plasmaMagicBullets	= false;
+		p_preciseMultiShoot		= false;
+		e_isCharger				= false;
+		e_shootEverywhere		= false;
+	}
+	void createPlasmaEffcs(bool hasMagicBullets = 0, bool hasPreciseMultiShoot =0)
+	{
+		p_plasmaMagicBullets	=	 hasMagicBullets;
+		p_preciseMultiShoot		=	 hasPreciseMultiShoot;
+
+		if (hasPreciseMultiShoot)
+			this->a_hasPackedBullets = true;
+		else
+			this->a_hasPackedBullets = false;
+
+		l_hasGrenadeLauncher	= false;
+		l_isFlameThrower		= false;
+
+		e_isCharger				= false;
+		e_shootEverywhere		= false;
+	}
+	void createLeadEffects(bool hasBulletsThatBurn= 0, bool hasBulletsThatElec = 0, bool hasBulletsThatToxicate = 0, bool hasGrenadeLauncher = 0, bool isFlameThrower = 0)
+	{
+		l_hasGrenadeLauncher = hasGrenadeLauncher;
+		l_isFlameThrower = isFlameThrower;
+
+		p_plasmaMagicBullets = false;
+		p_preciseMultiShoot = false;
+
+		e_isCharger = false;
+		e_shootEverywhere = false;
+	}
+	void createEnergyEffects(bool isCharger =0, bool shootEverywhere = 0)
+	{
+		bool e_isCharger		= isCharger;
+		bool e_shootEverywhere	= shootEverywhere;
+
+		if (shootEverywhere)
+			this->a_hasPackedBullets = true;
+			
+		l_hasGrenadeLauncher = false;
+		l_isFlameThrower = false;
+
+		p_plasmaMagicBullets = false;
+		p_preciseMultiShoot = false;
 	}
 
 	typeOfWeapon type;
-	bool e_energeticTerrainDamage;
-	bool l_hasScope;
-	bool s_laserEffect;
-	bool e_multiplierEffect;
-	bool l_bullThatBurns;
-	bool l_bullThatElectrize;
-	bool l_bullThatToxicate;
-	bool a_hasStabilization;
-	bool p_plasmaMagicBullets;
+	
+	// booleany dla wszystkich broni (ka¿da broñ mo¿e posiadaæ t¹ zdolnoœæ)
+	bool a_hasSAFAYC;				// czy jest to broñ "Shoot As Fast A You Can"
+	bool a_hasTerrainDamage;		// obszarówka	
+	bool a_hasFlexibleBullets;		// pociski odbijaj¹ siê od œcian
+	bool a_hasSmartBulletsBoolean;	// czy ma "inteligentne pociski"
+	bool a_hasPackedBullets;		// czy strzela kilka pociskami
+
+	bool a_hasScope;			// + celnoœci
+	bool a_hasStabilizator;		// mniejszy rozrzut 
+	bool a_hasMultiplierEffect;	// kilka kulek na raz
+	bool a_StunEnenies;			// zatrzymuje przeciwników
+	bool a_hasExtendedMag;		// + do magazynka
+	bool a_bullThatBurns;		// obra¿enia od ognia
+	bool a_bullThatElectrize;	// obra¿enia od elektrycznoœci
+	bool a_bullThatToxicate;	// obra¿enia od toksycznoœci
+	bool a_bullThatExplode;		// wybuchaj¹ce pociski
+
+
+	//  tylko dla broni o³owiowych
+	bool l_hasGrenadeLauncher;	// pytanie czy ma granatnik (alternatywny atak)
+	bool l_isFlameThrower;		// czy jest miotaczem ognia ( obra¿enia od ognia + zwrotna szybkostrzelnoœæ + bardzo ma³e obra¿enia)
+	
+
+
+	// tylko dla plazmowych
+	bool p_plasmaMagicBullets;	// niesamowite pociski plazmowe
+	bool p_preciseMultiShoot;		// broñ wypluwa kilka-kilkanaœcie pocisków które lec¹ bardzo blisko siebie
+
+
+	// tylko dla energetycznych
+	bool e_isCharger;			// nieskoñczonoœæ amunicji ale bardzo wolne prze³adowania 
+	bool e_shootEverywhere;		// wysy³a pocisk w ka¿dym mo¿liwym kierunku
 };
-struct splatTemplate
+struct  splatTemplate
 {
 public:
 	// dajemy wartoœci z zakresu dla urozmaicenia rozgrywki 
@@ -206,23 +321,19 @@ public:
 	sf::Color attackingPlayerColor;
 	sf::Color passiveModeColor;
 };
-struct Verticle
+struct  otherMatesParameters
 {
-	void blank()
+	otherMatesParameters()
 	{
-		// metoda która wyzeruje wszystkie zmienne
-		this->x = 0;
-		this->y = 0;
+		this->currentState = stateOfEnemy::IDLE;
+		this->hasDetectedPlayer = false;
 	}
 
-	double x, y;
-};
-struct otherMatesParameters
-{
-	Verticle position;
+	sf::Vector2f	 position;
+	stateOfEnemy currentState;
 	bool	hasDetectedPlayer;
 };
-struct playerParameters
+struct  playerParameters
 {
 	playerParameters()
 	{
@@ -235,14 +346,19 @@ struct playerParameters
 		this->rethoric = 0;
 		this->fastHands = 0;
 		this->sniperPerk = 0;
+		this->maxHP = 0;
 	}
+	// podstawowe parametry
 
 	// bardziej przyziemne rzeczy do obs³ugi broni
-	double angle;
+	double	maxHP;
+	double	angle;
 	sf::Vector2f position;
 
+	// uderzenie krytyczne
+	double criticalShotMultipler;
+	int criticalShotChance;
 
-	// podstawowe parametry
 
 	// szybkoœæ prze³adowania, szybkoœæ poruszania i szybkoœæ machania broni¹ do w.w. 
 	int agility;
@@ -271,7 +387,7 @@ struct playerParameters
 
 	//////////////////////////////////////////////////////////////////////////////////////
 };
-struct weaponParameters
+struct  weaponParameters
 {
 	weaponParameters()
 	{
@@ -283,48 +399,79 @@ struct weaponParameters
 		this->firerate = 0;
 		this->minSpeedOfBullet = 0;
 		this->maxSpeedOfBullet = 0;
-		this->EffectWeaponCauses.blank();
+		this->weaponEffects.blank();
 		this->origMagSize = 0;
 		this->actualMagSize = 0;
-		this->howManyProjItShoot = 0;
-		this->isAutomatic = 0;
-		this->SAFAYCC = 0;
+		this->howManyProjItShoot = 1;
 		this->costOfBullet = 1;
 	}
 	int		ID;
 	double  maxDamage, minDamage, bulletSize, recoil, firerate;
 	double  minSpeedOfBullet, maxSpeedOfBullet;
-	effects EffectWeaponCauses;
+	int		howManyProjItShoot;
+	int		costOfBullet;
 	int		origMagSize;
 	int		actualMagSize;
-	int		howManyProjItShoot;
-	bool    isAutomatic;
-	bool	SAFAYCC;	// Shoot As Fast As You Can Click ( jakieœ rewolwery czy inne cuda)
-	int		costOfBullet;
+	bool	packedBullets; // infomracja czy pociski którymi broñ pluje s¹ "upakowane"
+						   // je¿eli s¹ upakowane to niezale¿nie od tego jak wiele pocisków 
+						   // leci to zabierze tylko 1 nabój z magazynka ( w przeciwnym razie 
+						   // zabierze tyle ile strzela ).
+	effects weaponEffects;
 };
+struct  damageParameters {
+	damageParameters()
+	{
+		this->value = 0;
+	}
+	double value;
+};
+struct  bulletParameters {
+
+
+	effects Effects;
+	double damage;
+};
+
+/***************************************************************/
+
+
+class projectile;
+
+/*****************************************************************/
+/*						Deklaracje klas							 */
 class rangeWeapon
 {
 public:
 	// domyœlny konstruktor czy broñ blank 
 	rangeWeapon();
 	void clear();
-	void setEffects(effects efcsCausedByWpn);
-	void takeAction(std::map<typeOfWeapon, int> &Ammunitions, std::vector<projectile> &ProjectilesArray, playerParameters playerParams);
-	void tryReloading(std::map<typeOfWeapon, int> &Ammunitions);
-	void create(double minDamage, double maxDamage, double bulletSize, double recoil, double firerate, double minSpeedOfBullet, double maxSpeedOfBullet);
-	void create(weaponParameters params);
-	void manageShooting(std::map<typeOfWeapon, int>& Ammunitions, std::vector<projectile>& ProjectilesArray, playerParameters playerParams);
+
+	virtual void create(weaponParameters params);
+	virtual void setEffects(effects efcsCausedByWpn);
+	virtual void initializeEffects();
+	virtual void tryReloading(std::map<typeOfWeapon, int> &Ammunitions);
+	virtual projectile* manageAddingSpecialBullets(playerParameters playerParams, int id);
+	virtual void handleReloading(std::map<typeOfWeapon, int> &Ammunitions, playerParameters playerParams);
+	virtual void takeAction(std::map<typeOfWeapon, int> &Ammunitions, std::vector<projectile*> &ProjectilesArray, playerParameters playerParams);
+	virtual void manageShooting(std::map<typeOfWeapon, int>& Ammunitions, std::vector<projectile*>& ProjectilesArray, playerParameters playerParams);
+	virtual void managePassingFunctionsToBullet(projectile *proj);
+
+
+	bool hasSmartBullets();
 	int howManyBulletsLeftInMag();
 	int getMaxMagSize();
 
 	typeOfWeapon getType();
 
+
 	int		ID;
+	double(*funcPtr)(double);
 	double  maxDamage, minDamage, bulletSize, recoil, firerate;
 	double  minSpeedOfBullet, maxSpeedOfBullet;
 	effects EffectWeaponCauses;
 
-private:
+
+protected:
 
 	int			origMagSize;
 	int			actualMagSize;
@@ -332,12 +479,25 @@ private:
 	int			reloadingTime;
 	bool		isAutomatic;
 	int			costOfBullet;
-	bool		SAFAYCC;	// Shoot As Fast As You Can Click ( jakieœ rewolwery czy inne cuda)
+
+	bool		SAFAYCC;					// Shoot As Fast As You Can Click ( jakieœ rewolwery czy inne cuda)
+	bool		packedBullets;				// infomracja czy pociski którymi broñ pluje s¹ "upakowane"
+											// je¿eli s¹ upakowane to niezale¿nie od tego jak wiele pocisków 
+											// leci to zabierze tylko 1 nabój z magazynka ( w przeciwnym razie 
+											// zabierze tyle ile strzela ).
+	bool		isRecharger;				// ustawia pojemnoœæ magazynka na 999 i nieskoñczon¹ iloœæ amunicji 
+											// jednak ma bardzo du¿y czas prze³adowania.
+	bool		hasFlexibleBullets;			// pociski odbijaj¹ siê od œcian
+	bool		hasSmartBulletsBoolean;		// "inteligentne" pociski które lec¹ w kierunku przeciwnika
+	sf::Vector2f bulletDestination;			// potrzebne do "inteligentnych pocisków"
+
 
 	bool		SAFAYCCLock;
 	bool		isReloading;
-	sf::Clock	delayBtwReloading;
+
+
 	sf::Clock   timeElpasedForReloading;
+	sf::Clock	delayBtwAutoReloading;
 	sf::Clock	timeElapsedFirerate;
 
 };
@@ -345,121 +505,104 @@ class projectile : public sf::CircleShape
 {
 public:
 	projectile();
-	void create(sf::Vector2f playerPos, double angle, rangeWeapon *weapon);
-	void update();
-	double getRandomVal(int minVal, int maxVal);
-	Verticle getCenter();
+	~projectile();
+	
+	void setFunctionPtr( double(*ptr)(double), double step);
+	virtual void create(sf::Vector2f playerPos, double radians, rangeWeapon *weapon, int iter);
+	
+	
+	virtual void update();
+	
+
+	// metoda potzebna do smart bullet 
+	void setSmartBulletDestination(sf::Vector2f position);
+	
 
 
 	// zarz¹dzanie efektami 
-	void manageEffectsInit(rangeWeapon weapon, double angle);
-	void managePlasmaEffectsinit();
-	void manageEnergeticEffectsInit();
-	void manageBulletTypeEffectsInit();
-	void handleCommonEffects(rangeWeapon weapon);
+	virtual void manageEffectsInit(rangeWeapon weapon, double radians, int iter);
+	virtual void managePlasmaEffectsinit();
+	virtual void manageEnergeticEffectsInit();
+	virtual void manageBulletTypeEffectsInit();
+	virtual void handleCommonEffects(rangeWeapon weapon);
+	virtual void manageSpecialEffects() {}
+	virtual void initializeSpecialEffects() {}
 
 	// animacje podczas update'u
-	void handleEnergeticAnimations();
-	void handlePlasmaAnimations();
+	virtual void handleEnergeticAnimations();
+	virtual void handlePlasmaAnimations();
 
 	// gettery
-	effects  getEffects();
-	double   getDmg();
-	sf::Time getTime();
-	double	 getMaxTime();
+	bool					needToDelete();
+	virtual bool			isSmartBullet();
+	virtual bool			isFlexibleBullet();
+	double					getDmg();
+	double					getRandomVal(int minVal, int maxVal);
+	double					getMaxTime();
+	sf::Vector2f			getCenter();
+	effects					getEffects();
+	sf::Time				getTime();
+	terrainEffectParams 	getTerrainEffects();
+	damageParameters		getDamageParameters();
 
 
-private:
+protected:
+	void intializeTerrainEffects(double dmgDebuff, int maxTime, int minTime, double(*funcPtr)(double, int), double dmgMultipler, int step, typeOfTerrainEffects type);
+
+	
+	// function ptr
+	double (*func)(double);
+	double funcCounter,funcStep;
+
+
+
+	int colorCounter;
+	double newRadius;
+	double prevRadiusSize;
+	bool NeedToDeleteBoolean;
 	double animCounter, step;
 	int origRadiusSize, actualOrigRadiusSize;
 	double maxTimeOfProjection, damage, Vx, Vy, recoilValue, PartOfDrawnCircle;
-	int colorCounter;
+	
 
-	sf::Clock timeOfProjection;
+	bool   isSmartBulletBoolean;
 	bool   needToDrawLine;
 	effects *EfctsCausedByBlt;
+	sf::Clock timeOfProjection;
+
+	terrainEffectParams TerrainEffectsParameters;
+
+	sf::Vector2f bulletDestination;
 
 };
-struct bulletParameters {
-
-	bulletParameters operator=(projectile bullet)
+class aliveCreature
+{
+public:
+	aliveCreature()
 	{
-		this->damage = bullet.getDmg();
-		this->Effects = bullet.getEffects();
-		return *this;
+		this->isThisAlive = true;
 	}
-	effects Effects;
-	double damage;
+	bool isAlive() const
+	{
+		return this->isThisAlive;
+	}
+	double getHP() const
+	{
+		return this->HP;
+	}
+	virtual void dealDamage(damageParameters dmgParams)
+	{
+		this->HP -= dmgParams.value;
+
+		if (HP <= 0)
+		{
+			this->isThisAlive = false;
+		}
+	}
+protected:
+
+	double HP;
+	bool isThisAlive;
 };
+/*****************************************************************/
 
-/*
-
-TODO:
-
-***************************************************
-BRONIE:
-
-- implementacja sensownego systemu ró¿norodnych broni.
-- Algorytm losowania ró¿nych broni w sklepie.
-- ka¿da broñ bêdzie posiadaæ jakieœ atrybuty które wywo³uj¹ jakieœ efekty.
-
-Plany na efekty:
-- mamy 3 rodzaje broni :
-
-#############################################
-energetyczna
-
-ma³y dmg, wysoka szybostrzelnoœæ,
-du¿y rozrzut(zwiêksza siê po czasie),
-mniej efektów, du¿o amunicji i do walki na czas (efekty spalania)
-
-specjalnoœci:
-- wy³adowania energetyczne (przechodzi na innych przeciwników z grupy (to bêdzie ciekawe do zrobienia))
-- obszarówka	( raczej ³atwe)
-- bajery do zwiêkszenia celnoœci i szybkostrzelnoœci
-- ³adowarka	( nieograniczona amunicja ale bardzo wolne prze³adowania (to bêdzie ciekawe z innymi broñmi :D ))
-- laser		( ci¹g³a wi¹zka która rani (to te¿ bêdzie ciekawe :D ))
-- rozdzielacz	( kilka wi¹zek )
-
-#############################################
-o³owiowa
-œredni damage, œrednia szybkostrzelnoœæ, rozs¹dny rorzut,
-rozs¹dna celnoœæ, praktycznie brak efektów,
-sensowna iloœæ amunicji i w sumie dla ka¿dego
-
-specjalnoœci:
-- celownik (wiêksza celnoœæ)
-- amunicja zapalaj¹ca, elektryzuj¹ca, toksyczna, wybuchowa
-- jakieœ bajery w stylu stablizator, kolba i inne szity
-- podwieszany laser ( u³atwia celowanie  )
-- granatnik (?)
-
-#############################################
-
-plazmowa
-wyklepany damage, beznadziejna szybkostrzelnoœæ,
-wyklepane efekty, tragiczny rozrzut, tragiczna celnoœæ,
-malutka iloœæ amunicji , Do walki przeciwko ciê¿szym przeciwnikom i bossom
-
-specjalnoœci:
-
-- pociski rosn¹ po czasie by wybuchn¹æ
-- pociski lec¹ w ka¿dym kierunku
-- miotacz plazmy
-- nak³ada na splata specjalny efekt który je¿eli splat umrze to splaty obok niego otrzymuj¹ damage ( to bêdzie ciekawe)
--
-
-
-Efekty broni Pomys³y:
-- obszarówki (granatnik, miotacz ognia, minigun)
-- modyfikatory Celnoœci
-- namierz¹j¹ce pociski (lec¹ w kierunku wroga)
-- rozmiary magazynków
-- kasetowe bronie
-- wybuchaj¹ca amunicja
-- p³omienne pociski
-- elektryczne pociski
-- kwasowe pociski
-- automatic, singleShot
-- doubleShot, tripleShot itp.
-*/
