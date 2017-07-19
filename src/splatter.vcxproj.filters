@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Pliki źródłowe">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Pliki zasobów">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\enemies">
+      <UniqueIdentifier>{fbd3141d-ce2d-4314-b053-6739706039db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\weaponary">
+      <UniqueIdentifier>{80538cc4-7206-4396-9951-107409e26e15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\other">
+      <UniqueIdentifier>{90bf8136-e8a6-44a7-90b7-28312ca50e9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\enemies">
+      <UniqueIdentifier>{8f74f8d2-a89d-4949-9a2d-e2f04b588f14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\weaponary">
+      <UniqueIdentifier>{6ba931b4-5485-428f-8366-19ae28036023}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\other">
+      <UniqueIdentifier>{afb2ce2a-54c3-4d6f-8ada-0daee24f407c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\player">
+      <UniqueIdentifier>{e4d3581a-88c3-413d-b763-89c9635f5dea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\player">
+      <UniqueIdentifier>{24571a5a-9dd0-43a9-a453-2a70e7f69732}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="enemy.cpp">
+      <Filter>Pliki źródłowe\enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="weapon.cpp">
+      <Filter>Pliki źródłowe\weaponary</Filter>
+    </ClCompile>
+    <ClCompile Include="button.cpp">
+      <Filter>Pliki źródłowe\other</Filter>
+    </ClCompile>
+    <ClCompile Include="core.cpp">
+      <Filter>Pliki źródłowe\other</Filter>
+    </ClCompile>
+    <ClCompile Include="handleShip.cpp">
+      <Filter>Pliki źródłowe\other</Filter>
+    </ClCompile>
+    <ClCompile Include="mainMenu.cpp">
+      <Filter>Pliki źródłowe\other</Filter>
+    </ClCompile>
+    <ClCompile Include="mainGame.cpp">
+      <Filter>Pliki źródłowe\other</Filter>
+    </ClCompile>
+    <ClCompile Include="terrainEffect.cpp">
+      <Filter>Pliki źródłowe\weaponary</Filter>
+    </ClCompile>
+    <ClCompile Include="HPBar.cpp">
+      <Filter>Pliki źródłowe\other</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>Pliki źródłowe\player</Filter>
+    </ClCompile>
+    <ClCompile Include="specialAbility.cpp">
+      <Filter>Pliki źródłowe\player</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="specialProjectiles.cpp">
+      <Filter>Pliki źródłowe\weaponary</Filter>
+    </ClCompile>
+    <ClCompile Include="projectile.cpp">
+      <Filter>Pliki źródłowe\weaponary</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="button.h">
+      <Filter>Pliki nagłówkowe\other</Filter>
+    </ClInclude>
+    <ClInclude Include="entity.hpp">
+      <Filter>Pliki nagłówkowe\other</Filter>
+    </ClInclude>
+    <ClInclude Include="enemy.hpp">
+      <Filter>Pliki nagłówkowe\enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="mainGame.h">
+      <Filter>Pliki nagłówkowe\other</Filter>
+    </ClInclude>
+    <ClInclude Include="mainMenu.h">
+      <Filter>Pliki nagłówkowe\other</Filter>
+    </ClInclude>
+    <ClInclude Include="playGameState.h">
+      <Filter>Pliki nagłówkowe\other</Filter>
+    </ClInclude>
+    <ClInclude Include="player.hpp">
+      <Filter>Pliki nagłówkowe\player</Filter>
+    </ClInclude>
+    <ClInclude Include="terrainEffect.h">
+      <Filter>Pliki nagłówkowe\weaponary</Filter>
+    </ClInclude>
+    <ClInclude Include="HPBar.h">
+      <Filter>Pliki nagłówkowe\other</Filter>
+    </ClInclude>
+    <ClInclude Include="specialAbility.h">
+      <Filter>Pliki nagłówkowe\player</Filter>
+    </ClInclude>
+    <ClInclude Include="superWeapons.h">
+      <Filter>Pliki nagłówkowe\weaponary</Filter>
+    </ClInclude>
+    <ClInclude Include="specialProjectiles.h">
+      <Filter>Pliki nagłówkowe\weaponary</Filter>
+    </ClInclude>
+    <ClInclude Include="flightyEnemy.hpp">
+      <Filter>Pliki nagłówkowe\enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="agressiveEnemy.hpp">
+      <Filter>Pliki nagłówkowe\enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="heavyEnemy.hpp">
+      <Filter>Pliki nagłówkowe\enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="bittersEnemy.hpp">
+      <Filter>Pliki nagłówkowe\enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="runnersEnemy.hpp">
+      <Filter>Pliki nagłówkowe\enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="elementsEnemy.hpp">
+      <Filter>Pliki nagłówkowe\enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="predatorEnemy.hpp">
+      <Filter>Pliki nagłówkowe\enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="beastEnemy.hpp">
+      <Filter>Pliki nagłówkowe\enemies</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
