@@ -1,0 +1,112 @@
+* Wygenerowano AGRESSIVE
+****************************************
+1        *SIModel
+44        *minDamage
+128        *maxDamage
+454        *maxSpeedX
+454        *maxSpeedY
+50        *accelerationX
+50        *accelerationY
+14        *circleRad
+94        *minHP
+227        *maxHP
+19        *minDefense
+43        *maxDefense
+29        *minAgility
+89        *maxAgility
+686        *viewSize
+37        *worth
+179        *reactionTime
+1000        *safeDistance
+578        *minSafeDistance
+486        *chargeDistance
+130        *attackRange
+176        *boidPith
+106        *ChanceOfGettingRandomized
+1        *minSizeOfGroup
+16        *maxSizeOfGroup
+****************************************
+* Wygenerowano ELEMENTS
+****************************************
+7        *SIModel
+9        *minDamage
+148        *maxDamage
+231        *maxSpeedX
+231        *maxSpeedY
+52        *accelerationX
+52        *accelerationY
+14        *circleRad
+188        *minHP
+338        *maxHP
+90        *minDefense
+120        *maxDefense
+13        *minAgility
+31        *maxAgility
+647        *viewSize
+36        *worth
+455        *reactionTime
+1000        *safeDistance
+521        *minSafeDistance
+136        *chargeDistance
+64        *attackRange
+518        *boidPith
+116        *ChanceOfGettingRandomized
+3        *minSizeOfGroup
+18        *maxSizeOfGroup
+****************************************
+* Wygenerowano BITTERS
+****************************************
+6        *SIModel
+6        *minDamage
+30        *maxDamage
+916        *maxSpeedX
+916        *maxSpeedY
+46        *accelerationX
+46        *accelerationY
+4        *circleRad
+10        *minHP
+84        *maxHP
+3        *minDefense
+28        *maxDefense
+54        *minAgility
+128        *maxAgility
+583        *viewSize
+18        *worth
+33        *reactionTime
+776        *safeDistance
+459        *minSafeDistance
+410        *chargeDistance
+105        *attackRange
+205        *boidPith
+78        *ChanceOfGettingRandomized
+10        *minSizeOfGroup
+48        *maxSizeOfGroup
+****************************************
+* Wygenerowano HEAVY
+****************************************
+2        *SIModel
+72        *minDamage
+154        *maxDamage
+184        *maxSpeedX
+184        *maxSpeedY
+18        *accelerationX
+18        *accelerationY
+22        *circleRad
+360        *minHP
+796        *maxHP
+62        *minDefense
+212        *maxDefense
+18        *minAgility
+48        *maxAgility
+547        *viewSize
+62        *worth
+1324        *reactionTime
+1000        *safeDistance
+561        *minSafeDistance
+230        *chargeDistance
+80        *attackRange
+61        *boidPith
+52        *ChanceOfGettingRandomized
+1        *minSizeOfGroup
+4        *maxSizeOfGroup
+****************************************

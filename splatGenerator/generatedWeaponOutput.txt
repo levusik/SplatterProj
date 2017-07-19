@@ -1,0 +1,380 @@
+*   generated plasma Caster
+
+****************************************
+0        *name
+134        *cost
+21        *minDmg
+72        *maxDmg
+1498        *firerate
+28        *magSize
+12        *recoil
+137        *minSpeed
+222        *maxSpeed
+20        *size
+3        *howManyProjItShoot
+3        *howManyProjItTakes
+1        *reloadingTime
+1        *stabilizator
+1        *stunEnemies
+****************************************
+*   generated lead SMG
+
+****************************************
+0        *name
+96        *cost
+20        *minDmg
+43        *maxDmg
+2352        *firerate
+238        *magSize
+24        *recoil
+300        *minSpeed
+300        *maxSpeed
+6        *size
+2        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+1        *extendedMag
+1        *packedBullets
+1        *scope
+****************************************
+*   generated plasma Musket
+
+****************************************
+0        *name
+1672        *cost
+504        *minDmg
+1224        *maxDmg
+18        *firerate
+14        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+20        *size
+1        *howManyProjItShoot
+14        *howManyProjItTakes
+11        *reloadingTime
+1        *flexibleBlts
+1        *packedBullets
+1        *stabilizator
+****************************************
+*   generated plasma rocketLauncher
+
+****************************************
+0        *name
+1584        *cost
+408        *minDmg
+888        *maxDmg
+17        *firerate
+41        *magSize
+45        *recoil
+72        *minSpeed
+166        *maxSpeed
+20        *size
+1        *howManyProjItShoot
+41        *howManyProjItTakes
+11        *reloadingTime
+1        *stabilizator
+****************************************
+*   generated plasma Shotgun
+
+****************************************
+0        *name
+820        *cost
+113        *minDmg
+132        *maxDmg
+92        *firerate
+18        *magSize
+28        *recoil
+192        *minSpeed
+300        *maxSpeed
+12        *size
+6        *howManyProjItShoot
+18        *howManyProjItTakes
+3        *reloadingTime
+1        *flexibleBlts
+1        *stabilizator
+1        *magicPlasmaBlts
+****************************************
+*   generated lead Shotgun
+
+****************************************
+0        *name
+290        *cost
+62        *minDmg
+66        *maxDmg
+126        *firerate
+47        *magSize
+31        *recoil
+298        *minSpeed
+300        *maxSpeed
+3        *size
+4        *howManyProjItShoot
+2        *howManyProjItTakes
+3        *reloadingTime
+1        *stunEnemies
+1        *grenadeLauncher
+****************************************
+*   generated plasma Musket
+
+****************************************
+0        *name
+2016        *cost
+476        *minDmg
+1704        *maxDmg
+20        *firerate
+7        *magSize
+2        *recoil
+300        *minSpeed
+300        *maxSpeed
+20        *size
+1        *howManyProjItShoot
+7        *howManyProjItTakes
+11        *reloadingTime
+1        *packedBullets
+1        *stabilizator
+1        *stunEnemies
+****************************************
+*   generated lead Caster
+
+****************************************
+0        *name
+35        *cost
+10        *minDmg
+25        *maxDmg
+2064        *firerate
+109        *magSize
+12        *recoil
+235        *minSpeed
+300        *maxSpeed
+5        *size
+6        *howManyProjItShoot
+2        *howManyProjItTakes
+1        *reloadingTime
+1        *elecBlts
+1        *extendedMag
+1        *multipler
+0        *radiusSize
+****************************************
+*   generated energetic MachineGun
+
+****************************************
+0        *name
+880        *cost
+26        *minDmg
+41        *maxDmg
+3164        *firerate
+360        *magSize
+2        *recoil
+300        *minSpeed
+300        *maxSpeed
+8        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+3        *reloadingTime
+1        *packedBullets
+1        *charger
+****************************************
+*   generated plasma Assault
+
+****************************************
+0        *name
+325        *cost
+36        *minDmg
+228        *maxDmg
+619        *firerate
+76        *magSize
+7        *recoil
+211        *minSpeed
+300        *maxSpeed
+20        *size
+3        *howManyProjItShoot
+6        *howManyProjItTakes
+2        *reloadingTime
+1        *packedBullets
+1        *scope
+****************************************
+*   generated lead Sniper
+
+****************************************
+0        *name
+370        *cost
+140        *minDmg
+352        *maxDmg
+64        *firerate
+23        *magSize
+2        *recoil
+300        *minSpeed
+300        *maxSpeed
+17        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+4        *reloadingTime
+1        *packedBullets
+****************************************
+*   generated energetic MachineGun
+
+****************************************
+0        *name
+500        *cost
+30        *minDmg
+55        *maxDmg
+3164        *firerate
+720        *magSize
+4        *recoil
+300        *minSpeed
+300        *maxSpeed
+5        *size
+4        *howManyProjItShoot
+1        *howManyProjItTakes
+3        *reloadingTime
+1        *packedBullets
+****************************************
+*   generated lead Thrower
+
+****************************************
+0        *name
+147        *cost
+10        *minDmg
+49        *maxDmg
+4576        *firerate
+1197        *magSize
+45        *recoil
+300        *minSpeed
+300        *maxSpeed
+3        *size
+2        *howManyProjItShoot
+4        *howManyProjItTakes
+4        *reloadingTime
+1        *stunEnemies
+****************************************
+*   generated energetic rocketLauncher
+
+****************************************
+0        *name
+584        *cost
+234        *minDmg
+384        *maxDmg
+65        *firerate
+7        *magSize
+3        *recoil
+278        *minSpeed
+300        *maxSpeed
+5        *size
+1        *howManyProjItShoot
+6        *howManyProjItTakes
+3        *reloadingTime
+1        *stunEnemies
+****************************************
+*   generated lead MachineGun
+
+****************************************
+0        *name
+476        *cost
+74        *minDmg
+130        *maxDmg
+1220        *firerate
+606        *magSize
+45        *recoil
+300        *minSpeed
+300        *maxSpeed
+11        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+2        *reloadingTime
+1        *grenadeLauncher
+****************************************
+*   generated plasma Assault
+
+****************************************
+0        *name
+317        *cost
+45        *minDmg
+152        *maxDmg
+590        *firerate
+55        *magSize
+10        *recoil
+200        *minSpeed
+300        *maxSpeed
+20        *size
+1        *howManyProjItShoot
+2        *howManyProjItTakes
+6        *reloadingTime
+1        *extendedMag
+1        *magicPlasmaBlts
+****************************************
+*   generated plasma Assault
+
+****************************************
+0        *name
+476        *cost
+47        *minDmg
+288        *maxDmg
+596        *firerate
+58        *magSize
+13        *recoil
+216        *minSpeed
+300        *maxSpeed
+20        *size
+1        *howManyProjItShoot
+2        *howManyProjItTakes
+2        *reloadingTime
+1        *elecBlts
+1        *extendedMag
+1        *packedBullets
+0        *radiusSize
+****************************************
+*   generated plasma Caster
+
+****************************************
+0        *name
+218        *cost
+20        *minDmg
+72        *maxDmg
+1260        *firerate
+14        *magSize
+9        *recoil
+109        *minSpeed
+180        *maxSpeed
+20        *size
+1        *howManyProjItShoot
+2        *howManyProjItTakes
+2        *reloadingTime
+1        *packedBullets
+****************************************
+*   generated plasma Pistol
+
+****************************************
+0        *name
+330        *cost
+48        *minDmg
+120        *maxDmg
+189        *firerate
+12        *magSize
+16        *recoil
+115        *minSpeed
+158        *maxSpeed
+16        *size
+2        *howManyProjItShoot
+7        *howManyProjItTakes
+1        *reloadingTime
+1        *packedBullets
+****************************************
+*   generated lead Pistol
+
+****************************************
+0        *name
+100        *cost
+32        *minDmg
+32        *maxDmg
+265        *firerate
+23        *magSize
+17        *recoil
+134        *minSpeed
+240        *maxSpeed
+5        *size
+5        *howManyProjItShoot
+3        *howManyProjItTakes
+1        *reloadingTime
+1        *extendedMag
+1        *packedBullets
+****************************************
