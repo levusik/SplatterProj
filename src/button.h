@@ -16,10 +16,12 @@ public:
 	usageOfButton getUsage();
 
 	// settery
-	void setColors(sf::Color colorWhenPassive, sf::Color colorWhenHighlighted);
+	void draw(sf::RenderWindow &window);
 	void setSpriteTexture(sf::Texture &texture);
 	void setText(std::string phrase, sf::Font &font);
-	void draw(sf::RenderWindow &window);
+
+	void setColors(sf::Color color);
+	void setColors(sf::Color colorWhenPassive, sf::Color colorWhenHighlighted);
 
 	// gettery
 	sf::Sprite getSprite() const;

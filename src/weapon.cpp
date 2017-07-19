@@ -111,14 +111,10 @@ void rangeWeapon::takeAction(std::map<typeOfWeapon, int>& Ammunitions, std::vect
 	{
 		// prze³adowanie wywo³ane przez gracza
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
-		{
 			this->tryReloading(Ammunitions);
-		}
 
-		
 		// strzelanie 
 		this->manageShooting(Ammunitions, ProjectilesArray, PlayerParams);
-
 
 		// sprawdzamy czy nie trzeba przypadkiem prze³adowaæ 
 		if (this->actualMagSize < std::pow(this->howManyProjItShoot, negate(this->packedBullets)) * this->costOfBullet && this->delayBtwAutoReloading.getElapsedTime().asSeconds() > 0.5f)
@@ -142,10 +138,9 @@ void rangeWeapon::handleReloading(std::map<typeOfWeapon, int>& Ammunitions, play
 		
 		// dwa typy prze³adowañ czyli gdy starcza nam na uzupe³nienie ca³ego magazynku 
 		// oraz na uzupe³nienie resztek które nam zosta³y 
-		int costOfWholeMag = this->origMagSize;
 		int costOfAllAmmoLeft = Ammunitions[this->getType()];
 
-		int decision = std::min(costOfWholeMag, costOfAllAmmoLeft);
+		int decision = min(origMagSize, costOfAllAmmoLeft);
 
 		this->actualMagSize = decision;
 		Ammunitions[this->getType()] -= decision;
@@ -240,8 +235,9 @@ void rangeWeapon::create(weaponParameters params)
 	origMagSize					= params.origMagSize;
 	actualMagSize				= params.actualMagSize;
 	howManyProjItShoot			= params.howManyProjItShoot;
-	this->costOfBullet			= params.costOfBullet;
-	this->packedBullets			= params.packedBullets;
+	costOfBullet				= params.costOfBullet;
+	packedBullets				= params.packedBullets;
+	reloadingTime				= params.reloadingTime;
 
 	initializeEffects();
 }
@@ -286,50 +282,38 @@ void rangeWeapon::managePassingFunctionsToBullet(projectile *proj)
 		double step = cast(double, rand() % plasmaRangeOfRandomness + 1) / (rand() % plasmaRangeOfRandomness + 1);
 		int anim = rand() % projectileFunctions::howManyPlasmaAnimations;
 		if (anim == 0)
-		{
 			proj->setFunctionPtr(projectileFunctions::plasmaAnimation1, step);
-		}
+
 		else if (anim == 1)
-		{
 			proj->setFunctionPtr(projectileFunctions::plasmaAnimation2, step);
-		}
+
 		else if (anim == 2)
-		{
 			proj->setFunctionPtr(projectileFunctions::plasmaAnimation3, step);
-		}
+
 		else if (anim == 3)
-		{
 			proj->setFunctionPtr(projectileFunctions::plasmaAnimation4, step);
-		}
+
 		else if (anim == 4)
-		{
 			proj->setFunctionPtr(projectileFunctions::plasmaAnimation5, step);
-		}
 	}
 	else if (this->getType() == typeOfWeapon::ENERGETIC)
 	{
 		double step = cast(double, rand() % energeticRangeOfRandomness + 1) / (rand() % energeticRangeOfRandomness + 1);
 		int anim = rand() % projectileFunctions::howManyEnergeticAnimations;
 		if (anim == 0)
-		{
 			proj->setFunctionPtr(projectileFunctions::energeticAnimation1, step);
-		}
+
 		else if (anim == 1)
-		{
 			proj->setFunctionPtr(projectileFunctions::energeticAnimation2, step);
-		}
+
 		else if (anim == 2)
-		{
 			proj->setFunctionPtr(projectileFunctions::energeticAnimation3, step);
-		}
+
 		else if (anim == 3)
-		{
 			proj->setFunctionPtr(projectileFunctions::energeticAnimation4, step);
-		}
+
 		else if (anim == 4)
-		{
 			proj->setFunctionPtr(projectileFunctions::energeticAnimation5, step);
-		}
 	}
 }
 

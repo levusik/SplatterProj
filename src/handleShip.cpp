@@ -207,19 +207,16 @@ void playGameState::handleBuyingAmmunition(typeOfWeapon typeOfAmmo, int howManyB
 /////////////////////////////////////////////////////////////////////////////////////////////////
 void playGameState::handleBuyingWeapon(int index)
 {
-	if (index == 0 && actualAssortiment.size() > 0)
+	for (int i = 0; i < 3; ++i)
 	{
-		addWeaponToBackpack(actualAssortiment[index].ID);
+		if(index == i && actualAssortiment.size() > 0 && !actualAssortiment[i].second)
+		{
+			buttons[i].setColors(sf::Color(0x0, 0x0, 0x0));
+			buttons[i].setText("", Font);
+			addWeaponToBackpack(actualAssortiment[index].first.ID);
+			actualAssortiment[i].second = true;
+		}
 	}
-	else if (index == 1 && actualAssortiment.size() > 1)
-	{
-		addWeaponToBackpack(actualAssortiment[index].ID);
-	}
-	else if (index == 2 && actualAssortiment.size() > 2)
-	{
-		addWeaponToBackpack(actualAssortiment[index].ID);
-	}
-
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////
 void playGameState::randomWeapon()
@@ -255,7 +252,7 @@ void playGameState::randomWeapon()
 		}
 	}
 
-	for (int i = 0; i <  std::min(cast(int,weaponBuffor.size()),howManyWeaponsInAssortiment); ++i)
+	for (int i = 0; i <  min(cast(int,weaponBuffor.size()),howManyWeaponsInAssortiment); ++i)
 	{
 		// wylosowanie broni z bufora
 		int randomIndex = rand() % weaponBuffor.size();
@@ -266,13 +263,13 @@ void playGameState::randomWeapon()
 		weaponBuffIter += randomIndex;
 		weaponBuffor.erase(weaponBuffIter);
 
-		actualAssortiment.push_back(Weapon);
+		actualAssortiment.push_back(std::pair<rangeWeapon,bool>(Weapon,false));
 	}
 
 	if (DEBUG)
 	{
 		for (int i = 0; i < actualAssortiment.size(); ++i)
-			std::cout << "wylosowane bronie to " << actualAssortiment[i].ID << "\n";
+			std::cout << "wylosowane bronie to " << actualAssortiment[i].first.ID << "\n";
 	}
 
 }
@@ -452,15 +449,17 @@ void playGameState::initializeShop()
 	}
 	/*******************************************************************************/
 
-	if (actualAssortiment.size() > 0)
-		buttons[0].setText(std::to_string(actualAssortiment[0].ID), Font);
-
-	if (actualAssortiment.size() > 1)
-		buttons[1].setText(std::to_string(actualAssortiment[1].ID), Font);
-
-	if (actualAssortiment.size() > 2)
-		buttons[2].setText(std::to_string(actualAssortiment[2].ID), Font);
-
+	// chcemy by nasze guziczki charakteryzowa³y siê czymœ gdy bêdziemy wybieraæ broñ ( szary - o³ów, niebieski - elektryczny, zielony - plazma)
+	for (int i = 0; i < 3; ++i)
+	{
+		if (actualAssortiment.size() > i)
+		{
+			buttons[i].setText(std::to_string(actualAssortiment[i].first.ID), Font);
+			buttons[i].setColors(typeOfWeaponColorMap[actualAssortiment[i].first.getType()], sf::Color::Color(0xff,0x0,0x0));
+		}
+		else
+			break;
+	}
 
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////

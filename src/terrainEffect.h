@@ -112,5 +112,7 @@ public:
 	// kastety 
 	virtual void create(terrainEffectParams &params, std::vector<projectile> &projectileArray);
 
+protected:
+	double diffBtwNewAndOldCircle;
 
 };

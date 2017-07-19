@@ -7,17 +7,20 @@
 #define radToDgr(x) ((x) * (M_PI / 180.))
 #define cast(type,x) (static_cast<type>(x))
 #define negate(x) x == 0 ? 1 : 0
+#define min(x,y) (x) > (y) ? (y) : (x)
+#define max(x,y) (x) > (y) ? (x) : (y)
+#define getSign(x) (x) < 0 ? (-1) : (1)
 
 
 /*****************************************************************/
 /*			Zbiór wszystkich sta³ych							 */
-const int    WINDOWWIDTH = 1024;
-const int    WINDOWHEIGHT = 768;
+const int    WINDOWWIDTH = 1280;
+const int    WINDOWHEIGHT = 1024;
 const int    FPS = 60;
 const int    viewBoundsRectX = WINDOWWIDTH / 2;
 const int    viewBoundsRectY = WINDOWHEIGHT / 2;
-const int	 numOfValLoadedFromFile = 36;
-const int	 DELAYBTWWAVES = 5;
+const int	 numOfValLoadedFromFile = 28;
+const int	 DELAYBTWWAVES = 0;
 const int	 LEFTWALL = 0;
 const int	 UPWALL = 0;
 const int    RIGHTWALL = 2000;
@@ -28,6 +31,12 @@ const char   commentChar = '*';
 const double terrainDmgLock = 1.f;
 const double fleeDistancePrc = 1.25;
 const double M_PI = 3.14159265359;
+
+const double collidingEnemiesPith = 1.3;
+const double minDistanceConst = 4.;
+const double enemyChargeSpeedBuff = 1.2;
+const double enemyChargeRadiusBuff = 1.1;
+
 
 // sta³e do pocisków
 const int	leadRangeOfRandomness		= 5;
@@ -48,6 +57,46 @@ const bool	 showMoveAvailableRect = true;
 /*****************************************************************/
 /*		Zbiór wszystkich enumów które u³atwi¹ nam ¿ycie i 
 		dziêki nim kod bêdzie czytelniejszy						 */
+enum class typesOfEnemyBehaviour
+{
+	FLIGHTY,		// przeciwnik zazwyczaj ucieka, nastawiony defensywnie (znacze boosty w obronie) 
+					// umiejêtnoœæ specjalna :   zwiêksza swoj¹ obronê i zatrzymuje gracza 
+					// du¿e- bardzo du¿e grupki
+
+	AGRESSIVE,		// przeciwnik zazwyczaj walczy, dobry Atak (nastawiony na DPS) , gorsza obrona
+					// umiejêtnoœæ specjalna : zwiêszenie czêstotlwioœci i dotkliwoœci obra¿eñ ( animacja : 
+					// powiêksza siê by z czasem powróciæ do starego rozmiaru).
+					// œrednie-du¿e grupki
+
+	HEAVY,			// przeciwnik kontynuuje swoj¹ podró¿, dopiero zbli¿ony na odpowiedn¹ odleg³oœæ zacznie atakowaæ
+					// szybko traci zaintersowanie, bardzo du¿a obrona, dotkliwe obra¿enia, aczolwiek powolny
+					// umiejêtnoœæ specjalna : berserk - zmiejsza otrzymywane obra¿enia, zwiêksza prêdkoœæ, zadaje bardziej dotkliwej 
+					// obra¿enia
+					// ma³e- œrednie grupki
+	
+	RUNNERS,		// przeciwnicy walcz¹ tylko w du¿ej grupie w przeciwnym wypadku uciekaj¹
+					// pojedyñczo nie stanowi¹ ¿adnego zagro¿enia, aczkolwiek w grupie s¹ wyj¹tkowo groŸni 
+					// ma³y damage, œrednia obrona, ma³o zdrowia, 
+					// umiejêtnoœæ specjalna : atak grupowy - ca³a grupa rzuca siê na przeciwnika
+					// du¿e-olbrzymie grupki
+
+	BEAST,			// olbrzymi, skrajnie agresywni przeciwnicy, bardzo du¿y damage, ma³a obrona, du¿o zdrowia 
+					// podró¿uj¹ samotnie, gdy raz zostanie zwi¹zany walk¹ bêdzie tropiæ ju¿ do jego i gracza œmierci
+					// umiejêtnoœæ specjalna : obszarówka , szar¿a 
+					// pojedyñcze osobniki
+
+	PREDATOR,		// najbardziej skomplikowany schemat AI, próbuj¹ okr¹¿yæ przeciwnika, zaprowadziæ go w k¹t ;
+					// du¿a szybkoœæ i wszystko inne raczej œrednie
+					// umiejêtnoœæ specjalna : taktyka, atak grup¹
+					// œrednie grupki 
+	
+	BITTERS,		// nastawi¹ siê na szybkie i b³yskawiczne ataki, po czym na "taktyczny odwrót", przegrupowanie i wracamy do ataków
+					// du¿y damage i szybkoœæ, wszystko inne tragiczne. 
+					// umiejêtnoœæ specjalna : atak grup¹, zatrucie Gracza
+
+	ELEMENTS,		// nastawi¹j¹ siê na d³u¿sz¹ metê, du¿a obrona i zdrowie , kiepski damage ale obra¿enia s¹ zadawane po czasie, œrednia prêdkoœæ
+					// umiejêtnoœæ specjalna : ataki zadaj¹ obra¿enia po jakimœ czasie ( np. od ognia, zatruæ )
+};	
 enum class statesOfStateMachine
 {
 	mainMenu,
@@ -197,8 +246,7 @@ struct  effects
 	void blank()
 	{
 		type =  typeOfWeapon::BULLETTYPE;
-		a_hasSAFAYC				= false;
-		a_hasTerrainDamage		= false;
+		a_manualTerrainDamageRadiusSize = INT_MIN;
 		a_hasFlexibleBullets	= false;
 		a_hasSmartBulletsBoolean= false;
 		a_hasScope				= false;
@@ -262,11 +310,10 @@ struct  effects
 	typeOfWeapon type;
 	
 	// booleany dla wszystkich broni (ka¿da broñ mo¿e posiadaæ t¹ zdolnoœæ)
-	bool a_hasSAFAYC;				// czy jest to broñ "Shoot As Fast A You Can"
-	bool a_hasTerrainDamage;		// obszarówka	
 	bool a_hasFlexibleBullets;		// pociski odbijaj¹ siê od œcian
 	bool a_hasSmartBulletsBoolean;	// czy ma "inteligentne pociski"
 	bool a_hasPackedBullets;		// czy strzela kilka pociskami
+	double a_manualTerrainDamageRadiusSize; // waroœæ która okreœli rozmiar obszarówki ( je¿eli wartoœæ bêdzie mniejsza od 0 to losujemy ze sta³ych)
 
 	bool a_hasScope;			// + celnoœci
 	bool a_hasStabilizator;		// mniejszy rozrzut 
@@ -297,18 +344,42 @@ struct  effects
 struct  splatTemplate
 {
 public:
-	// dajemy wartoœci z zakresu dla urozmaicenia rozgrywki 
-	// (czasem ork ma wiêkszy pancerz, czasem wiêkszy damage itp.)
-	double	minArmor, maxArmor, minDamage, maxDamage, minHP, maxHP,
-			rangeOfWeapon, minDistanceFromMates;
-	double	minSpeed, maxSpeed, timeToMakeDecision, acceleration;
-	double	sizeOfView, angleOfView, pith, timeToMakeDecisionInSec;
-	float	changeMoveBy;
-	float	chargeDistance;
-	double	safeDistance;
-	double	radius;
+	typesOfEnemyBehaviour enemyBehaviour;
+	sf::Vector2f maxSpeed;
+	sf::Vector2f speedVec;
+	sf::Vector2f acceleration;
+	double circleRadius;
+	int minHP, maxHP;
+	int minDamage, maxDamage;
+	int minDefense, maxDefense;
+	int minAgility, maxAgility; //	ma wp³yw na szybkoœæ oraz tempo zmian ruchu 
+	int viewSize;				// dystans po którym dostrzega przeciwnika 
+	int worth;					// ile kasy za niego dajemy
+
+
+								// interakcja z ziomkami z grupy i graczem
+	double reactionTime;		// czas po którym agent reaguje na czynniki zewnêtrzne 
+	int safeDistance;			// dystans po którym, je¿eli przekroczony agent zastanawia siê co zrobiæ
+	int miniumDistance;			// dystans po którym, je¿eli przekroczony agent zaczyna walczyæ ( nie wa¿ne w jakim jest stanie)
+	int fleeDistance;			// po jakim dystansie agent przechodzi ze stanu ucieczki do "normalnoœci"
+	int minDistanceFromMates;	// minimalny dystans od ziomków z grupy
+	int chargeDistance;			// dystans po którym, je¿eli przekroczony agent zaczyna szar¿owaæ ()
+	int AttackRange;			// zasiêg broni
+	int minGroupSize,
+		maxGroupSize;
+
+
+								// waga regu³ algorytmu
+	double  pith;
+
+
+	// czy jest jednostk¹ strzelaj¹c¹ 
+	bool isShootingUnit;
+	int firerate;
+	int projectileRadius;
+
+
 	int		chanceOfGettingRandomized;
-	int		value;
 
 
 	sf::Vector2f startingPosition;
@@ -321,6 +392,7 @@ public:
 	sf::Color attackingPlayerColor;
 	sf::Color passiveModeColor;
 };
+
 struct  otherMatesParameters
 {
 	otherMatesParameters()
@@ -328,7 +400,7 @@ struct  otherMatesParameters
 		this->currentState = stateOfEnemy::IDLE;
 		this->hasDetectedPlayer = false;
 	}
-
+	double radius;
 	sf::Vector2f	 position;
 	stateOfEnemy currentState;
 	bool	hasDetectedPlayer;
@@ -391,6 +463,8 @@ struct  weaponParameters
 {
 	weaponParameters()
 	{
+		this->name = "None";
+		this->weaponShopCost = 0;
 		this->ID = 0;
 		this->maxDamage = 0;
 		this->minDamage = 0;
@@ -404,9 +478,14 @@ struct  weaponParameters
 		this->actualMagSize = 0;
 		this->howManyProjItShoot = 1;
 		this->costOfBullet = 1;
+		this->reloadingTime = 1;
 	}
+	std::string name;
+	int weaponShopCost;
+
 	int		ID;
 	double  maxDamage, minDamage, bulletSize, recoil, firerate;
+	double  reloadingTime;
 	double  minSpeedOfBullet, maxSpeedOfBullet;
 	int		howManyProjItShoot;
 	int		costOfBullet;
@@ -569,6 +648,7 @@ protected:
 	bool   needToDrawLine;
 	effects *EfctsCausedByBlt;
 	sf::Clock timeOfProjection;
+	sf::Clock timeBasedMovement;
 
 	terrainEffectParams TerrainEffectsParameters;
 

@@ -14,20 +14,20 @@ namespace tEffctsConst
 
 	/*-------------------------------------------------------*/
 	// maksymalny i minimalny czas trwania obszarówek
-	const int explodingBulletsMaxTime	= 4;
-	const int explodingBulletsMinTime	= 2;
+	const int explodingBulletsMaxTime	= 2;
+	const int explodingBulletsMinTime	= 1;
 
-	const int burningBulletsMaxTime		= 8;
-	const int buriningBulletsMintime	= 4;
+	const int burningBulletsMaxTime		= 4;
+	const int buriningBulletsMintime	= 2;
 
-	const int electrizeBulletsMaxTime	= 10;
-	const int electrizeBulletsMinTime	= 8;
+	const int electrizeBulletsMaxTime	= 5;
+	const int electrizeBulletsMinTime	= 4;
 
-	const int toxicateBulletsMaxTime	= 12;
-	const int toxicateBulletsMinTime	= 8;
+	const int toxicateBulletsMaxTime	= 6;
+	const int toxicateBulletsMinTime	= 4;
 	/*-------------------------------------------------------*/
 	//	 maksymalny rozmiar wybuchu
-	const double explodingBulletRadiusMultipler = 2.5;
+	const double explodingBulletRadiusMultipler = 4.;
 	const double burningBulletRadiusMultipler	= 2.;
 	const double electrizeBulletRadiusMultipler = 2.;
 	const double toxicateBulletRadiusMultipler	= 2.5;
@@ -35,17 +35,13 @@ namespace tEffctsConst
 	/*-------------------------------------------------------*/
 	double simpleFunc(double counter, int time)
 	{
-		return pow(sin( radToDgr(counter * M_PI/time) ),0.5);
+		return pow(sin(radToDgr(2 * counter) * M_PI / time),0.5);
 	}
 
 
 }
 
 
-double simpleFunc(double x)
-{
-	return std::sin(radToDgr(x*3)) * 50;
-}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 //		KONSTRUKTOR
@@ -79,7 +75,7 @@ void projectile::create(sf::Vector2f playerPos, double radians, rangeWeapon *wea
 {
 	// po 2.5 sekundach ka¿dy pocisk zostaje usuniêty ¿eby nie obci¹¿aæ zbytnio procka
 	timeOfProjection.restart();
-	maxTimeOfProjection = 2.5f;
+	maxTimeOfProjection = min(1200 / (abs(this->Vy) + abs(Vy)) / 2, 10.f);
 	this->EfctsCausedByBlt = &weapon->EffectWeaponCauses;
 	this->isSmartBulletBoolean = weapon->hasSmartBullets();
 
@@ -93,6 +89,8 @@ void projectile::create(sf::Vector2f playerPos, double radians, rangeWeapon *wea
 	this->setRadius(weapon->bulletSize);
 	this->setPosition(playerPos);
 	this->setOrigin(this->getRadius(), this->getRadius());
+
+
 
 
 	this->origRadiusSize = this->getRadius();
@@ -159,7 +157,8 @@ void projectile::update()
 	manageSpecialEffects();
 
 	// po prostu update
-	this->move(this->Vx, this->Vy);
+	this->move(this->Vx  * GETSEC(timeBasedMovement), this->Vy * GETSEC(timeBasedMovement));
+	timeBasedMovement.restart();
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -239,7 +238,10 @@ void projectile::intializeTerrainEffects(double dmgDebuff, int maxTime, int minT
 	//
 	TerrainEffectsParameters.durationOfAnimation = rand() % (maxTime - minTime) + 1 + minTime;
 	TerrainEffectsParameters.function = funcPtr;
-	TerrainEffectsParameters.maxRadiusSize = rand() % cast(int, this->getRadius()*(radMultipler - 1) + 1) + this->getRadius();
+	
+	if (this->EfctsCausedByBlt->a_manualTerrainDamageRadiusSize < 0 )
+		TerrainEffectsParameters.maxRadiusSize = rand() % cast(int, this->getRadius()*(radMultipler - 1) + 1) + this->getRadius();
+
 	TerrainEffectsParameters.step = step;
 	TerrainEffectsParameters.type = type;
 }

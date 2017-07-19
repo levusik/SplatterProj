@@ -4,6 +4,7 @@
 #include <iostream>
 #define m_CurrSelectedWpn (this->backpack[this->indexOfCurrentlySelectedWpn])
 #define cast(type,x)	(static_cast<type>(x))
+#define boolCast(val)	( (val) > 0 ? (1) : (0))
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////
@@ -38,8 +39,8 @@ playGameState::playGameState(sf::Font & font, sf::RenderWindow &window) :
 	// wczytanie szablonów jednostek i broni 
 	loadTemplatesAndItemsFromFile();
 
+	this->backpack.push_back(rangeWeaponDatabase[0]);
 	this->indexOfCurrentlySelectedWpn = 0;
-	addWeaponToBackpack(0);
 
 
 	// ustawiamy stan pocz¹tkowy 
@@ -69,6 +70,11 @@ playGameState::playGameState(sf::Font & font, sf::RenderWindow &window) :
 	this->costsOfBullets[typeOfWeapon::BULLETTYPE] = 2;
 	this->costsOfBullets[typeOfWeapon::PLASMA]     = 3;
 	/////////////////////////////////////////////////////////////////
+
+	this->typeOfWeaponColorMap[typeOfWeapon::BULLETTYPE] = sf::Color::Color(0x7f, 0x7f, 0x7f);
+	this->typeOfWeaponColorMap[typeOfWeapon::ENERGETIC] = sf::Color::Color(0x0, 0x30, 0xff);
+	typeOfWeaponColorMap[typeOfWeapon::PLASMA] = sf::Color::Color(0x0, 0xff, 0x50);
+
 
 	/////////////////////////////////////////////////////////////////
 	// ustawienie paczek amunicji
@@ -196,89 +202,45 @@ void playGameState::loadTemplatesAndItemsFromFile()
 		if (values.size() == numOfValLoadedFromFile)
 		{
 			// bezsensownie napisane linijki kodu ...
-			splatUnit.changeMoveBy = atoi(values[0].c_str());
-			splatUnit.maxArmor = atoi(values[1].c_str());
+			splatUnit.enemyBehaviour = cast(typesOfEnemyBehaviour,atoi(values[0].c_str()));
+			splatUnit.minDamage = atoi(values[1].c_str());
 			splatUnit.maxDamage = atoi(values[2].c_str());
-			splatUnit.maxHP = atoi(values[3].c_str());
-			splatUnit.minArmor = atoi(values[4].c_str());
-			splatUnit.minDamage = atoi(values[5].c_str());
-			splatUnit.minHP = atoi(values[6].c_str());
-			splatUnit.rangeOfWeapon = atoi(values[7].c_str());
-			splatUnit.maxSpeed = atoi(values[8].c_str());
-			splatUnit.minSpeed = atoi(values[9].c_str());
-			splatUnit.acceleration = atoi(values[10].c_str());
-			splatUnit.sizeOfView = atoi(values[11].c_str());
-			splatUnit.pith = atoi(values[12].c_str()) / 10000.f;
-			splatUnit.agressiveModeColor = sf::Color::Color(atoi(values[13].c_str()), atoi(values[14].c_str()), atoi(values[15].c_str()));
-			splatUnit.passiveModeColor = sf::Color::Color(atoi(values[16].c_str()), atoi(values[17].c_str()), atoi(values[18].c_str()));
-			splatUnit.reactingtoPlayerColor = sf::Color::Color(atoi(values[19].c_str()), atoi(values[20].c_str()), atoi(values[21].c_str()));
-			splatUnit.ChargingColor = sf::Color::Color(atoi(values[22].c_str()), atoi(values[23].c_str()), atoi(values[24].c_str()));
-			splatUnit.fleeingColor = sf::Color::Color(atoi(values[25].c_str()), atoi(values[26].c_str()), atoi(values[27].c_str()));
-			splatUnit.attackingPlayerColor = sf::Color::Color(atoi(values[28].c_str()), atoi(values[29].c_str()), atoi(values[30].c_str()));
-			splatUnit.timeToMakeDecisionInSec = atoi(values[31].c_str()) / 1000.f;
-			splatUnit.chargeDistance = atoi(values[32].c_str()) + Player.getCircle().getRadius();
-			splatUnit.radius = atoi(values[33].c_str());
-			splatUnit.safeDistance = atoi(values[34].c_str()) + Player.getCircle().getRadius() + splatUnit.radius;
-			splatUnit.chanceOfGettingRandomized = atoi(values[35].c_str());
+			splatUnit.maxSpeed.x = atoi(values[3].c_str());
+			splatUnit.maxSpeed.y = atoi(values[4].c_str());
+			splatUnit.acceleration.x = atoi(values[5].c_str());
+			splatUnit.acceleration.y = atoi(values[6].c_str());
+			splatUnit.circleRadius = atoi(values[7].c_str());
+			splatUnit.minHP = atoi(values[8].c_str());
+			splatUnit.maxHP = atoi(values[9].c_str());
+			splatUnit.minDefense = atoi(values[10].c_str());
+			splatUnit.maxDefense = atoi(values[11].c_str());
+			splatUnit.minAgility = atoi(values[12].c_str());
+			splatUnit.maxAgility = atoi(values[13].c_str());
+			splatUnit.viewSize	 = atoi(values[14].c_str());
+			splatUnit.worth		 = atoi(values[15].c_str());
+			splatUnit.reactionTime = atoi(values[16].c_str());
+			splatUnit.safeDistance = atoi(values[17].c_str());
+			splatUnit.miniumDistance = atoi(values[18].c_str());
+			splatUnit.chargeDistance = atoi(values[19].c_str());
+			splatUnit.AttackRange	 = boolCast(atoi(values[20].c_str()));
+			splatUnit.pith			 = atoi(values[21].c_str())/ 10000.f;
+			splatUnit.chanceOfGettingRandomized = atoi(values[22].c_str());
+			splatUnit.minGroupSize	 = atoi(values[23].c_str());
+			splatUnit.maxGroupSize	 = atoi(values[24].c_str());
+			splatUnit.isShootingUnit = atoi(values[25].c_str());
+			splatUnit.firerate		 = atoi(values[26].c_str());
+			splatUnit.projectileRadius = atoi(values[27].c_str());
+
+
 			this->allChance += splatUnit.chanceOfGettingRandomized;
 
 			splatTemplateDatabase.push_back(splatUnit);
-
-			if (DEBUG)
-			{
-				for (int i = 0; i < values.size(); ++i)
-				{
-					debugFile << atoi(values[i].c_str()) << "\n";
-				}
-			}
 			values.clear();
 
 		}
 	}
-	if (!DEBUG)
-	{
-		debugFile << splatTemplateDatabase.size() << "\n";
-		debugFile << "********************************************************************************\n";
-		for (int i = 0; i < splatTemplateDatabase.size(); ++i)
-		{
-			char buff[10];
-			debugFile << "Change Move By:" << splatTemplateDatabase[i].changeMoveBy << "\n";
-			debugFile << "maks. pancerz :" << splatTemplateDatabase[i].maxArmor << "\n";
-			debugFile << "maks. damage :" << splatTemplateDatabase[i].maxDamage << "\n";
-			debugFile << "maks. HP :" << splatTemplateDatabase[i].maxHP << "\n";
-			debugFile << "min. pancerz : " << splatTemplateDatabase[i].minArmor << "\n";
-			debugFile << "min. damage : " << splatTemplateDatabase[i].minDamage << "\n";
-			debugFile << "min. HP:" << splatTemplateDatabase[i].minHP << "\n";
-			debugFile << "zasiêg broni :" << splatTemplateDatabase[i].rangeOfWeapon << "\n";
-			debugFile << "min. speed :" << splatTemplateDatabase[i].minSpeed << "\n";
-			debugFile << "maks. speed: " << splatTemplateDatabase[i].maxSpeed << "\n";
-			debugFile << "przyspieszenie : " << splatTemplateDatabase[i].acceleration << "\n";
-			debugFile << "rozmiar widoku : " << splatTemplateDatabase[i].sizeOfView << "\n";
-			debugFile << "waga algorytmu: " << splatTemplateDatabase[i].pith << "\n";
-			_itoa_s(splatTemplateDatabase[i].agressiveModeColor.toInteger(), buff, 16);
-			debugFile << "kolor gdy agresywny : " << buff << "\n";
-			_itoa_s(splatTemplateDatabase[i].passiveModeColor.toInteger(), buff, 16);
-			debugFile << "kolor gdy pasywny : " << buff << "\n";
-			_itoa_s(splatTemplateDatabase[i].reactingtoPlayerColor.toInteger(), buff, 16);
-			debugFile << "kolor gdy reaguje na gracza :" << buff << "\n";
-			_itoa_s(splatTemplateDatabase[i].ChargingColor.toInteger(), buff, 16);
-			debugFile << "kolor gdy szar¿uje : " << buff << "\n";
-			_itoa_s(splatTemplateDatabase[i].fleeingColor.toInteger(), buff, 16);
-			debugFile << "kolor gdy ucieka :" << buff << "\n";
-			_itoa_s(splatTemplateDatabase[i].attackingPlayerColor.toInteger(), buff, 16);
-			debugFile << "kolor gdy atakuje : " << buff << "\n";
-			debugFile << "czas po którym podejmuje decyzjê : " << splatTemplateDatabase[i].timeToMakeDecisionInSec << "\n";
-			debugFile << "dystans po którym szar¿uje : " << splatTemplateDatabase[i].chargeDistance << "\n";
-			debugFile << "promieñ: " << splatTemplateDatabase[i].radius << "\n";
-			debugFile << "bezpieczny dystans : " << splatTemplateDatabase[i].safeDistance << "\n";
-			debugFile << "szansa na zostanie wyloswanym " << splatTemplateDatabase[i].chanceOfGettingRandomized << "\n";
-			debugFile << "********************************************************************************\n";
-		}
-	}
-
 
 	values.clear();
-
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	/////////////////////////////////////////////////////////////////////////////////////////////////
@@ -287,86 +249,175 @@ void playGameState::loadTemplatesAndItemsFromFile()
 
 	// ID broni [ jest równie¿ indeksem w bazie danych wszystkich broni ]
 	int weaponID = 0;
-
-	while (std::getline(weaponDatabase, line))
+	if (weaponDatabase.good())
 	{
-		std::string phrase;
-		line = filtrateString(line);
-
-
-		for (int i = 0; i < line.size(); ++i)
+		while (std::getline(weaponDatabase, line))
 		{
-			if (line[i] == ' ')
+			std::string phrase;
+			line = filtrateString(line);
+
+
+			for (int i = 0; i < line.size(); ++i)
 			{
-				if (phrase.size())
+				if (line[i] == ' ')
 				{
-					values.push_back(phrase);
+					if (phrase.size())
+					{
+						values.push_back(phrase);
+					}
+					phrase.clear();
 				}
-				phrase.clear();
+				else if (line[i] != '\n' && line[i] != '\t')
+				{
+					phrase += line[i];
+				}
+
 			}
-			else if (line[i] != '\n' && line[i] != '\t')
+			if (phrase.size())
+				values.push_back(phrase);
+
+
+			if (values.size() == 33)
 			{
-				phrase += line[i];
+				rangeWeapon *weapon = new rangeWeapon;
+
+
+				weaponParameters WpnParams;
+				//  0,1 - nazwa i kooszt broni 
+				WpnParams.name = values[0];
+				WpnParams.weaponShopCost = stoi(values[1]);
+
+				//	2,3 - damage 
+				WpnParams.minDamage = std::stoi(values[2]);
+				WpnParams.maxDamage = std::stoi(values[3]);
+
+				//  4	- szybkostrzelnoœæ
+				WpnParams.firerate = std::stoi(values[4]);
+				//  5	- rozmiar magazynku
+				WpnParams.origMagSize = std::stoi(values[5]);
+				//  6	- odrzut
+				WpnParams.recoil = std::stoi(values[6]);
+				//  7,8	- prêdkoœæ pocisku
+				WpnParams.minSpeedOfBullet = std::stoi(values[7]);
+				WpnParams.maxSpeedOfBullet = std::stoi(values[8]);
+				//  9	- rozmiar pocisku
+				WpnParams.bulletSize = std::stoi(values[9]);
+				//  10   - ile pocisków "wypluwa"
+				WpnParams.howManyProjItShoot = std::stoi(values[10]);
+				//  11	- koszt pocisku 
+				WpnParams.costOfBullet = std::stoi(values[11]);
+
+				// 12   - szybkoœæ prze³adowywania
+				WpnParams.reloadingTime = std::stoi(values[12]);
+
+				WpnParams.ID = weaponID;
+				WpnParams.actualMagSize = 0;
+
+
+				// 13- 32 : zawiera informacje odnoœnie efektów 
+				effects Effects;
+				//  13 - typ broni : rzutujemy podan¹ wartoœæ na typeOfWeapon 
+				// co w praktyce oznacza ¿e 0 - O³owiowa
+				//							1 - Energetyczna
+				//							2 - Plazmowa
+				// niby mo¿na to zrobiæ ¿e u¿ytkownik podaje napis a ja sprawdzam czy to "LEAD", "ENERGETIC", "PLASMA"
+				// ale pewnie i tak tylko ja bêdê z tego korzystaæ, rotfl
+
+				int type = (std::stoi(values[13]));
+				if (type == 0)
+				{
+					Effects.type = typeOfWeapon::BULLETTYPE;
+				}
+				else if (type == 1)
+				{
+					Effects.type = typeOfWeapon::ENERGETIC;
+				}
+				else
+				{
+					Effects.type = typeOfWeapon::PLASMA;
+				}
+
+				// 14-17 : boolean, informacje odnoœnie obszarówek 
+				Effects.a_bullThatBurns = boolCast(std::stoi(values[14]));
+				Effects.a_bullThatElectrize = boolCast(std::stoi(values[15]));
+				Effects.a_bullThatExplode = boolCast(std::stoi(values[16]));
+				Effects.a_bullThatToxicate = boolCast(std::stoi(values[17]));
+
+				// 18 : boolean, czy ma rozszerzony magazynek ( 2xdanaPojemnoœæMaga)
+				Effects.a_hasExtendedMag = boolCast((std::stoi(values[18])));
+
+				// 19 : boolean, czy ma flexible Bullets ( pociski które odbijaj¹ siê od œcian)
+				Effects.a_hasFlexibleBullets = boolCast(std::stoi(values[19]));
+
+				// 20 : boolean,
+				Effects.a_hasMultiplierEffect = boolCast(std::stoi(values[20]));
+
+				// 21 : boolean, czy kulki s¹ "upchniête" ( np. by z strzal z shotgun'a kosztowa³ 1 nabój ale wypluwa³ kilka pocisków)
+				Effects.a_hasPackedBullets = boolCast(std::stoi(values[21]));
+
+				// 22 : boolean, czy ma celownik
+				Effects.a_hasScope = boolCast(std::stoi(values[22]));
+
+				// 23 : boolean, czy ma "inteligente pociski" ( lec¹ w kierunku wroga
+				Effects.a_hasSmartBulletsBoolean = boolCast(std::stoi(values[23]));
+
+				// 24 : boolean, czy ma stabilizator
+				Effects.a_hasStabilizator = boolCast(std::stoi(values[24]));
+
+				// 25 : double , rêcznie wprowadzony maksymalny rozmiar kó³ka które powoduje wybuch
+				Effects.a_manualTerrainDamageRadiusSize = std::stoi(values[25]);
+
+				// 26 : boolean, czy stunuje przeciwników 
+				Effects.a_StunEnenies = boolCast(std::stoi(values[26]));
+
+				// 27 : boolean, czy jest ³adowark¹ 
+				Effects.e_isCharger = boolCast(std::stoi(values[27]));
+
+				// 28 : boolean, czy strzela wszêdzie dooko³a (tworz¹c takie kó³ko pocisków)
+				Effects.e_shootEverywhere = boolCast(std::stoi(values[28]));
+
+				// 29 : boolean, czy ma granatnik
+				Effects.l_hasGrenadeLauncher = boolCast(std::stoi(values[29]));
+
+				// 30 : boolean czy ma miotacz ognia
+				Effects.l_isFlameThrower = boolCast(std::stoi(values[30]));
+
+				// 31 : boolean, czy ma magiczne  pociski plazmowe 
+				Effects.p_plasmaMagicBullets = std::stoi(values[31]);
+
+				// 32 : boolean, zmiejsza rorzut kilku pocisków
+				Effects.p_preciseMultiShoot = std::stoi(values[32]);
+
+				weapon->setEffects(Effects);
+				WpnParams.weaponEffects = Effects;
+
+				weapon->create(WpnParams);
+				weapon->ID = weaponID;
+				rangeWeaponDatabase.push_back(weapon);
+				weaponsIDNotTaken.push_back(weaponID);
+				values.clear();
+				++weaponID;
 			}
 
+			///////////////////////////////////////////////////////////////////////////////////////
 		}
-		if (phrase.size())
-			values.push_back(phrase);
 
-
-		///////////////////////////////////////////////////////////////////////////////////////
-		// (!)
-		//		CA£OŒæ DO REFAKTORYZACJI
-		if (values.size() == 7)
+		if (DEBUG)
 		{
-			rangeWeapon *weapon = new rangeWeapon;
-			
-			weaponParameters WpnParams;
-			WpnParams.minDamage = std::stoi(values[0]);
-			WpnParams.maxDamage = std::stoi(values[1]);;
-			WpnParams.bulletSize = std::stoi(values[2]);
-			WpnParams.firerate = std::stoi(values[3]);
-			WpnParams.recoil = std::stoi(values[4]);
-			WpnParams.minSpeedOfBullet = std::stoi(values[5]);
-			WpnParams.maxSpeedOfBullet = std::stoi(values[6]);
-			WpnParams.howManyProjItShoot = 1;
-			WpnParams.origMagSize   = 40;
-			WpnParams.costOfBullet  = 1;
-			WpnParams.packedBullets = 1;
-
-			effects Effects;
-			weapon->setEffects(Effects);
-
-			WpnParams.weaponEffects.type = typeOfWeapon::ENERGETIC;
-			WpnParams.firerate = 800;
-			WpnParams.origMagSize = 900;
-			WpnParams.packedBullets = true;
-			WpnParams.howManyProjItShoot = 8;
-
-			weapon->create(WpnParams);
-			weapon->ID = weaponID;
-			rangeWeaponDatabase.push_back(weapon);
-			weaponsIDNotTaken.push_back(weaponID);
-			values.clear();
-			++weaponID;
+			for (int i = 0; i < values.size(); ++i)
+			{
+				debugFile << values[i] << "\n";
+			}
 		}
-
-		///////////////////////////////////////////////////////////////////////////////////////
 	}
 
-	if (DEBUG)
-	{
-		for (int i = 0; i < values.size(); ++i)
-		{
-			debugFile << values[i] << "\n";
-		}
-	}
+
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	// zarz¹dzanie amunicj¹
-	this->Ammunitions[typeOfWeapon::BULLETTYPE] = 100;
-	this->Ammunitions[typeOfWeapon::ENERGETIC] = 200;
-	this->Ammunitions[typeOfWeapon::PLASMA] = 50;
+	this->Ammunitions[typeOfWeapon::BULLETTYPE] = 200;
+	this->Ammunitions[typeOfWeapon::ENERGETIC] = 300;
+	this->Ammunitions[typeOfWeapon::PLASMA] = 100;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -572,17 +623,15 @@ void playGameState::handleEnemies()
 
 
 	double minDistance = INT_MAX;
-
 	// update naszych wszystkich przeciwników
 		for (int i = 0; i < enemyArray.size(); ++i)
 	{
 		for (int j = 0; j < enemyArray[i].size(); ++j)
 		{
-			enemyArray[i][j]->setParametersOfOtherMates(positionsOfOtherBoids[i][j]);
+			enemyArray[i][j]->setParametersOfOtherMates(positionsOfOtherBoids);
 			enemyArray[i][j]->update(&averageV[i], &averageDistance[i], &Player);
 			if (enemyArray[i][j]->isEnemyIntrigued())
 				enemyArray[i][(j + 1) % enemyArray[i].size()]->intrigueEnemy();
-
 		}
 	}
 
@@ -613,13 +662,14 @@ void playGameState::generateSpawnPoints(int howManySpawnPoints)
 	
 
 	// aktualna grupa do której bêdziemy dodawaæ przeciwników.
-	// po dodaniu bajerów dodamy vectora do vectora vectorów ( dziêki temu otrzymamy od razu podzia³ na specyfinczne grupy
+	// po dodaniu bajerów dodamy vectora do vectora vectorów ( dziêki temu otrzymamy od razu podzia³ na specyficzne grupy
 	// co u³atwi nam potem robotê)
 	
 	int curID = 0;
 	this->howManyCreaturesLeft = 0;
 
-	howManySpawnPoints = 8;
+	
+	howManySpawnPoints = 1;
 
 	for (int i = 0; i < howManySpawnPoints; ++i)
 	{
@@ -639,20 +689,71 @@ void playGameState::generateSpawnPoints(int howManySpawnPoints)
 		sTemplate.startingPosition = spawnPoint;
 
 		// (!)
-		//int	howManyEnemies = rand()% 20 + 10;
-		int		howManyEnemies = 2;
+		//	int	howManyEnemies = rand()% (sTemplate.maxGroupSize - sTemplate.minGroupSize + 1) + sTemplate.minGroupSize;
+		int howManyEnemies = 6;
 
+
+		
 		for (int j = 0; j < howManyEnemies; ++j)
 		{
-			splat *Splat;
-			Splat = new splat;
+			enemy *Splat = new enemy;// <-------------------------------------
+																			//
+			std::cout << cast(int, sTemplate.enemyBehaviour) << "\n";		//
+			switch (sTemplate.enemyBehaviour)								//	Czynimy kompilator szczêsliwym bo po usniêciu marudzi
+			{																//	¿e u¿ywamy niezainicjalizowanej zmiennej lokalnej
+			case typesOfEnemyBehaviour::FLIGHTY:							//
+				delete Splat;	// <------------------------------------------
+				Splat = new flightyEnemy;								// ...
+				break;
+
+			case typesOfEnemyBehaviour::AGRESSIVE:
+				delete Splat;
+				Splat = new agressiveEnemy;
+				break;
+
+			case typesOfEnemyBehaviour::HEAVY:
+				delete Splat;
+				Splat = new heavyEnemy;
+				break;
+
+			case typesOfEnemyBehaviour::BITTERS:
+				delete Splat;
+				Splat = new bitter;
+				break;
+
+			case typesOfEnemyBehaviour::BEAST:
+				delete Splat;
+				Splat = new beast;
+				break;
+
+			case typesOfEnemyBehaviour::ELEMENTS:
+				delete Splat;
+				Splat = new element;
+				break;
+
+			case typesOfEnemyBehaviour::PREDATOR:
+				delete Splat;
+				Splat = new predator;
+				break;
+
+			case typesOfEnemyBehaviour::RUNNERS:
+				delete Splat;
+				Splat = new runner;
+				break;
+			default:
+				Splat = new flightyEnemy;
+				break;
+			}
+
+
 
 			Splat->create(i, sTemplate);
 			Splat->setID(curID);
+
 			currentGroup.push_back(Splat);
 			curID += 1;
+			this->howManyCreaturesLeft += howManyEnemies;
 		}
-		this->howManyCreaturesLeft += howManyEnemies;
 		
 		enemyArray.push_back(currentGroup);
 	}
@@ -672,7 +773,7 @@ void playGameState::calculateBoidRules()
 	// link : http://www.algorytm.org/sztuczna-inteligencja/boidy.html
 
 	// wyodrêbniamy konkretn¹ grupê splatów
-	std::vector<splat> currentGroup;
+	std::vector<enemy*> currentGroup;
 
 	// zmienne na których bêdziemy przeprowadzaæ operacje
 	sf::Vector2f avgV;
@@ -718,18 +819,15 @@ void playGameState::calculateBoidRules()
 				// mo¿na to zmieœciæ w jednej linijce ale lepiej to podpi¹æ pod syntatic sugar 
 				ParametersOfCreature.position.x = enemyArray[i][k]->getCenter().x;
 				ParametersOfCreature.position.y = enemyArray[i][k]->getCenter().y;
+				ParametersOfCreature.radius = enemyArray[i][k]->getCircle().getRadius();
 				ParametersOfCreature.hasDetectedPlayer = enemyArray[i][k]->hasCreatureDetectedPlayer();
 
-				ParametersOfOneCreature.push_back(ParametersOfCreature);
+				positionsOfOtherBoids.push_back(ParametersOfCreature);
 			}
 			ParametersOfOneGroup.push_back(ParametersOfOneCreature);
 			ParametersOfOneCreature.clear();
 		}
 
-
-
-
-		positionsOfOtherBoids.push_back(ParametersOfOneGroup);
 		ParametersOfOneGroup.clear();
 		ParametersOfOneCreature.clear();
 
@@ -810,7 +908,8 @@ void playGameState::handleCollisionDetection()
 					damageParameters params = ProjectilesArray[projCounter]->getDamageParameters();
 					modifyDamageParameters(params);
 
-					enemyArray[splatGroupCounter][splatCounter]->dealDamage(params);
+					enemyArray[splatGroupCounter][splatCounter]->dealDamage(params,this->indexOfHurtedEnemy);
+					indexOfHurtedEnemy = enemyArray[splatGroupCounter][splatCounter]->getID();
 
 
 					// wywo³uemy metodê która zajmie siê usuwaniem pocisku
@@ -1121,6 +1220,7 @@ splatTemplate playGameState::getRandomSplatTemplate()
 		}
 		sum += splatTemplateDatabase[i].chanceOfGettingRandomized;
 	}
+	return splatTemplateDatabase[0];
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -1158,7 +1258,6 @@ void playGameState::manageDeletingProjectiles(std::vector<projectile*>::iterator
 {
 	if (ProjectilesArray[counter]->getTerrainEffects().type != typeOfTerrainEffects::VOID)
 	{
-		
 		terrainEffect *TerrainEffect = new ProjectileTerrainEffect;
 		terrainEffectParams params = ProjectilesArray[counter]->getTerrainEffects();
 		TerrainEffect->create(params,ProjectilesArray[counter]->getPosition());
@@ -1208,8 +1307,7 @@ void playGameState::dealTerrainDamage()
 				if (this->calculateDistance(terrainEffectsArray[i]->getCenter(), enemyArray[j][k]->getCenter()) < this->terrainEffectsArray[i]->getCircle().getRadius() + enemyArray[j][k]->getCircle().getRadius()
 					&& enemyArray[j][k]->canBeHittedByExplosion())
 				{
-					enemyArray[j][k]->dealDamage(terrainEffectsArray[i]->getDamage());
-
+					enemyArray[j][k]->dealDamage(terrainEffectsArray[i]->getDamage(), indexOfHurtedEnemy);
 					if (!enemyArray[j][k]->isCreatureAlive())
 					{
 						 enemyArray[j].erase(iter);
@@ -1315,11 +1413,9 @@ void playGameState::playVictoryAnimation()
 		// update i rysowanie obszarówek
 		updateTerrainEffects();
 		for (int i = 0; i < terrainEffectsArray.size(); ++i)
-		{
 			this->Window.draw(terrainEffectsArray[i]->getCircle());
-		}
 
-
+	
 		updateAnimation(victoryColor,true);
 
 		this->Window.display();
@@ -1381,9 +1477,6 @@ void playGameState::modifyDamageParameters(damageParameters & dmgParams)
 /********************************************************************************************************/
 void playGameState::addWeaponToBackpack(int ID)
 {
-	std::cout << rangeWeaponDatabase.size() << "\n";
-	std::cout << ID << "\n";
-
 	this->backpack.push_back(rangeWeaponDatabase[ID]);
 	std::vector<int>::iterator elementToDelete;
 	elementToDelete = weaponsIDNotTaken.begin();

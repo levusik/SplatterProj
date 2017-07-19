@@ -1,58 +1,7365 @@
-******************************************************
-*		Bronie s¹ zapisane w formacie
-*	
-*	1 wartoœæ = maks. obra¿enia
-*	2 wartoœæ = min.  obra¿enia
-*	3 wartoœæ = rozmiar pocisku
-*	4 wartoœæ = szybkostrzelnoœæ
-*	5 wartoœæ = rozrzut
-*	6 wartoœæ = maksymalna szybkoœæ pocisku 
-*	7 wartoœæ = minimalna szybkoœæ pocisku
-*	8 wartoœæ = ?
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-******************************************************
+****************************************
+*   generated energetic Caster
 
-******************************************************
-*  		  standardowa broñ		     *
-******************************************************
-20 	* minimalne obra¿enia 
-30	* maksymalne obra¿enia 
-10	* promieñ pocisku
-750	* szybkostrzelnoœæ
-10	* rozrzut
-20	* minimalna prêdkoœæ pocisku
-30	* maksymalna prêdkoœæ pocisku
+****************************************
+0        *name 0
+121        *cost
+7        *minDmg
+16        *maxDmg
+4904        *firerate
+138        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+8        *size
+2        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+1        *stabilizator
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Sniper
 
-******************************************************
-*  		  TEST LOL			     *
-******************************************************
-2 	* minimalne obra¿enia 
-3	* maksymalne obra¿enia 
-5	* promieñ pocisku
-1400	* szybkostrzelnoœæ
-30	* rozrzut
-30	* minimalna prêdkoœæ pocisku
-40	* maksymalna prêdkoœæ pocisku	
-******************************************************
-*  		  TEST LOL			     *
-******************************************************
-2 	* minimalne obra¿enia 
-3	* maksymalne obra¿enia 
-5	* promieñ pocisku
-5000	* szybkostrzelnoœæ
-30	* rozrzut
-30	* minimalna prêdkoœæ pocisku
-40	* maksymalna prêdkoœæ pocisku	
+****************************************
+0        *name 0
+832        *cost
+42        *minDmg
+92        *maxDmg
+141        *firerate
+16        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+8        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+3        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Caster
+
+****************************************
+0        *name 0
+32        *cost
+13        *minDmg
+39        *maxDmg
+2436        *firerate
+59        *magSize
+8        *recoil
+207        *minSpeed
+291        *maxSpeed
+10        *size
+3        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma MachineGun
+
+****************************************
+0        *name 0
+1000        *cost
+99        *minDmg
+224        *maxDmg
+600        *firerate
+60        *magSize
+45        *recoil
+181        *minSpeed
+297        *maxSpeed
+16        *size
+1        *howManyProjItShoot
+2        *howManyProjItTakes
+3        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+1        *smartBlts
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Shotgun
+
+****************************************
+0        *name 0
+280        *cost
+28        *minDmg
+46        *maxDmg
+314        *firerate
+54        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+5        *size
+4        *howManyProjItShoot
+1        *howManyProjItTakes
+2        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+1        *multipler
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+1        *stabilizator
+0        *radiusSize 0
+0        *stunEnemies 0
+1        *charger
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Musket
+
+****************************************
+0        *name 0
+928        *cost
+302        *minDmg
+768        *maxDmg
+17        *firerate
+6        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+19        *size
+1        *howManyProjItShoot
+6        *howManyProjItTakes
+6        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Pistol
+
+****************************************
+0        *name 0
+115        *cost
+24        *minDmg
+35        *maxDmg
+292        *firerate
+13        *magSize
+12        *recoil
+161        *minSpeed
+249        *maxSpeed
+12        *size
+1        *howManyProjItShoot
+2        *howManyProjItTakes
+1        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+1        *stabilizator
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic rocketLauncher
+
+****************************************
+0        *name 0
+1072        *cost
+180        *minDmg
+198        *maxDmg
+68        *firerate
+7        *magSize
+3        *recoil
+273        *minSpeed
+300        *maxSpeed
+15        *size
+1        *howManyProjItShoot
+6        *howManyProjItTakes
+1        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+1        *flexibleBlts
+0        *multipler 0
+0        *packedBullets 0
+1        *scope
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Sniper
+
+****************************************
+0        *name 0
+520        *cost
+52        *minDmg
+188        *maxDmg
+146        *firerate
+23        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+4        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+1        *toxicBlts
+0        *extendedMag 0
+1        *flexibleBlts
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Pistol
+
+****************************************
+0        *name 0
+93        *cost
+16        *minDmg
+25        *maxDmg
+770        *firerate
+40        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+3        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+1        *flexibleBlts
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic SMG
+
+****************************************
+0        *name 0
+132        *cost
+10        *minDmg
+22        *maxDmg
+4928        *firerate
+384        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+3        *size
+3        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+1        *wpnType
+1        *fireBlts
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+87        *radiusSize
+1        *stunEnemies
+0        *charger 0
+1        *shootArround
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Shotgun
+
+****************************************
+0        *name 0
+756        *cost
+65        *minDmg
+192        *maxDmg
+92        *firerate
+12        *magSize
+19        *recoil
+145        *minSpeed
+226        *maxSpeed
+13        *size
+2        *howManyProjItShoot
+2        *howManyProjItTakes
+6        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+1        *smartBlts
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+1        *magicPlasmaBlts
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Sniper
+
+****************************************
+0        *name 0
+968        *cost
+156        *minDmg
+720        *maxDmg
+34        *firerate
+12        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+20        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+6        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+1        *elecBlts
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+1        *multipler
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+54        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Caster
+
+****************************************
+0        *name 0
+85        *cost
+6        *minDmg
+13        *maxDmg
+5008        *firerate
+87        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+6        *size
+2        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+1        *elecBlts
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic SMG
+
+****************************************
+0        *name 0
+84        *cost
+9        *minDmg
+18        *maxDmg
+4848        *firerate
+156        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+5        *size
+2        *howManyProjItShoot
+2        *howManyProjItTakes
+1        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+1        *smartBlts
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+1        *shootArround
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Sniper
+
+****************************************
+0        *name 0
+632        *cost
+62        *minDmg
+140        *maxDmg
+152        *firerate
+46        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+12        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+1        *charger
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Assault
+
+****************************************
+0        *name 0
+98        *cost
+29        *minDmg
+90        *maxDmg
+819        *firerate
+153        *magSize
+11        *recoil
+268        *minSpeed
+300        *maxSpeed
+12        *size
+7        *howManyProjItShoot
+5        *howManyProjItTakes
+1        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Pistol
+
+****************************************
+0        *name 0
+389        *cost
+24        *minDmg
+44        *maxDmg
+164        *firerate
+13        *magSize
+10        *recoil
+108        *minSpeed
+165        *maxSpeed
+20        *size
+1        *howManyProjItShoot
+2        *howManyProjItTakes
+1        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+1        *smartBlts
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Sniper
+
+****************************************
+0        *name 0
+528        *cost
+160        *minDmg
+416        *maxDmg
+59        *firerate
+18        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+20        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+2        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+1        *grenadeLauncher
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Musket
+
+****************************************
+0        *name 0
+952        *cost
+128        *minDmg
+336        *maxDmg
+75        *firerate
+7        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+8        *size
+1        *howManyProjItShoot
+4        *howManyProjItTakes
+2        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+1        *toxicBlts
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+22        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Musket
+
+****************************************
+0        *name 0
+844        *cost
+156        *minDmg
+426        *maxDmg
+70        *firerate
+12        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+4        *size
+2        *howManyProjItShoot
+12        *howManyProjItTakes
+3        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+1        *toxicBlts
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic rocketLauncher
+
+****************************************
+0        *name 0
+896        *cost
+186        *minDmg
+306        *maxDmg
+66        *firerate
+6        *magSize
+3        *recoil
+264        *minSpeed
+300        *maxSpeed
+11        *size
+1        *howManyProjItShoot
+6        *howManyProjItTakes
+1        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+1        *scope
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Musket
+
+****************************************
+0        *name 0
+952        *cost
+396        *minDmg
+1224        *maxDmg
+18        *firerate
+11        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+20        *size
+1        *howManyProjItShoot
+11        *howManyProjItTakes
+8        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+1        *toxicBlts
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+1        *magicPlasmaBlts
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Pistol
+
+****************************************
+0        *name 0
+479        *cost
+21        *minDmg
+44        *maxDmg
+180        *firerate
+6        *magSize
+11        *recoil
+104        *minSpeed
+145        *maxSpeed
+12        *size
+1        *howManyProjItShoot
+3        *howManyProjItTakes
+1        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+1        *stunEnemies
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+1        *preciseMultiShoot
+****************************************
+*   generated plasma Thrower
+
+****************************************
+0        *name 0
+367        *cost
+21        *minDmg
+92        *maxDmg
+2576        *firerate
+324        *magSize
+26        *recoil
+159        *minSpeed
+229        *maxSpeed
+15        *size
+1        *howManyProjItShoot
+3        *howManyProjItTakes
+8        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+1        *explBlts
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+38        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+1        *preciseMultiShoot
+****************************************
+*   generated energetic Assault
+
+****************************************
+0        *name 0
+152        *cost
+15        *minDmg
+44        *maxDmg
+2039        *firerate
+104        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+10        *size
+3        *howManyProjItShoot
+1        *howManyProjItTakes
+2        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+1        *smartBlts
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Caster
+
+****************************************
+0        *name 0
+55        *cost
+18        *minDmg
+32        *maxDmg
+2320        *firerate
+34        *magSize
+10        *recoil
+172        *minSpeed
+269        *maxSpeed
+18        *size
+2        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Caster
+
+****************************************
+0        *name 0
+65        *cost
+10        *minDmg
+20        *maxDmg
+6312        *firerate
+133        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+9        *size
+2        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+1        *scope
+0        *smartBlts 0
+1        *stabilizator
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Pistol
+
+****************************************
+0        *name 0
+156        *cost
+9        *minDmg
+11        *maxDmg
+695        *firerate
+38        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+6        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+1        *toxicBlts
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+1        *scope
+0        *smartBlts 0
+0        *stabilizator 0
+36        *radiusSize
+0        *stunEnemies 0
+1        *charger
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Pistol
+
+****************************************
+0        *name 0
+83        *cost
+29        *minDmg
+50        *maxDmg
+295        *firerate
+22        *magSize
+10        *recoil
+158        *minSpeed
+246        *maxSpeed
+13        *size
+2        *howManyProjItShoot
+2        *howManyProjItTakes
+1        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+1        *multipler
+0        *packedBullets 0
+1        *scope
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Sniper
+
+****************************************
+0        *name 0
+538        *cost
+156        *minDmg
+328        *maxDmg
+62        *firerate
+16        *magSize
+2        *recoil
+300        *minSpeed
+300        *maxSpeed
+10        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+5        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+1        *toxicBlts
+1        *extendedMag
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic MachineGun
+
+****************************************
+0        *name 0
+1184        *cost
+30        *minDmg
+34        *maxDmg
+2404        *firerate
+648        *magSize
+4        *recoil
+300        *minSpeed
+300        *maxSpeed
+5        *size
+2        *howManyProjItShoot
+1        *howManyProjItTakes
+3        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+1        *stunEnemies
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Caster
+
+****************************************
+0        *name 0
+32        *cost
+16        *minDmg
+47        *maxDmg
+2055        *firerate
+58        *magSize
+8        *recoil
+181        *minSpeed
+300        *maxSpeed
+11        *size
+2        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+1        *multipler
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic SMG
+
+****************************************
+0        *name 0
+216        *cost
+8        *minDmg
+22        *maxDmg
+5776        *firerate
+184        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+5        *size
+2        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+1        *explBlts
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize
+0        *stunEnemies 0
+1        *charger
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Thrower
+
+****************************************
+0        *name 0
+90        *cost
+12        *minDmg
+36        *maxDmg
+4096        *firerate
+635        *magSize
+32        *recoil
+212        *minSpeed
+300        *maxSpeed
+9        *size
+2        *howManyProjItShoot
+4        *howManyProjItTakes
+5        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Sniper
+
+****************************************
+0        *name 0
+358        *cost
+116        *minDmg
+328        *maxDmg
+63        *firerate
+21        *magSize
+2        *recoil
+300        *minSpeed
+300        *maxSpeed
+8        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+5        *reloadingTime
+0        *wpnType
+1        *fireBlts
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Shotgun
+
+****************************************
+0        *name 0
+534        *cost
+30        *minDmg
+60        *maxDmg
+343        *firerate
+74        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+5        *size
+12        *howManyProjItShoot
+2        *howManyProjItTakes
+2        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+1        *multipler
+0        *packedBullets 0
+1        *scope
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Sniper
+
+****************************************
+0        *name 0
+1384        *cost
+110        *minDmg
+736        *maxDmg
+38        *firerate
+11        *magSize
+2        *recoil
+300        *minSpeed
+300        *maxSpeed
+20        *size
+1        *howManyProjItShoot
+2        *howManyProjItTakes
+3        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+1        *scope
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Shotgun
+
+****************************************
+0        *name 0
+936        *cost
+99        *minDmg
+204        *maxDmg
+99        *firerate
+25        *magSize
+26        *recoil
+148        *minSpeed
+216        *maxSpeed
+14        *size
+4        *howManyProjItShoot
+7        *howManyProjItTakes
+6        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+1        *flexibleBlts
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+1        *preciseMultiShoot
+****************************************
+*   generated lead SMG
+
+****************************************
+0        *name 0
+106        *cost
+19        *minDmg
+68        *maxDmg
+2532        *firerate
+208        *magSize
+24        *recoil
+210        *minSpeed
+300        *maxSpeed
+7        *size
+2        *howManyProjItShoot
+2        *howManyProjItTakes
+1        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+1        *flexibleBlts
+0        *multipler 0
+1        *packedBullets
+1        *scope
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+1        *thrower
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma rocketLauncher
+
+****************************************
+0        *name 0
+1328        *cost
+422        *minDmg
+888        *maxDmg
+17        *firerate
+47        *magSize
+45        *recoil
+60        *minSpeed
+159        *maxSpeed
+20        *size
+1        *howManyProjItShoot
+47        *howManyProjItTakes
+3        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+1        *magicPlasmaBlts
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Caster
+
+****************************************
+0        *name 0
+143        *cost
+8        *minDmg
+15        *maxDmg
+4808        *firerate
+55        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+7        *size
+3        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+1        *smartBlts
+1        *stabilizator
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+1        *shootArround
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Caster
+
+****************************************
+0        *name 0
+120        *cost
+22        *minDmg
+60        *maxDmg
+1560        *firerate
+19        *magSize
+11        *recoil
+117        *minSpeed
+168        *maxSpeed
+20        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+1        *scope
+0        *smartBlts 0
+1        *stabilizator
+0        *radiusSize 0
+1        *stunEnemies
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead SMG
+
+****************************************
+0        *name 0
+100        *cost
+20        *minDmg
+57        *maxDmg
+2154        *firerate
+104        *magSize
+21        *recoil
+256        *minSpeed
+300        *maxSpeed
+10        *size
+2        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+1        *stunEnemies
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Caster
+
+****************************************
+0        *name 0
+74        *cost
+16        *minDmg
+32        *maxDmg
+2202        *firerate
+61        *magSize
+8        *recoil
+198        *minSpeed
+300        *maxSpeed
+15        *size
+2        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+1        *grenadeLauncher
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead rocketLauncher
+
+****************************************
+0        *name 0
+356        *cost
+444        *minDmg
+696        *maxDmg
+32        *firerate
+24        *magSize
+45        *recoil
+115        *minSpeed
+275        *maxSpeed
+14        *size
+1        *howManyProjItShoot
+24        *howManyProjItTakes
+2        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+1        *explBlts
+0        *toxicBlts 0
+1        *extendedMag
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+1        *smartBlts
+0        *stabilizator 0
+0        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Shotgun
+
+****************************************
+0        *name 0
+720        *cost
+81        *minDmg
+236        *maxDmg
+78        *firerate
+10        *magSize
+21        *recoil
+149        *minSpeed
+268        *maxSpeed
+16        *size
+2        *howManyProjItShoot
+4        *howManyProjItTakes
+6        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+1        *scope
+0        *smartBlts 0
+1        *stabilizator
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma rocketLauncher
+
+****************************************
+0        *name 0
+1552        *cost
+422        *minDmg
+1200        *maxDmg
+17        *firerate
+24        *magSize
+45        *recoil
+53        *minSpeed
+144        *maxSpeed
+20        *size
+1        *howManyProjItShoot
+24        *howManyProjItTakes
+3        *reloadingTime
+2        *wpnType
+1        *fireBlts
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+1        *flexibleBlts
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Musket
+
+****************************************
+0        *name 0
+2272        *cost
+271        *minDmg
+1152        *maxDmg
+20        *firerate
+6        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+20        *size
+1        *howManyProjItShoot
+6        *howManyProjItTakes
+8        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+1        *smartBlts
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+1        *preciseMultiShoot
+****************************************
+*   generated lead SMG
+
+****************************************
+0        *name 0
+56        *cost
+19        *minDmg
+49        *maxDmg
+2196        *firerate
+84        *magSize
+13        *recoil
+233        *minSpeed
+300        *maxSpeed
+8        *size
+6        *howManyProjItShoot
+6        *howManyProjItTakes
+1        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+1        *elecBlts
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+1        *scope
+0        *smartBlts 0
+1        *stabilizator
+0        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead MachineGun
+
+****************************************
+0        *name 0
+296        *cost
+56        *minDmg
+134        *maxDmg
+1093        *firerate
+281        *magSize
+45        *recoil
+281        *minSpeed
+300        *maxSpeed
+4        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+4        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+1        *scope
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Pistol
+
+****************************************
+0        *name 0
+215        *cost
+41        *minDmg
+76        *maxDmg
+165        *firerate
+12        *magSize
+11        *recoil
+83        *minSpeed
+153        *maxSpeed
+13        *size
+1        *howManyProjItShoot
+3        *howManyProjItTakes
+1        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma rocketLauncher
+
+****************************************
+0        *name 0
+1288        *cost
+546        *minDmg
+1800        *maxDmg
+20        *firerate
+78        *magSize
+45        *recoil
+68        *minSpeed
+149        *maxSpeed
+20        *size
+1        *howManyProjItShoot
+78        *howManyProjItTakes
+3        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+1        *elecBlts
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Musket
+
+****************************************
+0        *name 0
+420        *cost
+112        *minDmg
+348        *maxDmg
+66        *firerate
+10        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+10        *size
+1        *howManyProjItShoot
+2        *howManyProjItTakes
+2        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+1        *flexibleBlts
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Musket
+
+****************************************
+0        *name 0
+384        *cost
+192        *minDmg
+564        *maxDmg
+30        *firerate
+8        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+19        *size
+1        *howManyProjItShoot
+8        *howManyProjItTakes
+5        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Assault
+
+****************************************
+0        *name 0
+138        *cost
+9        *minDmg
+53        *maxDmg
+1563        *firerate
+97        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+5        *size
+4        *howManyProjItShoot
+2        *howManyProjItTakes
+2        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+1        *scope
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Sniper
+
+****************************************
+0        *name 0
+1328        *cost
+177        *minDmg
+704        *maxDmg
+34        *firerate
+10        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+20        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+6        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+1        *explBlts
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+52        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Shotgun
+
+****************************************
+0        *name 0
+592        *cost
+37        *minDmg
+56        *maxDmg
+353        *firerate
+58        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+3        *size
+4        *howManyProjItShoot
+1        *howManyProjItTakes
+2        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+1        *stabilizator
+0        *radiusSize 0
+0        *stunEnemies 0
+1        *charger
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Musket
+
+****************************************
+0        *name 0
+1488        *cost
+406        *minDmg
+1032        *maxDmg
+20        *firerate
+6        *magSize
+2        *recoil
+300        *minSpeed
+300        *maxSpeed
+19        *size
+1        *howManyProjItShoot
+6        *howManyProjItTakes
+3        *reloadingTime
+2        *wpnType
+1        *fireBlts
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+1        *flexibleBlts
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+13        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Musket
+
+****************************************
+0        *name 0
+728        *cost
+100        *minDmg
+300        *maxDmg
+66        *firerate
+8        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+10        *size
+1        *howManyProjItShoot
+4        *howManyProjItTakes
+1        *reloadingTime
+1        *wpnType
+1        *fireBlts
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+1        *smartBlts
+0        *stabilizator 0
+0        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic SMG
+
+****************************************
+0        *name 0
+156        *cost
+6        *minDmg
+14        *maxDmg
+6264        *firerate
+264        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+2        *size
+4        *howManyProjItShoot
+2        *howManyProjItTakes
+1        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+1        *shootArround
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Caster
+
+****************************************
+0        *name 0
+120        *cost
+9        *minDmg
+31        *maxDmg
+5192        *firerate
+60        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+4        *size
+3        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+1        *explBlts
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic rocketLauncher
+
+****************************************
+0        *name 0
+888        *cost
+120        *minDmg
+330        *maxDmg
+62        *firerate
+15        *magSize
+4        *recoil
+247        *minSpeed
+300        *maxSpeed
+11        *size
+1        *howManyProjItShoot
+15        *howManyProjItTakes
+3        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+1        *toxicBlts
+0        *extendedMag 0
+0        *flexibleBlts 0
+1        *multipler
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Thrower
+
+****************************************
+0        *name 0
+192        *cost
+12        *minDmg
+34        *maxDmg
+4704        *firerate
+312        *magSize
+37        *recoil
+300        *minSpeed
+300        *maxSpeed
+7        *size
+2        *howManyProjItShoot
+2        *howManyProjItTakes
+5        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Pistol
+
+****************************************
+0        *name 0
+147        *cost
+14        *minDmg
+17        *maxDmg
+603        *firerate
+35        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+8        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+1        *wpnType
+1        *fireBlts
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+1        *flexibleBlts
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+1        *stabilizator
+0        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+1        *shootArround
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead MachineGun
+
+****************************************
+0        *name 0
+492        *cost
+52        *minDmg
+116        *maxDmg
+1216        *firerate
+354        *magSize
+45        *recoil
+281        *minSpeed
+300        *maxSpeed
+16        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+2        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+1        *flexibleBlts
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+1        *thrower
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma MachineGun
+
+****************************************
+0        *name 0
+1104        *cost
+97        *minDmg
+172        *maxDmg
+713        *firerate
+102        *magSize
+45        *recoil
+187        *minSpeed
+254        *maxSpeed
+20        *size
+1        *howManyProjItShoot
+2        *howManyProjItTakes
+6        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+1        *flexibleBlts
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+1        *stabilizator
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Musket
+
+****************************************
+0        *name 0
+500        *cost
+320        *minDmg
+720        *maxDmg
+32        *firerate
+8        *magSize
+2        *recoil
+300        *minSpeed
+300        *maxSpeed
+7        *size
+1        *howManyProjItShoot
+8        *howManyProjItTakes
+2        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic rocketLauncher
+
+****************************************
+0        *name 0
+520        *cost
+126        *minDmg
+336        *maxDmg
+78        *firerate
+30        *magSize
+3        *recoil
+207        *minSpeed
+300        *maxSpeed
+18        *size
+1        *howManyProjItShoot
+30        *howManyProjItTakes
+2        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+1        *toxicBlts
+1        *extendedMag
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Shotgun
+
+****************************************
+0        *name 0
+608        *cost
+91        *minDmg
+176        *maxDmg
+94        *firerate
+14        *magSize
+26        *recoil
+161        *minSpeed
+233        *maxSpeed
+17        *size
+2        *howManyProjItShoot
+2        *howManyProjItTakes
+2        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+1        *stunEnemies
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+1        *magicPlasmaBlts
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma MachineGun
+
+****************************************
+0        *name 0
+1792        *cost
+52        *minDmg
+116        *maxDmg
+727        *firerate
+196        *magSize
+45        *recoil
+168        *minSpeed
+275        *maxSpeed
+10        *size
+2        *howManyProjItShoot
+8        *howManyProjItTakes
+3        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Musket
+
+****************************************
+0        *name 0
+836        *cost
+100        *minDmg
+264        *maxDmg
+77        *firerate
+10        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+6        *size
+3        *howManyProjItShoot
+10        *howManyProjItTakes
+1        *reloadingTime
+1        *wpnType
+1        *fireBlts
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize
+1        *stunEnemies
+0        *charger 0
+1        *shootArround
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Musket
+
+****************************************
+0        *name 0
+464        *cost
+112        *minDmg
+318        *maxDmg
+71        *firerate
+6        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+8        *size
+1        *howManyProjItShoot
+2        *howManyProjItTakes
+2        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+1        *explBlts
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+52        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Thrower
+
+****************************************
+0        *name 0
+632        *cost
+26        *minDmg
+96        *maxDmg
+3092        *firerate
+176        *magSize
+45        *recoil
+175        *minSpeed
+251        *maxSpeed
+14        *size
+3        *howManyProjItShoot
+8        *howManyProjItTakes
+6        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Thrower
+
+****************************************
+0        *name 0
+297        *cost
+25        *minDmg
+128        *maxDmg
+2516        *firerate
+140        *magSize
+45        *recoil
+165        *minSpeed
+255        *maxSpeed
+17        *size
+3        *howManyProjItShoot
+4        *howManyProjItTakes
+8        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Sniper
+
+****************************************
+0        *name 0
+916        *cost
+68        *minDmg
+276        *maxDmg
+121        *firerate
+43        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+10        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+3        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Shotgun
+
+****************************************
+0        *name 0
+556        *cost
+36        *minDmg
+59        *maxDmg
+304        *firerate
+49        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+4        *size
+12        *howManyProjItShoot
+1        *howManyProjItTakes
+2        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma MachineGun
+
+****************************************
+0        *name 0
+1240        *cost
+86        *minDmg
+236        *maxDmg
+607        *firerate
+184        *magSize
+45        *recoil
+159        *minSpeed
+229        *maxSpeed
+20        *size
+2        *howManyProjItShoot
+2        *howManyProjItTakes
+6        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+1        *magicPlasmaBlts
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Shotgun
+
+****************************************
+0        *name 0
+103        *cost
+58        *minDmg
+74        *maxDmg
+135        *firerate
+64        *magSize
+16        *recoil
+249        *minSpeed
+300        *maxSpeed
+7        *size
+16        *howManyProjItShoot
+3        *howManyProjItTakes
+2        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead MachineGun
+
+****************************************
+0        *name 0
+472        *cost
+56        *minDmg
+64        *maxDmg
+1202        *firerate
+463        *magSize
+45        *recoil
+268        *minSpeed
+300        *maxSpeed
+12        *size
+1        *howManyProjItShoot
+2        *howManyProjItTakes
+2        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+1        *thrower
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Caster
+
+****************************************
+0        *name 0
+66        *cost
+12        *minDmg
+36        *maxDmg
+2183        *firerate
+86        *magSize
+11        *recoil
+163        *minSpeed
+246        *maxSpeed
+12        *size
+2        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+1        *grenadeLauncher
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Thrower
+
+****************************************
+0        *name 0
+216        *cost
+8        *minDmg
+25        *maxDmg
+12640        *firerate
+1456        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+2        *size
+6        *howManyProjItShoot
+3        *howManyProjItTakes
+3        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Assault
+
+****************************************
+0        *name 0
+404        *cost
+42        *minDmg
+260        *maxDmg
+397        *firerate
+50        *magSize
+8        *recoil
+168        *minSpeed
+300        *maxSpeed
+20        *size
+2        *howManyProjItShoot
+3        *howManyProjItTakes
+3        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+1        *stabilizator
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Caster
+
+****************************************
+0        *name 0
+194        *cost
+13        *minDmg
+44        *maxDmg
+1550        *firerate
+35        *magSize
+8        *recoil
+102        *minSpeed
+185        *maxSpeed
+18        *size
+3        *howManyProjItShoot
+3        *howManyProjItTakes
+1        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+1        *toxicBlts
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic rocketLauncher
+
+****************************************
+0        *name 0
+816        *cost
+174        *minDmg
+378        *maxDmg
+80        *firerate
+12        *magSize
+4        *recoil
+297        *minSpeed
+300        *maxSpeed
+13        *size
+1        *howManyProjItShoot
+12        *howManyProjItTakes
+3        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+1        *stabilizator
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Assault
+
+****************************************
+0        *name 0
+231        *cost
+24        *minDmg
+196        *maxDmg
+429        *firerate
+39        *magSize
+9        *recoil
+137        *minSpeed
+300        *maxSpeed
+13        *size
+1        *howManyProjItShoot
+2        *howManyProjItTakes
+4        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+1        *flexibleBlts
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+1        *stabilizator
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma MachineGun
+
+****************************************
+0        *name 0
+2160        *cost
+89        *minDmg
+256        *maxDmg
+641        *firerate
+72        *magSize
+45        *recoil
+134        *minSpeed
+242        *maxSpeed
+20        *size
+2        *howManyProjItShoot
+3        *howManyProjItTakes
+6        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+1        *scope
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma rocketLauncher
+
+****************************************
+0        *name 0
+2304        *cost
+406        *minDmg
+1296        *maxDmg
+16        *firerate
+8        *magSize
+45        *recoil
+74        *minSpeed
+194        *maxSpeed
+20        *size
+1        *howManyProjItShoot
+8        *howManyProjItTakes
+3        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+1        *scope
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Sniper
+
+****************************************
+0        *name 0
+460        *cost
+78        *minDmg
+196        *maxDmg
+156        *firerate
+37        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+12        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+1        *explBlts
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+1        *stabilizator
+41        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Musket
+
+****************************************
+0        *name 0
+1920        *cost
+240        *minDmg
+1032        *maxDmg
+16        *firerate
+11        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+19        *size
+1        *howManyProjItShoot
+11        *howManyProjItTakes
+3        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+1        *scope
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+1        *stunEnemies
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Assault
+
+****************************************
+0        *name 0
+59        *cost
+21        *minDmg
+126        *maxDmg
+739        *firerate
+139        *magSize
+11        *recoil
+300        *minSpeed
+300        *maxSpeed
+20        *size
+4        *howManyProjItShoot
+6        *howManyProjItTakes
+3        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma rocketLauncher
+
+****************************************
+0        *name 0
+1200        *cost
+546        *minDmg
+864        *maxDmg
+17        *firerate
+16        *magSize
+45        *recoil
+52        *minSpeed
+133        *maxSpeed
+20        *size
+1        *howManyProjItShoot
+16        *howManyProjItTakes
+8        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+1        *toxicBlts
+0        *extendedMag 0
+1        *flexibleBlts
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+13        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Sniper
+
+****************************************
+0        *name 0
+520        *cost
+72        *minDmg
+268        *maxDmg
+153        *firerate
+22        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+13        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Shotgun
+
+****************************************
+0        *name 0
+776        *cost
+78        *minDmg
+276        *maxDmg
+92        *firerate
+22        *magSize
+13        *recoil
+166        *minSpeed
+269        *maxSpeed
+8        *size
+2        *howManyProjItShoot
+2        *howManyProjItTakes
+6        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Musket
+
+****************************************
+0        *name 0
+560        *cost
+304        *minDmg
+504        *maxDmg
+28        *firerate
+16        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+13        *size
+1        *howManyProjItShoot
+16        *howManyProjItTakes
+2        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+1        *flexibleBlts
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic MachineGun
+
+****************************************
+0        *name 0
+848        *cost
+33        *minDmg
+73        *maxDmg
+2628        *firerate
+568        *magSize
+2        *recoil
+300        *minSpeed
+300        *maxSpeed
+4        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Assault
+
+****************************************
+0        *name 0
+92        *cost
+17        *minDmg
+78        *maxDmg
+674        *firerate
+85        *magSize
+9        *recoil
+281        *minSpeed
+300        *maxSpeed
+17        *size
+2        *howManyProjItShoot
+1        *howManyProjItTakes
+3        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+1        *flexibleBlts
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead MachineGun
+
+****************************************
+0        *name 0
+254        *cost
+62        *minDmg
+110        *maxDmg
+989        *firerate
+494        *magSize
+45        *recoil
+229        *minSpeed
+300        *maxSpeed
+16        *size
+2        *howManyProjItShoot
+1        *howManyProjItTakes
+5        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Musket
+
+****************************************
+0        *name 0
+1060        *cost
+92        *minDmg
+216        *maxDmg
+78        *firerate
+4        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+13        *size
+1        *howManyProjItShoot
+2        *howManyProjItTakes
+2        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+1        *flexibleBlts
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+1        *stabilizator
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Shotgun
+
+****************************************
+0        *name 0
+916        *cost
+76        *minDmg
+240        *maxDmg
+100        *firerate
+20        *magSize
+16        *recoil
+187        *minSpeed
+277        *maxSpeed
+12        *size
+4        *howManyProjItShoot
+2        *howManyProjItTakes
+2        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead SMG
+
+****************************************
+0        *name 0
+68        *cost
+11        *minDmg
+60        *maxDmg
+2144        *firerate
+110        *magSize
+24        *recoil
+218        *minSpeed
+300        *maxSpeed
+4        *size
+3        *howManyProjItShoot
+6        *howManyProjItTakes
+1        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma MachineGun
+
+****************************************
+0        *name 0
+1392        *cost
+86        *minDmg
+140        *maxDmg
+717        *firerate
+162        *magSize
+45        *recoil
+140        *minSpeed
+262        *maxSpeed
+18        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+3        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+1        *toxicBlts
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Pistol
+
+****************************************
+0        *name 0
+354        *cost
+30        *minDmg
+108        *maxDmg
+200        *firerate
+11        *magSize
+7        *recoil
+101        *minSpeed
+148        *maxSpeed
+10        *size
+3        *howManyProjItShoot
+7        *howManyProjItTakes
+1        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+1        *scope
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Caster
+
+****************************************
+0        *name 0
+72        *cost
+7        *minDmg
+16        *maxDmg
+6312        *firerate
+146        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+10        *size
+4        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+1        *stabilizator
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Shotgun
+
+****************************************
+0        *name 0
+1108        *cost
+104        *minDmg
+300        *maxDmg
+84        *firerate
+22        *magSize
+26        *recoil
+145        *minSpeed
+232        *maxSpeed
+13        *size
+6        *howManyProjItShoot
+11        *howManyProjItTakes
+6        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+1        *flexibleBlts
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+1        *preciseMultiShoot
+****************************************
+*   generated lead Sniper
+
+****************************************
+0        *name 0
+492        *cost
+96        *minDmg
+368        *maxDmg
+54        *firerate
+13        *magSize
+2        *recoil
+300        *minSpeed
+300        *maxSpeed
+7        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+5        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+1        *stabilizator
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Shotgun
+
+****************************************
+0        *name 0
+111        *cost
+68        *minDmg
+134        *maxDmg
+130        *firerate
+62        *magSize
+24        *recoil
+285        *minSpeed
+300        *maxSpeed
+6        *size
+8        *howManyProjItShoot
+6        *howManyProjItTakes
+2        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Sniper
+
+****************************************
+0        *name 0
+904        *cost
+104        *minDmg
+624        *maxDmg
+33        *firerate
+12        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+20        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+3        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+1        *scope
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+1        *preciseMultiShoot
+****************************************
+*   generated energetic Assault
+
+****************************************
+0        *name 0
+177        *cost
+10        *minDmg
+51        *maxDmg
+2080        *firerate
+156        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+4        *size
+2        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+1        *stabilizator
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Assault
+
+****************************************
+0        *name 0
+63        *cost
+23        *minDmg
+122        *maxDmg
+637        *firerate
+100        *magSize
+9        *recoil
+232        *minSpeed
+300        *maxSpeed
+20        *size
+2        *howManyProjItShoot
+1        *howManyProjItTakes
+2        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+1        *grenadeLauncher
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Assault
+
+****************************************
+0        *name 0
+149        *cost
+8        *minDmg
+54        *maxDmg
+1930        *firerate
+94        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+9        *size
+3        *howManyProjItShoot
+2        *howManyProjItTakes
+2        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+1        *flexibleBlts
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Pistol
+
+****************************************
+0        *name 0
+207        *cost
+37        *minDmg
+60        *maxDmg
+162        *firerate
+11        *magSize
+13        *recoil
+98        *minSpeed
+144        *maxSpeed
+20        *size
+2        *howManyProjItShoot
+8        *howManyProjItTakes
+1        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+1        *multipler
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Pistol
+
+****************************************
+0        *name 0
+410        *cost
+35        *minDmg
+77        *maxDmg
+161        *firerate
+12        *magSize
+11        *recoil
+108        *minSpeed
+158        *maxSpeed
+18        *size
+1        *howManyProjItShoot
+2        *howManyProjItTakes
+1        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+1        *preciseMultiShoot
+****************************************
+*   generated energetic Musket
+
+****************************************
+0        *name 0
+740        *cost
+80        *minDmg
+294        *maxDmg
+65        *firerate
+9        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+13        *size
+1        *howManyProjItShoot
+4        *howManyProjItTakes
+2        *reloadingTime
+1        *wpnType
+1        *fireBlts
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize
+1        *stunEnemies
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Caster
+
+****************************************
+0        *name 0
+223        *cost
+19        *minDmg
+85        *maxDmg
+1526        *firerate
+20        *magSize
+10        *recoil
+133        *minSpeed
+227        *maxSpeed
+20        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+1        *flexibleBlts
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Musket
+
+****************************************
+0        *name 0
+370        *cost
+304        *minDmg
+528        *maxDmg
+27        *firerate
+8        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+20        *size
+1        *howManyProjItShoot
+8        *howManyProjItTakes
+2        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+1        *flexibleBlts
+0        *multipler 0
+0        *packedBullets 0
+1        *scope
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+1        *grenadeLauncher
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Pistol
+
+****************************************
+0        *name 0
+191        *cost
+37        *minDmg
+72        *maxDmg
+195        *firerate
+11        *magSize
+13        *recoil
+101        *minSpeed
+168        *maxSpeed
+10        *size
+1        *howManyProjItShoot
+2        *howManyProjItTakes
+1        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Sniper
+
+****************************************
+0        *name 0
+504        *cost
+104        *minDmg
+384        *maxDmg
+60        *firerate
+13        *magSize
+2        *recoil
+300        *minSpeed
+300        *maxSpeed
+20        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+2        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Musket
+
+****************************************
+0        *name 0
+2304        *cost
+312        *minDmg
+720        *maxDmg
+16        *firerate
+32        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+20        *size
+1        *howManyProjItShoot
+32        *howManyProjItTakes
+8        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+1        *elecBlts
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+1        *multipler
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+1        *stabilizator
+0        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+1        *preciseMultiShoot
+****************************************
+*   generated energetic Sniper
+
+****************************************
+0        *name 0
+772        *cost
+50        *minDmg
+216        *maxDmg
+128        *firerate
+37        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+13        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+3        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead rocketLauncher
+
+****************************************
+0        *name 0
+594        *cost
+348        *minDmg
+804        *maxDmg
+28        *firerate
+12        *magSize
+45        *recoil
+92        *minSpeed
+211        *maxSpeed
+10        *size
+1        *howManyProjItShoot
+12        *howManyProjItTakes
+5        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+1        *stunEnemies
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Sniper
+
+****************************************
+0        *name 0
+776        *cost
+54        *minDmg
+184        *maxDmg
+131        *firerate
+33        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+13        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead MachineGun
+
+****************************************
+0        *name 0
+362        *cost
+56        *minDmg
+132        *maxDmg
+1124        *firerate
+474        *magSize
+45        *recoil
+208        *minSpeed
+300        *maxSpeed
+9        *size
+3        *howManyProjItShoot
+3        *howManyProjItTakes
+2        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+1        *flexibleBlts
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic MachineGun
+
+****************************************
+0        *name 0
+616        *cost
+26        *minDmg
+59        *maxDmg
+2500        *firerate
+528        *magSize
+4        *recoil
+300        *minSpeed
+300        *maxSpeed
+7        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+1        *flexibleBlts
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Shotgun
+
+****************************************
+0        *name 0
+460        *cost
+102        *minDmg
+260        *maxDmg
+82        *firerate
+18        *magSize
+26        *recoil
+159        *minSpeed
+240        *maxSpeed
+11        *size
+2        *howManyProjItShoot
+2        *howManyProjItTakes
+6        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+1        *stabilizator
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+1        *magicPlasmaBlts
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Thrower
+
+****************************************
+0        *name 0
+84        *cost
+10        *minDmg
+41        *maxDmg
+4205        *firerate
+1020        *magSize
+42        *recoil
+295        *minSpeed
+300        *maxSpeed
+7        *size
+2        *howManyProjItShoot
+2        *howManyProjItTakes
+4        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+1        *smartBlts
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Thrower
+
+****************************************
+0        *name 0
+424        *cost
+25        *minDmg
+116        *maxDmg
+2836        *firerate
+272        *magSize
+42        *recoil
+185        *minSpeed
+273        *maxSpeed
+15        *size
+4        *howManyProjItShoot
+6        *howManyProjItTakes
+3        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+0        *flexibleBlts 0
+1        *multipler
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+1        *stabilizator
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Thrower
+
+****************************************
+0        *name 0
+201        *cost
+6        *minDmg
+21        *maxDmg
+11104        *firerate
+576        *magSize
+2        *recoil
+300        *minSpeed
+300        *maxSpeed
+2        *size
+8        *howManyProjItShoot
+2        *howManyProjItTakes
+3        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Pistol
+
+****************************************
+0        *name 0
+200        *cost
+36        *minDmg
+66        *maxDmg
+190        *firerate
+7        *magSize
+13        *recoil
+86        *minSpeed
+149        *maxSpeed
+18        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Sniper
+
+****************************************
+0        *name 0
+1024        *cost
+70        *minDmg
+248        *maxDmg
+132        *firerate
+27        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+7        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Musket
+
+****************************************
+0        *name 0
+960        *cost
+84        *minDmg
+354        *maxDmg
+63        *firerate
+8        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+4        *size
+1        *howManyProjItShoot
+8        *howManyProjItTakes
+2        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+1        *stabilizator
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Caster
+
+****************************************
+0        *name 0
+45        *cost
+19        *minDmg
+48        *maxDmg
+2333        *firerate
+82        *magSize
+12        *recoil
+226        *minSpeed
+300        *maxSpeed
+7        *size
+2        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma SMG
+
+****************************************
+0        *name 0
+349        *cost
+26        *minDmg
+100        *maxDmg
+1438        *firerate
+92        *magSize
+19        *recoil
+169        *minSpeed
+236        *maxSpeed
+20        *size
+2        *howManyProjItShoot
+4        *howManyProjItTakes
+1        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+1        *toxicBlts
+0        *extendedMag 0
+1        *flexibleBlts
+0        *multipler 0
+0        *packedBullets 0
+1        *scope
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+1        *magicPlasmaBlts
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Musket
+
+****************************************
+0        *name 0
+496        *cost
+120        *minDmg
+318        *maxDmg
+68        *firerate
+10        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+10        *size
+1        *howManyProjItShoot
+2        *howManyProjItTakes
+2        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+1        *stabilizator
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+1        *shootArround
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Caster
+
+****************************************
+0        *name 0
+103        *cost
+8        *minDmg
+16        *maxDmg
+5424        *firerate
+87        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+9        *size
+2        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+1        *flexibleBlts
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Shotgun
+
+****************************************
+0        *name 0
+282        *cost
+46        *minDmg
+122        *maxDmg
+147        *firerate
+59        *magSize
+26        *recoil
+237        *minSpeed
+300        *maxSpeed
+10        *size
+16        *howManyProjItShoot
+6        *howManyProjItTakes
+2        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+1        *multipler
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead MachineGun
+
+****************************************
+0        *name 0
+420        *cost
+68        *minDmg
+134        *maxDmg
+1256        *firerate
+453        *magSize
+45        *recoil
+268        *minSpeed
+300        *maxSpeed
+15        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+2        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Sniper
+
+****************************************
+0        *name 0
+896        *cost
+104        *minDmg
+528        *maxDmg
+40        *firerate
+7        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+16        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+8        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+1        *stunEnemies
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+1        *magicPlasmaBlts
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Assault
+
+****************************************
+0        *name 0
+66        *cost
+29        *minDmg
+134        *maxDmg
+624        *firerate
+99        *magSize
+6        *recoil
+220        *minSpeed
+300        *maxSpeed
+12        *size
+3        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+0        *wpnType
+1        *fireBlts
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+1        *stabilizator
+25        *radiusSize
+1        *stunEnemies
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Caster
+
+****************************************
+0        *name 0
+75        *cost
+6        *minDmg
+12        *maxDmg
+6400        *firerate
+56        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+10        *size
+7        *howManyProjItShoot
+2        *howManyProjItTakes
+1        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Pistol
+
+****************************************
+0        *name 0
+209        *cost
+14        *minDmg
+24        *maxDmg
+628        *firerate
+26        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+4        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Assault
+
+****************************************
+0        *name 0
+116        *cost
+32        *minDmg
+150        *maxDmg
+815        *firerate
+66        *magSize
+6        *recoil
+229        *minSpeed
+300        *maxSpeed
+20        *size
+2        *howManyProjItShoot
+2        *howManyProjItTakes
+2        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+1        *stabilizator
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+1        *grenadeLauncher
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Shotgun
+
+****************************************
+0        *name 0
+231        *cost
+44        *minDmg
+44        *maxDmg
+132        *firerate
+51        *magSize
+19        *recoil
+247        *minSpeed
+300        *maxSpeed
+9        *size
+4        *howManyProjItShoot
+3        *howManyProjItTakes
+3        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+1        *toxicBlts
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead rocketLauncher
+
+****************************************
+0        *name 0
+580        *cost
+468        *minDmg
+672        *maxDmg
+29        *firerate
+6        *magSize
+45        *recoil
+93        *minSpeed
+272        *maxSpeed
+20        *size
+1        *howManyProjItShoot
+6        *howManyProjItTakes
+4        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+1        *stabilizator
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Caster
+
+****************************************
+0        *name 0
+71        *cost
+19        *minDmg
+58        *maxDmg
+2452        *firerate
+51        *magSize
+13        *recoil
+219        *minSpeed
+300        *maxSpeed
+6        *size
+2        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+1        *explBlts
+0        *toxicBlts 0
+1        *extendedMag
+0        *flexibleBlts 0
+1        *multipler
+1        *packedBullets
+1        *scope
+0        *smartBlts 0
+0        *stabilizator 0
+9        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma MachineGun
+
+****************************************
+0        *name 0
+2064        *cost
+65        *minDmg
+256        *maxDmg
+618        *firerate
+156        *magSize
+45        *recoil
+152        *minSpeed
+255        *maxSpeed
+18        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+3        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Pistol
+
+****************************************
+0        *name 0
+221        *cost
+12        *minDmg
+18        *maxDmg
+710        *firerate
+34        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+6        *size
+2        *howManyProjItShoot
+2        *howManyProjItTakes
+1        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+1        *scope
+0        *smartBlts 0
+1        *stabilizator
+0        *radiusSize 0
+0        *stunEnemies 0
+1        *charger
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Musket
+
+****************************************
+0        *name 0
+374        *cost
+288        *minDmg
+456        *maxDmg
+32        *firerate
+8        *magSize
+2        *recoil
+300        *minSpeed
+300        *maxSpeed
+12        *size
+1        *howManyProjItShoot
+8        *howManyProjItTakes
+4        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Pistol
+
+****************************************
+0        *name 0
+316        *cost
+29        *minDmg
+90        *maxDmg
+170        *firerate
+6        *magSize
+13        *recoil
+109        *minSpeed
+188        *maxSpeed
+15        *size
+1        *howManyProjItShoot
+3        *howManyProjItTakes
+1        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+1        *multipler
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+1        *magicPlasmaBlts
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Sniper
+
+****************************************
+0        *name 0
+2328        *cost
+177        *minDmg
+1136        *maxDmg
+35        *firerate
+8        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+16        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+8        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+1        *scope
+0        *smartBlts 0
+1        *stabilizator
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+1        *preciseMultiShoot
+****************************************
+*   generated energetic Shotgun
+
+****************************************
+0        *name 0
+214        *cost
+25        *minDmg
+35        *maxDmg
+372        *firerate
+52        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+5        *size
+16        *howManyProjItShoot
+3        *howManyProjItTakes
+2        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+1        *scope
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead SMG
+
+****************************************
+0        *name 0
+91        *cost
+13        *minDmg
+62        *maxDmg
+2164        *firerate
+245        *magSize
+13        *recoil
+300        *minSpeed
+300        *maxSpeed
+8        *size
+2        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+1        *thrower
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma MachineGun
+
+****************************************
+0        *name 0
+2048        *cost
+71        *minDmg
+124        *maxDmg
+783        *firerate
+158        *magSize
+45        *recoil
+192        *minSpeed
+296        *maxSpeed
+20        *size
+2        *howManyProjItShoot
+4        *howManyProjItTakes
+3        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+1        *flexibleBlts
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead rocketLauncher
+
+****************************************
+0        *name 0
+392        *cost
+312        *minDmg
+744        *maxDmg
+32        *firerate
+24        *magSize
+45        *recoil
+92        *minSpeed
+230        *maxSpeed
+16        *size
+1        *howManyProjItShoot
+24        *howManyProjItTakes
+4        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead MachineGun
+
+****************************************
+0        *name 0
+254        *cost
+72        *minDmg
+92        *maxDmg
+970        *firerate
+401        *magSize
+45        *recoil
+264        *minSpeed
+300        *maxSpeed
+12        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+4        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+1        *stabilizator
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Shotgun
+
+****************************************
+0        *name 0
+620        *cost
+65        *minDmg
+256        *maxDmg
+77        *firerate
+9        *magSize
+19        *recoil
+168        *minSpeed
+237        *maxSpeed
+13        *size
+2        *howManyProjItShoot
+1        *howManyProjItTakes
+6        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+1        *elecBlts
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma rocketLauncher
+
+****************************************
+0        *name 0
+2232        *cost
+391        *minDmg
+1176        *maxDmg
+16        *firerate
+16        *magSize
+45        *recoil
+51        *minSpeed
+139        *maxSpeed
+20        *size
+1        *howManyProjItShoot
+16        *howManyProjItTakes
+6        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+1        *scope
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+1        *magicPlasmaBlts
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead rocketLauncher
+
+****************************************
+0        *name 0
+398        *cost
+468        *minDmg
+828        *maxDmg
+32        *firerate
+24        *magSize
+45        *recoil
+84        *minSpeed
+250        *maxSpeed
+20        *size
+1        *howManyProjItShoot
+24        *howManyProjItTakes
+5        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+1        *elecBlts
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Caster
+
+****************************************
+0        *name 0
+217        *cost
+17        *minDmg
+69        *maxDmg
+1554        *firerate
+20        *magSize
+7        *recoil
+137        *minSpeed
+235        *maxSpeed
+20        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+1        *magicPlasmaBlts
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Sniper
+
+****************************************
+0        *name 0
+542        *cost
+84        *minDmg
+208        *maxDmg
+56        *firerate
+18        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+10        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+2        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+1        *flexibleBlts
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma rocketLauncher
+
+****************************************
+0        *name 0
+1312        *cost
+453        *minDmg
+960        *maxDmg
+16        *firerate
+8        *magSize
+45        *recoil
+52        *minSpeed
+156        *maxSpeed
+20        *size
+1        *howManyProjItShoot
+8        *howManyProjItTakes
+6        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+0        *flexibleBlts 0
+1        *multipler
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Assault
+
+****************************************
+0        *name 0
+367        *cost
+30        *minDmg
+272        *maxDmg
+469        *firerate
+28        *magSize
+6        *recoil
+182        *minSpeed
+300        *maxSpeed
+20        *size
+3        *howManyProjItShoot
+6        *howManyProjItTakes
+4        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Assault
+
+****************************************
+0        *name 0
+103        *cost
+24        *minDmg
+72        *maxDmg
+635        *firerate
+110        *magSize
+8        *recoil
+300        *minSpeed
+300        *maxSpeed
+7        *size
+2        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+1        *stabilizator
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Musket
+
+****************************************
+0        *name 0
+440        *cost
+232        *minDmg
+720        *maxDmg
+30        *firerate
+16        *magSize
+2        *recoil
+300        *minSpeed
+300        *maxSpeed
+20        *size
+2        *howManyProjItShoot
+16        *howManyProjItTakes
+2        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+1        *thrower
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Assault
+
+****************************************
+0        *name 0
+405        *cost
+26        *minDmg
+224        *maxDmg
+458        *firerate
+25        *magSize
+9        *recoil
+173        *minSpeed
+300        *maxSpeed
+13        *size
+3        *howManyProjItShoot
+11        *howManyProjItTakes
+4        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma SMG
+
+****************************************
+0        *name 0
+410        *cost
+26        *minDmg
+126        *maxDmg
+1494        *firerate
+61        *magSize
+16        *recoil
+131        *minSpeed
+223        *maxSpeed
+14        *size
+2        *howManyProjItShoot
+4        *howManyProjItTakes
+2        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+1        *scope
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+1        *stunEnemies
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Caster
+
+****************************************
+0        *name 0
+127        *cost
+7        *minDmg
+12        *maxDmg
+5992        *firerate
+103        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+10        *size
+2        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+1        *shootArround
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Sniper
+
+****************************************
+0        *name 0
+660        *cost
+44        *minDmg
+172        *maxDmg
+129        *firerate
+45        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+10        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+1        *stunEnemies
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic rocketLauncher
+
+****************************************
+0        *name 0
+688        *cost
+156        *minDmg
+168        *maxDmg
+72        *firerate
+12        *magSize
+4        *recoil
+274        *minSpeed
+300        *maxSpeed
+7        *size
+1        *howManyProjItShoot
+12        *howManyProjItTakes
+2        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+1        *scope
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+1        *stunEnemies
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Caster
+
+****************************************
+0        *name 0
+59        *cost
+13        *minDmg
+47        *maxDmg
+2365        *firerate
+69        *magSize
+8        *recoil
+216        *minSpeed
+300        *maxSpeed
+5        *size
+2        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Assault
+
+****************************************
+0        *name 0
+204        *cost
+39        *minDmg
+256        *maxDmg
+506        *firerate
+38        *magSize
+8        *recoil
+182        *minSpeed
+300        *maxSpeed
+20        *size
+1        *howManyProjItShoot
+2        *howManyProjItTakes
+3        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+1        *magicPlasmaBlts
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Pistol
+
+****************************************
+0        *name 0
+396        *cost
+25        *minDmg
+48        *maxDmg
+185        *firerate
+7        *magSize
+11        *recoil
+83        *minSpeed
+126        *maxSpeed
+13        *size
+1        *howManyProjItShoot
+6        *howManyProjItTakes
+1        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+1        *smartBlts
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+1        *magicPlasmaBlts
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Assault
+
+****************************************
+0        *name 0
+106        *cost
+25        *minDmg
+118        *maxDmg
+649        *firerate
+146        *magSize
+10        *recoil
+263        *minSpeed
+300        *maxSpeed
+11        *size
+2        *howManyProjItShoot
+1        *howManyProjItTakes
+2        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+1        *explBlts
+0        *toxicBlts 0
+0        *extendedMag 0
+1        *flexibleBlts
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+22        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+1        *grenadeLauncher
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Assault
+
+****************************************
+0        *name 0
+66        *cost
+29        *minDmg
+120        *maxDmg
+757        *firerate
+120        *magSize
+9        *recoil
+251        *minSpeed
+300        *maxSpeed
+20        *size
+6        *howManyProjItShoot
+4        *howManyProjItTakes
+3        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+1        *scope
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Caster
+
+****************************************
+0        *name 0
+128        *cost
+19        *minDmg
+106        *maxDmg
+1532        *firerate
+32        *magSize
+8        *recoil
+129        *minSpeed
+207        *maxSpeed
+20        *size
+2        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+1        *elecBlts
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+148        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Sniper
+
+****************************************
+0        *name 0
+2040        *cost
+141        *minDmg
+864        *maxDmg
+31        *firerate
+12        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+20        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+8        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Caster
+
+****************************************
+0        *name 0
+68        *cost
+15        *minDmg
+36        *maxDmg
+2314        *firerate
+95        *magSize
+10        *recoil
+234        *minSpeed
+300        *maxSpeed
+16        *size
+3        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+1        *flexibleBlts
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma rocketLauncher
+
+****************************************
+0        *name 0
+2248        *cost
+344        *minDmg
+1440        *maxDmg
+18        *firerate
+16        *magSize
+45        *recoil
+58        *minSpeed
+156        *maxSpeed
+20        *size
+1        *howManyProjItShoot
+16        *howManyProjItTakes
+8        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+1        *multipler
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma SMG
+
+****************************************
+0        *name 0
+320        *cost
+15        *minDmg
+84        *maxDmg
+1382        *firerate
+41        *magSize
+13        *recoil
+151        *minSpeed
+242        *maxSpeed
+19        *size
+4        *howManyProjItShoot
+17        *howManyProjItTakes
+1        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Caster
+
+****************************************
+0        *name 0
+63        *cost
+19        *minDmg
+52        *maxDmg
+2036        *firerate
+103        *magSize
+10        *recoil
+196        *minSpeed
+300        *maxSpeed
+17        *size
+6        *howManyProjItShoot
+2        *howManyProjItTakes
+1        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+1        *scope
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Musket
+
+****************************************
+0        *name 0
+476        *cost
+240        *minDmg
+792        *maxDmg
+27        *firerate
+4        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+7        *size
+1        *howManyProjItShoot
+4        *howManyProjItTakes
+2        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Thrower
+
+****************************************
+0        *name 0
+311        *cost
+8        *minDmg
+35        *maxDmg
+12128        *firerate
+720        *magSize
+2        *recoil
+300        *minSpeed
+300        *maxSpeed
+3        *size
+2        *howManyProjItShoot
+1        *howManyProjItTakes
+3        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+1        *explBlts
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+68        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Sniper
+
+****************************************
+0        *name 0
+900        *cost
+72        *minDmg
+252        *maxDmg
+137        *firerate
+28        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+5        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+3        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+1        *charger
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Pistol
+
+****************************************
+0        *name 0
+391        *cost
+28        *minDmg
+74        *maxDmg
+157        *firerate
+10        *magSize
+10        *recoil
+88        *minSpeed
+142        *maxSpeed
+15        *size
+1        *howManyProjItShoot
+3        *howManyProjItTakes
+1        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+1        *toxicBlts
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+1        *preciseMultiShoot
+****************************************
+*   generated plasma Caster
+
+****************************************
+0        *name 0
+227        *cost
+17        *minDmg
+47        *maxDmg
+1286        *firerate
+12        *magSize
+13        *recoil
+113        *minSpeed
+202        *maxSpeed
+20        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+1        *toxicBlts
+1        *extendedMag
+0        *flexibleBlts 0
+1        *multipler
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+1        *preciseMultiShoot
+****************************************
+*   generated energetic rocketLauncher
+
+****************************************
+0        *name 0
+856        *cost
+126        *minDmg
+204        *maxDmg
+72        *firerate
+12        *magSize
+4        *recoil
+254        *minSpeed
+300        *maxSpeed
+17        *size
+1        *howManyProjItShoot
+12        *howManyProjItTakes
+3        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+1        *scope
+0        *smartBlts 0
+1        *stabilizator
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic MachineGun
+
+****************************************
+0        *name 0
+504        *cost
+23        *minDmg
+38        *maxDmg
+2460        *firerate
+800        *magSize
+4        *recoil
+300        *minSpeed
+300        *maxSpeed
+7        *size
+2        *howManyProjItShoot
+1        *howManyProjItTakes
+3        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+1        *charger
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic SMG
+
+****************************************
+0        *name 0
+92        *cost
+10        *minDmg
+38        *maxDmg
+6232        *firerate
+196        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+3        *size
+2        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+1        *scope
+0        *smartBlts 0
+1        *stabilizator
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+1        *shootArround
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Assault
+
+****************************************
+0        *name 0
+106        *cost
+14        *minDmg
+68        *maxDmg
+1800        *firerate
+216        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+10        *size
+4        *howManyProjItShoot
+3        *howManyProjItTakes
+1        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+1        *stunEnemies
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma Shotgun
+
+****************************************
+0        *name 0
+1008        *cost
+102        *minDmg
+196        *maxDmg
+94        *firerate
+8        *magSize
+16        *recoil
+162        *minSpeed
+281        *maxSpeed
+20        *size
+4        *howManyProjItShoot
+4        *howManyProjItTakes
+2        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+1        *magicPlasmaBlts
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Assault
+
+****************************************
+0        *name 0
+97        *cost
+24        *minDmg
+80        *maxDmg
+666        *firerate
+159        *magSize
+8        *recoil
+233        *minSpeed
+300        *maxSpeed
+12        *size
+2        *howManyProjItShoot
+1        *howManyProjItTakes
+2        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+1        *flexibleBlts
+0        *multipler 0
+0        *packedBullets 0
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+1        *thrower
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated plasma SMG
+
+****************************************
+0        *name 0
+303        *cost
+21        *minDmg
+92        *maxDmg
+1502        *firerate
+100        *magSize
+19        *recoil
+186        *minSpeed
+300        *maxSpeed
+17        *size
+1        *howManyProjItShoot
+2        *howManyProjItTakes
+2        *reloadingTime
+2        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+1        *toxicBlts
+1        *extendedMag
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+153        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+1        *preciseMultiShoot
+****************************************
+*   generated lead Caster
+
+****************************************
+0        *name 0
+67        *cost
+18        *minDmg
+34        *maxDmg
+2016        *firerate
+75        *magSize
+12        *recoil
+198        *minSpeed
+300        *maxSpeed
+11        *size
+2        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+1        *multipler
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Shotgun
+
+****************************************
+0        *name 0
+287        *cost
+50        *minDmg
+112        *maxDmg
+126        *firerate
+54        *magSize
+16        *recoil
+216        *minSpeed
+300        *maxSpeed
+5        *size
+4        *howManyProjItShoot
+2        *howManyProjItTakes
+2        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+1        *smartBlts
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead Caster
+
+****************************************
+0        *name 0
+61        *cost
+17        *minDmg
+33        *maxDmg
+2372        *firerate
+100        *magSize
+13        *recoil
+199        *minSpeed
+300        *maxSpeed
+12        *size
+2        *howManyProjItShoot
+1        *howManyProjItTakes
+1        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+1        *scope
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Sniper
+
+****************************************
+0        *name 0
+940        *cost
+64        *minDmg
+196        *maxDmg
+139        *firerate
+27        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+13        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+2        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+1        *elecBlts
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+1        *smartBlts
+0        *stabilizator 0
+0        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated lead MachineGun
+
+****************************************
+0        *name 0
+250        *cost
+70        *minDmg
+124        *maxDmg
+1175        *firerate
+323        *magSize
+45        *recoil
+226        *minSpeed
+300        *maxSpeed
+4        *size
+1        *howManyProjItShoot
+1        *howManyProjItTakes
+5        *reloadingTime
+0        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+1        *extendedMag
+0        *flexibleBlts 0
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic rocketLauncher
+
+****************************************
+0        *name 0
+1016        *cost
+126        *minDmg
+216        *maxDmg
+69        *firerate
+6        *magSize
+4        *recoil
+216        *minSpeed
+300        *maxSpeed
+19        *size
+1        *howManyProjItShoot
+6        *howManyProjItTakes
+3        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+1        *elecBlts
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+0        *flexibleBlts 0
+0        *multipler 0
+0        *packedBullets 0
+1        *scope
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize
+0        *stunEnemies 0
+0        *charger 0
+0        *shootArround 0
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+*   generated energetic Shotgun
+
+****************************************
+0        *name 0
+218        *cost
+28        *minDmg
+43        *maxDmg
+318        *firerate
+83        *magSize
+1        *recoil
+300        *minSpeed
+300        *maxSpeed
+5        *size
+4        *howManyProjItShoot
+1        *howManyProjItTakes
+2        *reloadingTime
+1        *wpnType
+0        *fireBlts 0
+0        *elecBlts 0
+0        *explBlts 0
+0        *toxicBlts 0
+0        *extendedMag 0
+1        *flexibleBlts
+0        *multipler 0
+1        *packedBullets
+0        *scope 0
+0        *smartBlts 0
+0        *stabilizator 0
+0        *radiusSize 0
+0        *stunEnemies 0
+0        *charger 0
+1        *shootArround
+0        *grenadeLauncher 0
+0        *thrower 0
+0        *magicPlasmaBlts 0
+0        *preciseMultiShoot 0
+****************************************
+

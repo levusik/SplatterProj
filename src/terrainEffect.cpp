@@ -8,8 +8,7 @@
 void ProjectileTerrainEffect::update() 
 {
 	// powiêkszamy obszar 
-	double newRadius = this->func(animCounter, this->timeOfFunc) * maxRadiusSize;
-	double diffBtwNewAndOldCircle = 0;
+	double newRadius = this->func(animCounter, this->durationTime) * maxRadiusSize;
 	if (this->circle.getRadius() != newRadius)
 	{
 		diffBtwNewAndOldCircle = newRadius - circle.getRadius();
@@ -18,14 +17,15 @@ void ProjectileTerrainEffect::update()
 
 	if (diffBtwNewAndOldCircle)
 		this->circle.move(-diffBtwNewAndOldCircle, -diffBtwNewAndOldCircle);
-
+	
+	this->diffBtwNewAndOldCircle = newRadius;
 
 	animCounter += funcStep;
 	
 
 
 	// je¿eli przekroczono czas to dajemy znaæ silnikowi ¿e czas usun¹æ obszarkówkê
-	if (this->animationClock.getElapsedTime().asSeconds() > this->durationTime || circle.getRadius() <= 0)
+	if (this->animationClock.getElapsedTime().asSeconds() > this->durationTime || circle.getRadius() < 0)
 	{
 		this->needToDelete = true;
 	}
@@ -38,11 +38,11 @@ void ProjectileTerrainEffect::create(terrainEffectParams & params, sf::Vector2f 
 	this->animCounter = 0;
 	this->funcStep = params.step;
 	this->func = params.function;
-	this->timeOfFunc = params.timeOfFunc;
 	this->durationTime = params.durationOfAnimation;
 	this->damage = params.damage;
-	this->howManyTimesItHits = params.howManyTimesItHits;
-	this->circle.setRadius(1);
+	this->maxRadiusSize = params.maxRadiusSize;
+	this->circle.setRadius(0);
+	this->diffBtwNewAndOldCircle = 0;
 
 	this->circle.setPosition(pos);
 	this->needToDelete = false;

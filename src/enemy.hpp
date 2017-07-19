@@ -9,6 +9,48 @@
 #include "HPBar.h"
 
 
+/*
+
+FLIGHTY,		// przeciwnik zazwyczaj ucieka, nastawiony defensywnie (znacze boosty w obronie)
+// umiejêtnoœæ specjalna :   zwiêksza swoj¹ obronê i zatrzymuje gracza
+// du¿e- bardzo du¿e grupki
+
+AGRESSIVE,		// przeciwnik zazwyczaj walczy, dobry Atak (nastawiony na DPS) , gorsza obrona
+// umiejêtnoœæ specjalna : zwiêszenie czêstotlwioœci i dotkliwoœci obra¿eñ ( animacja :
+// powiêksza siê by z czasem powróciæ do starego rozmiaru).
+// œrednie-du¿e grupki
+
+HEAVY,			// przeciwnik kontynuuje swoj¹ podró¿, dopiero zbli¿ony na odpowiedn¹ odleg³oœæ zacznie atakowaæ
+// szybko traci zaintersowanie, bardzo du¿a obrona, dotkliwe obra¿enia, aczolwiek powolny
+// umiejêtnoœæ specjalna : berserk - zmiejsza otrzymywane obra¿enia, zwiêksza prêdkoœæ, zadaje bardziej dotkliwej
+// obra¿enia
+// ma³e- œrednie grupki
+
+RUNNERS,		// przeciwnicy walcz¹ tylko w du¿ej grupie w przeciwnym wypadku uciekaj¹
+// pojedyñczo nie stanowi¹ ¿adnego zagro¿enia, aczkolwiek w grupie s¹ wyj¹tkowo groŸni
+// ma³y damage, œrednia obrona, ma³o zdrowia,
+// umiejêtnoœæ specjalna : atak grupowy - ca³a grupa rzuca siê na przeciwnika
+// du¿e-olbrzymie grupki
+
+BEAST,			// olbrzymi, skrajnie agresywni przeciwnicy, bardzo du¿y damage, ma³a obrona, du¿o zdrowia
+// podró¿uj¹ samotnie, gdy raz zostanie zwi¹zany walk¹ bêdzie tropiæ ju¿ do jego i gracza œmierci
+// umiejêtnoœæ specjalna : obszarówka , szar¿a
+// pojedyñcze osobniki
+
+PREDATOR,		// najbardziej skomplikowany schemat AI, próbuj¹ okr¹¿yæ przeciwnika, zaprowadziæ go w k¹t ;
+// du¿a szybkoœæ i wszystko inne raczej œrednie
+// umiejêtnoœæ specjalna : taktyka, atak grup¹
+// œrednie grupki
+
+BITTERS,		// nastawi¹ siê na szybkie i b³yskawiczne ataki, po czym na "taktyczny odwrót", przegrupowanie i wracamy do ataków
+// du¿y damage i szybkoœæ, wszystko inne tragiczne.
+// umiejêtnoœæ specjalna : atak grup¹, zatrucie Gracza
+
+ELEMENTS,		// nastawi¹j¹ siê na d³u¿sz¹ metê, du¿a obrona i zdrowie , kiepski damage ale obra¿enia s¹ zadawane po czasie, œrednia prêdkoœæ
+// umiejêtnoœæ specjalna : ataki zadaj¹ obra¿enia po jakimœ czasie ( np. od ognia, zatruæ )
+
+*/
+
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -16,328 +58,189 @@
 class enemy : public sf::Sprite, public aliveCreature
 {
 public:
-	
-	// Konstruktor
-	enemy()
-		: speedVector(sf::Lines, 6)
-	{
-		this->isAlive = true;
-		timeAdd = 0;
-		VxMustBePlus =	false;
-		VxMustBeNeg  =	false;
-		VyMusBePlus  =	false;
-		VyMusBeNeg   =	false;
 
-	};
-	
+	// Konstruktor
+	enemy();
+
 	////////////////////////////
 	//settery 
-	void setID(int id)
-	{
-		this->ID = id;
-	}
-	void				alertEnemy()
-	{
-		this->playerHurtedGroupMate = true;
-	}
-	void				intrigueEnemy()
-	{
-		this->isGroupIntrigued = true;
-	}
-	void				setDamageParameters(damageParameters newParams)
-	{
-		this->dmgParameters = newParams;
-	}
+	void				setID(int id);
+	void				alertEnemy();
+	void				intrigueEnemy();
+	void				setDamageParameters(damageParameters newParams);
 	////////////////////////////
 
 
 	///////////////////////////////////////////////////////////////
 	// gettery
-	int					getGroupIndex()
-	{
-		return this->groupIndex;
-	}
-	int					getWorth()
-	{
-		return this->worth;
-	}
-	int					getID()
-	{
-		return this->ID;
-	}
-	bool				isIDLE()
-	{
-		return this->currentState == stateOfEnemy::IDLE;
-	}
-	bool				hasCreatureDetectedPlayer()
-	{
-		return this->playerHurtedGroupMate;
-	}
-	bool				isCreatureAlive()
-	{
-		return this->isAlive;
-	}
-	bool				isEnemyIntrigued()
-	{
-		return this->isGroupIntrigued;
-	}
-	bool				canBeHittedByExplosion()
-	{
-		return this->terrainDamageClock.getElapsedTime().asSeconds() > terrainDmgLock;
-	}
-	double				getSizeOfView()
-	{
-		return this->sizeOfView;
-	}
-	double				getAngleOfView()
-	{
-		return this->angleOfView;
-	}
-	double				getRandomVal(int min, int max)
-	{
-		return rand() % (max - min) + min;
-	}
-	double				getHP()
-	{
-		return this->HP;
-	}
-	sf::Vector2f		getCenter()
-	{
-		// mo¿na to zmieœciæ w jednej linijce ale syntatic sugar zawsze na propsie
-		sf::Vector2f position;
-		position.x = this->circle.getPosition().x + this->circle.getRadius();
-		position.y = this->circle.getPosition().y + this->circle.getRadius();
-		return position;
-	}
-	sf::Vector2f		getV()
-	{
-		return this->V;
-	}
-	sf::CircleShape		getCircle()
-	{
-		return this->circle;
-	}
-	sf::VertexArray		getVertex()
-	{
-		return this->speedVector;
-	}
-	HPbar				getHPBar() const
-	{
-		return this->HPRectangle;
-	}
+	int					getGroupIndex();
+	int					getWorth();
+	int					getID();
+	bool				isIDLE();
+	bool				hasCreatureDetectedPlayer();
+	bool				isCreatureAlive();
+	bool				isEnemyIntrigued();
+	bool				canBeHittedByExplosion();
+	double				getSizeOfView();
+	double				getRandomVal(int min, int max);
+	double				getHP();
+	sf::Vector2f		getCenter();
+	sf::Vector2f		getV();
+	sf::CircleShape		getCircle();
+	sf::VertexArray		getVertex();
+	HPbar				getHPBar() const;
 	///////////////////////////////////////////////////////////////
-
-
-	///////////////////////////////////////////////////////////////////////////////////////////////
-	// schemat AI przeciwnika rozpisany w zeszycie 
 
 
 	/***********************************************************************************/
 	//	metody które w zale¿noœci od od tego z jakim przeciwnkiem mamy 
 	//	do czynienia bêdziemy override'owaæ 
 
-	virtual void	create(int groupIndex, splatTemplate enemyTemplate)
-	{
+	virtual void	create(int groupIndex, splatTemplate enemyTemplate);
+	virtual void	update(sf::Vector2f *averageV, double *averageDistance, player *Player);
+	virtual	void	dealDamage(damageParameters Damage, int IDOfHurtedEnemy);
+	virtual void	setParametersOfOtherMates(std::vector<otherMatesParameters> &ParametersOfOtherMates);
 
-	}
-	virtual void	update(sf::Vector2f *averageV, double *averageDistance, player *Player)
-	{
-		this->manageAIScheme(averageV, averageDistance, Player);
-		
-		this->HPRectangle.update(this->getCenter(), this->HP, true , this->circle.getRadius());
-	}
-	virtual void	setParametersOfOtherMates(std::vector<otherMatesParameters> &ParametersOfOtherMates)
-	{
+protected:
+	
+	virtual void manageAIScheme();
 
-	}
-	virtual	void	dealDamage(damageParameters Damage)
-	{}
+	virtual void IDLEState() {}
+	virtual void IDLESChangeToDiffState() {}
 
+	virtual void intriguedState() {}
+	virtual void intriguedSChangeToDiffState() {}
 
-	protected:
-		
-		virtual void manageAIScheme(sf::Vector2f *averageV, double *averageDistance, player *Player)		{}
+	virtual void makingDecisionState() {}
+	virtual void makingDecisionChangeToDiffState() {}
 
-		virtual void IDLEState()						{}
-		virtual void IDLESChangeToDiffState()			{}
-		
-		virtual void intriguedState()					{}
-		virtual void intriguedSChangeToDiffState()		{}
-		
-		virtual void makingDecisionState()				{}
-		virtual void makingDecisionChangeToDiffState()	{}
+	virtual void fleeState() {}
+	virtual void fleeChangeToDiffState() {}
 
-		virtual void fleeState()						{}
-		virtual void fleeChangeToDiffState()			{}
+	virtual void agressiveState() {}
+	virtual void agressiveChangeToDiffState() {}
 
-		virtual void agressiveState()					{}
-		virtual void agressiveChangeToDiffState()		{}
+	virtual void chargeState() {}
+	virtual void chargeChangeToDiffState() {}
 
-		virtual void chargeState()						{}
-		virtual void chargeChangeToDiffState()			{}
+	virtual void attackState() {}
+	virtual void attackChangeToDiffState() {}
 
-		virtual void attackState()						{}
-		virtual void attackChangeToDiffState()			{}
+	virtual void specialAbility() {}
+	virtual void specialAbilityChangeToDiffState() {}
 
-		virtual void specialAbility()					{}
-		virtual void specialAbilityChangeToDiffState()	{}
+	virtual bool isWorthAttacking() { return true; }
 
-		virtual bool isWorthAttacking()		{return true;}
-		
-		virtual void reactToGettingHit()		{}
-		virtual void gettingHitChangeStates()	{}
+	virtual void reactToGettingHit() {}
+	virtual void gettingHitChangeStates() {}
 
-		virtual void playAttackAnim() {}
-		virtual void randomizeMovement() {}
+	virtual void playAttackAnim() {}
+	virtual void randomizeMovement();
+
+	virtual void manageMovement();
+	virtual void moveTowardsPlayer();
+	virtual void runAwayFromPlayer();
+	virtual void normalMovement();
+
+	// specjalna metoda któr¹ bêdziemy wywo³ywaæ gdy zmienimy stan na agresywny
+	//	(ró¿ni przeciwnicy bêd¹ reagowaæ na rozpoczecie walki)
+	virtual void changeToAgressiveState() {
+		this->currentState = stateOfEnemy::AGRESSIVE;
+		this->circle.setFillColor(this->agressiveStateColor);
+	};
 
 	/***********************************************************************************/
 
 
 	/***********************************************************************************/
 	//	 metody potrzebne do algorytmu boidów oraz do update'u
-		
-	void			manageVertexLine(double x, double y, double sinA, double cosA)
-		{
-			this->speedVector[0].position.x = this->getCenter().x;
-			this->speedVector[0].position.y = this->getCenter().y;
 
-			this->speedVector[1].position.x = this->speedVector[0].position.x + x * 20 * sinA;	// mno¿ymy przez 3 ¿eby bardziej by³o to widoczne
-			this->speedVector[1].position.y = this->speedVector[0].position.y;	// mno¿ymy przez 3 ¿eby bardziej by³o to widoczne
-
-			this->speedVector[2] = this->speedVector[0];
-
-			this->speedVector[3].position.x = this->speedVector[0].position.x;
-			this->speedVector[3].position.y = this->speedVector[0].position.y + y * 20 * cosA;
-
-			this->speedVector[4] = this->speedVector[0];
-
-			this->speedVector[5].position.x = speedVector[1].position.x;
-			this->speedVector[5].position.y = speedVector[3].position.y;
-
-		}
-	void			limitVector()
-		{
-			if (std::abs(this->V.x) > this->maxSpeed)
-				this->V.x *= 0.9;
-			if (std::abs(this->V.y) > this->maxSpeed)
-				this->V.y *= 0.9;
-
-		}
-	void			calculateTrygFunc()
-		{
-			this->sinA = (this->playerPointer->getCenter().y - this->getCenter().y) / this->distanceBtwCreatureAndPlayer;
-			this->cosA = (this->playerPointer->getCenter().x - this->getCenter().x) / this->distanceBtwCreatureAndPlayer;
-
-		}
-	void			handleBoundingRect()
-	{
-
-		if (this->circle.getPosition().x < LEFTWALL + std::abs(V.x))
-		{
-			this->circle.setPosition(LEFTWALL + 1, this->circle.getPosition().y);
-			this->V.x *= -0.5;
-			timeAdd = 2.f;
-			VxMustBePlus = true;
-		}
-		else if (this->circle.getPosition().x + 2*this->circle.getRadius() > RIGHTWALL - std::abs(V.x))
-		{
-			this->circle.setPosition(RIGHTWALL - 2*this->circle.getRadius() - 1, this->circle.getPosition().y);
-			this->V.x *= -0.5;
-			timeAdd = 2.f;
-			VxMustBeNeg = true;
-		}
-		
-		if (this->circle.getPosition().y  < UPWALL + std::abs(V.y))
-		{
-			this->circle.setPosition(this->circle.getPosition().x, UPWALL + 1);
-			this->V.y *= -0.5;
-			timeAdd = 2.f;
-			VyMusBePlus = true;
-		}
-
-		else if (this->circle.getPosition().y + 2*this->circle.getRadius() > DOWNWALL - std::abs(V.y))
-		{
-			this->circle.setPosition(this->circle.getPosition().x, DOWNWALL - 2*this->circle.getRadius() - 1);
-			this->V.y *= -0.5;
-			timeAdd = 2.f;
-			VyMusBeNeg = true;
-		}
-	}
-
-	double			calculateDistance(sf::Vector2f &position, sf::Vector2f &otherPosition)
-	{
-		double val = sqrt(pow(position.x - otherPosition.x, 2) + pow(position.y - otherPosition.y, 2));
-		if (val != 0)
-			return val;
-		else
-			return 0.0001;
-	}
-	double			apply1Rule(double averageV, double verticle, double pith)
-	{
-		return pith*(averageV - verticle);
-	}
-	double			apply2Rule(double posX, double posX2, double distance, double pith)
-	{
-		return pith * (posX2 - posX) * (distance - *this->averageDistance) / distance;
-	}
-	double			apply3Rule(double PosX1, double PosX2, double distance, double pith)
-	{
-		return pith * ((PosX1 - PosX2) * this->minDistanceFromMates / distance - (PosX1 - PosX2));
-	}
-	sf::Vector2f	applyAllRules(sf::Vector2f &AverageV, double &averageDistance)
-	{
-		sf::Vector2f vect;
-		vect.x = 0;
-		vect.y = 0;
-
-		// regu³a pierwsza 
-		vect.x += enemy::apply1Rule(average.x, vect.x, this->pith);
-		vect.y += enemy::apply1Rule(average.y, vect.y, this->pith);
-
-		for (int i = 0; i < this->parametersOfOtherMates.size(); ++i)
-		{
-				// regu³a druga
-				double distance = calculateDistance(this->getCenter(), parametersOfOtherMates[i].position);
-				
-				vect.x += apply2Rule(this->getCenter().x, parametersOfOtherMates[i].position.x, distance, this->pith);
-				vect.y += apply2Rule(this->getCenter().y, parametersOfOtherMates[i].position.y, distance, this->pith);
-
-				// regu³a trzecia
-				if (distance < this->minDistanceFromMates)
-				{
-					vect.x += apply3Rule(this->getCenter().x, parametersOfOtherMates[i].position.x, distance, this->pith);
-					vect.y += apply3Rule(this->getCenter().y, parametersOfOtherMates[i].position.y, distance, this->pith);
-				}
-		}
-
-		return vect;
-	}
+	virtual void	limitVector();
+	void			manageVertexLine();
+	void			calculateTrygFunc();
+	void			handleBoundingRect();
+	double			calculateDistance(sf::Vector2f &position, sf::Vector2f &otherPosition);
+	double			apply1Rule(double averageV, double verticle, double pith);
+	double			apply2Rule(double posX, double posX2, double distance, double pith);
+	double			apply3Rule(double PosX1, double PosX2, double distance, double pith ,double minDistance);
+	void			manageColliding(int index, double distance);
+	sf::Vector2f	applyAllRules(sf::Vector2f &AverageV, double &averageDistance);
+	void			randomAccelerationSign(float &accelerationVal);
 	/***********************************************************************************/
 
+	// parametry które wczytamy sobie elegancko z "bazy danych"
+	
+	double HP;
+	double damage;
+	double armor;
+	double agility;
+	double time;
+	double percOfMaxHPWhenEnemyFlee;
+
+	// parametry wroga
+	splatTemplate parameters;
+	double	maxHP;
+	bool isInFightingState;
+	// parametry obra¿eñ które zadaje agent
+	damageParameters dmgParameters;
+	int		idOfHurtedEnemy;
+	
+	bool	movememtLock = 0;
+	bool	chargeLock = 0;
+	bool	fleeLock = 0;
+
+
+	double moveX = 0, moveY = 0;
+	int accelerationXSign = 1;
+	int accelerationYSign = 1;
+
 	///////////////////////////////////////////////////////////////////////////////////////////////
-	// cechy które ka¿dy przeciwnik bêdzie mia³
+	// parametry czysto techniczne 
+
+	bool moveToPlayer = 0;
+	bool runAway = 0;
+	bool groupAnimal = 0;
+
+	// kolorki
+	sf::Color colorOfHPBar;
+	sf::Color IdleStateColor; ;
+	sf::Color IntriguedStateColor;
+	sf::Color makingDecisionStateColor;
+	sf::Color agressiveStateColor;
+	sf::Color chargeStateColor;
+	sf::Color attackStateColor;
+	sf::Color fleeStateColor;
+	sf::Color specialAbilityStateColor;
+	sf::Color circleColor;
+
+
+	// stan FSM 
+	stateOfEnemy currentState;
+
+	// rysunki !
+	sf::CircleShape		circle;
+	class HPbar			HPRectangle;
+	sf::VertexArray		speedVector;
+
 
 	// zmienne które u³atwi¹ nam identyfikacjê 
-	int groupIndex;
 	int		ID;
+	int		groupIndex;
 
-	
+
 	bool playerHurtedGroupMate, isRangeUnit, hasCharged;
 	bool isGroupIntrigued;
 	bool isGroupAgressive;
-	
+
 	// prêdkoœæ liniowa x i y
 	sf::Vector2f V;
+
+	// przyspieszenie 
+	sf::Vector2f acceleration;
 
 	// œrednie prêdkoœci ca³ej grupy 
 	sf::Vector2f average;
 
-	// wektor prêdkoœci
-	sf::VertexArray speedVector;
-
-	// zasiêg i k¹t widoku przeciwnika
-	double sizeOfView, angleOfView, pith, minDistanceFromMates;
-	double minDistanceFromPlayer;
 
 	// zapisujemy sobie adresy parametrów które wrzucamy do update'a 
 	sf::Vector2f *averageV;
@@ -347,156 +250,50 @@ public:
 	// je¿eli doszed³ do koñca planszy chcemy przyspieszyæ proces losowania ruchu
 	double timeAdd;
 
-	// idiotyczne i bezsensowne rozwi¹zanie problemu 
-	//     ||
-	//     \/
-	bool VxMustBePlus, VxMustBeNeg, VyMusBePlus, VyMusBeNeg;
-
-
 
 	// zmienne potrzebne do ruchu w kierunku gracza
-	double minSpeed, maxSpeed;
-	double acceleration;
 	double sinA, cosA;
-	double chargeDistance;
-	double safeDistance;
 	double distanceBtwCreatureAndPlayer;
 	double slowDistance;
+
+
+	// boosty i deboosty 
 	double timeOfDeceleration;
-	double speedBuff, attackBuff;
-
-	// zmienne potrzebne do kolizji z pociskiem
-	// parametry wroga
-	bool	isAlive;
-	double	armor, Damage;
-	double	maxHP;
-	int		rangeOfWeapon;
+	double speedBuff, accelerationBuff, attackBuff, defenseBuff;
 
 
 
-	sf::CircleShape		circle;
-	class HPbar			HPRectangle;
 
 
+	sf::Clock		makingDecisionTime;
+	sf::Clock		delayBtwRandomizeMovement;
 	sf::Clock		delayBtwChangingMove;
+	sf::Clock		delayBtwAttacking;
 	std::vector<otherMatesParameters> parametersOfOtherMates;
 
-	stateOfEnemy currentState;
-
-	// wartoœæ splata ( wartoœæ któr¹ dodajemy do kasy gracza)
-	int		worth;
-
-	// kolorki !
-	sf::Color colorOfHPBar;
-	sf::Color IdleStateColor;
-	sf::Color IntriguedStateColor;
-	sf::Color makingDecisionStateColor;
-	sf::Color agressiveStateColor;
-	sf::Color chargeStateColor;
-	sf::Color attackStateColor;
-	sf::Color fleeStateColor;
-	sf::Color specialAbilityStateColor;
 
 
-	damageParameters dmgParameters;
-
-
-	// czas po którym jednostka podejmuje decyzjê jak¹ akcjê wykonaæ 
-	double timeToMakeDecisionInSec;
+	// zegar potrzebny do odmierzenia czasu reakcji
 	sf::Clock timeToMakeDecision;
 
 	// czas po którym mo¿e zostaæ znowu uderzony przez obszarówkê
 	sf::Clock terrainDamageClock;
 
+	// czas potrzebny do ruchu
+	sf::Clock clock;
+	double prevTime;
 	////////////////////////////////////////////////////////////////////
 };
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// podstawowa klasa przeciwnika w której zapiszemy 
-// wszystkie domyœlne zachowania AI.
-class splat : public enemy
-{
-public:
-	// konstruktor który utworzy "blanka"
-	splat()
-	{
-		this->armor = 0;
-		this->Damage = 0;
-		this->groupIndex = -1;
-		this->HP = 0;
-		this->isRangeUnit = false;
-		this->playerHurtedGroupMate = false;
-		this->rangeOfWeapon = 0;
-		this->V.x = 0;
-		this->V.y = 0;
-		this->pith = 0.02;
-		this->worth = 1;
-	}
-	// u¿ywamy domyœlnego update'a
 
 
-	virtual void	setParametersOfOtherMates(std::vector<otherMatesParameters> &ParametersOfOtherMates) override;
-	virtual void	dealDamage(damageParameters damage) override;
-	virtual void	create(int groupIndex, splatTemplate enemyTemplate) override;
-
-
-protected:
-
-	/******************************************************************************************************/
-	/*		Nadpisanie metod enemy																		  */
-	virtual void manageAIScheme(sf::Vector2f *averageV, double *averageDistance, player *Player) override;
-
-	virtual void IDLEState()								override;
-	virtual void IDLESChangeToDiffState()					override;
-
-	virtual void intriguedState()							override;
-	virtual void intriguedSChangeToDiffState()				override;
-
-	virtual void makingDecisionState()						override;
-	virtual void makingDecisionChangeToDiffState()			override;
-
-	virtual void fleeState()								override;
-	virtual void fleeChangeToDiffState()					override;
-
-
-	virtual void agressiveState()							override;
-	virtual void agressiveChangeToDiffState()				override;
-
-	virtual void chargeState()								override;
-	virtual void chargeChangeToDiffState()					override;
-
-	virtual void attackState()								override;
-	virtual void attackChangeToDiffState()					override;
-
-	virtual void specialAbility()							override;
-	virtual void specialAbilityChangeToDiffState()			override;
-
-	virtual bool isWorthAttacking()							override;
-
-	virtual void reactToGettingHit()						override;
-	virtual void gettingHitChangeStates()					override;
-
-	virtual void randomizeMovement()						override;
-
-	
-
-	/******************************************************************************************************/
-
-	// co ile nastêpuje zmiana kierunku ruchu podczas "szwêdania siê przeciwnika" 
-	float changeMoveBy;
-	double rangeOfWeapon;
-	double delayBtwAttacksInSecs;
-	bool   isInFightingState;
-
-	sf::Clock delayBtwRandomizeMovement;
-	sf::Clock delayBtwBoidAlgorithm;
-	sf::Clock makingDecisionDelay;
-	sf::Clock movementDelay;
-	sf::Clock delayBtwAttacksClock;
-
-};
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#include "flightyEnemy.hpp"
+#include "agressiveEnemy.hpp"
+#include "heavyEnemy.hpp"
+#include "runnersEnemy.hpp"
+#include "beastEnemy.hpp"
+#include "bittersEnemy.hpp"
+#include "predatorEnemy.hpp"
+#include "elementsEnemy.hpp"

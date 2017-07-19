@@ -79,7 +79,7 @@ public:
 	{
 		// jako ¿e ustawiliœmy wczeœniej origin center na œrodek
 		// to nie musimy dodawaæ do pozycji promienia 
-		return sf::Vector2f(circle.getPosition().x, circle.getPosition().y);
+		return sf::Vector2f(circle.getPosition().x, circle.getPosition().y );
 	}
 	playerParameters getParameters() const
 	{

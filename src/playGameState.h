@@ -1,12 +1,14 @@
 #pragma once
-#include "entity.hpp"
 #include <SFML\Graphics.hpp>
+#include <fstream>
+
+
+#include "entity.hpp"
 #include "player.hpp"
 #include "entity.hpp"
 #include "enemy.hpp"
 #include "button.h"
 #include "terrainEffect.h"
-#include <fstream>
 
 class playGameState
 {
@@ -54,7 +56,6 @@ private:
 	// prostok¹t który pokazuje pole w którym gracz i przeciwnicy mog¹ siê poruszaæ
 	sf::RectangleShape  moveAvailableRect;
 
-	// zmienne prywatne 
 	sf::Text	text;
 	player		Player;
 	sf::View	DynamicView, StaticView;
@@ -62,8 +63,12 @@ private:
 
 	// zmienne do kontrolowania widoku
 	double		xViewOffset, yViewOffset;
+
+	// zmiene do przeciwników
 	int			SpawnPointIndex, howManyCreaturesLeft;
 	int			allChance;
+	int			indexOfHurtedEnemy;
+
 
 	bool lock = false;
 
@@ -71,7 +76,7 @@ private:
 
 	std::vector<sf::Vector2f>	averageV;
 	std::vector<double>			averageDistance;
-	std::vector<std::vector<std::vector<otherMatesParameters>>> positionsOfOtherBoids;
+	std::vector<otherMatesParameters> positionsOfOtherBoids;
 
 	sf::Vector2f positionOfNearestEnemy;
 
@@ -178,7 +183,7 @@ private:
 
 
 	std::vector  <rangeWeapon> weaponBuffor;
-	std::vector <rangeWeapon> actualAssortiment;
+	std::vector <std::pair<rangeWeapon,bool>> actualAssortiment;
 	std::vector <int>		  weaponsIDNotTaken;
 
 
@@ -201,6 +206,8 @@ private:
 	statesOfShip		  inWhichRoomWeAre;
 	sf::Text		      currencyText;
 	sf::Clock			  delayBtwBuying;
+
+	std::map <typeOfWeapon, sf::Color> typeOfWeaponColorMap;
 	
 
 

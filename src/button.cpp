@@ -70,6 +70,11 @@ void Button::setColors(sf::Color colorWhenPassive, sf::Color colorWhenHighlighte
 	this->colorWhenPassive = colorWhenPassive;
 	this->colorWhenHighlighted = colorWhenHighlighted;
 }
+void Button::setColors(sf::Color color)
+{
+	this->colorWhenPassive = color;
+	this->colorWhenHighlighted = color;
+}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Button::setSpriteTexture(sf::Texture & texture)
 {

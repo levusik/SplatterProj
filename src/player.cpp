@@ -9,7 +9,7 @@ player::player(float radius, sf::Color color, sf::Vector2f position, sf::RenderW
 
 	movementSpeed = 7.f;
 
-	circle.setRadius(radius / 2);
+	circle.setRadius(radius );
 	circle.setFillColor(color);
 	circle.setPosition(position);
 	this->setPosition(position);
